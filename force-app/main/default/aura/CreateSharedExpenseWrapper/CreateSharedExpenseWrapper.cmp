@@ -1,0 +1,14 @@
+<!--
+  @File Name          : CreateSharedExpenseWrapper.cmp
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 10/19/2019, 2:10:20 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    10/19/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<aura:component implements="force:lightningQuickAction" access="global" >
+    <c:createSharedExpense></c:createSharedExpense>
+</aura:component>

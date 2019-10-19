@@ -1,0 +1,17 @@
+<!--
+  @File Name          : createSharedExpense.html
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : Luis Campos (lucam75@gmail.com)
+  @Last Modified On   : 10/19/2019, 2:27:48 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    10/19/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<template>
+    <lightning-record-edit-form object-api-name="Transaction__c" onsuccess={handleSuccess}>
+        <lightning-messages></lightning-messages>
+        <lightning-input-field field-name="Amount__c" value={amount}></lightning-input-field>
+    </lightning-record-edit-form>
+</template>

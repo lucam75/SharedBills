@@ -1,0 +1,14 @@
+<!--
+  @File Name          : SharedExpenseVFPage.page
+  @Description        : 
+  @Author             : Luis Campos lucam75@gmail.com
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 10/19/2019, 1:42:00 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    10/19/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<apex:page>
+    <c:CreateSharedExpense></c:CreateSharedExpense>
+</apex:page>
