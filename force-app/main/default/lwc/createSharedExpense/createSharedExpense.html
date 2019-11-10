@@ -4,7 +4,7 @@
   @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
   @Group              : 
   @Last Modified By   : Luis Campos (lucam75@gmail.com)
-  @Last Modified On   : 10/19/2019, 3:19:38 PM
+  @Last Modified On   : 11/10/2019, 10:52:23 AM
   @Modification Log   : 
   Ver       Date            Author      		    Modification
   1.0    10/19/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
@@ -12,15 +12,34 @@
 <template>
     <lightning-record-edit-form object-api-name="Transaction__c" onsuccess={handleSuccess}>
         <lightning-messages></lightning-messages>
-        <lightning-input-field field-name="Amount__c" ></lightning-input-field>
-        <lightning-input-field field-name="Paid_By__c" value={paidBy} ></lightning-input-field>
-        <lightning-input-field field-name="Billed_to__c" value={billedTo} ></lightning-input-field>
-        <lightning-input-field field-name="Category__c" ></lightning-input-field>
-        <lightning-input-field field-name="Date__c" ></lightning-input-field>
-        <lightning-input-field field-name="Account__c"></lightning-input-field>
-        <lightning-input-field field-name="Event__c"></lightning-input-field>
-        <lightning-input-field field-name="Description__c"></lightning-input-field>
+        
+        <template if:true={renderStep1}>
+          <lightning-input-field field-name="Amount__c" value={amount}></lightning-input-field>
+          <lightning-input-field field-name="Paid_By__c" value={paidBy} ></lightning-input-field>
+          <lightning-checkbox-group name="Checkbox Group"
+          label="Billed to:"
+          options={comms}
+          onchange={handleSelected}>
+          </lightning-checkbox-group>
+          <lightning-button type="" label="Next" class="slds-m-top_medium" onclick={nextStep}> </lightning-button>
+        </template>
+        
+        <template if:true={renderStep2}>
+          <lightning-input-field field-name="Category__c" ></lightning-input-field>
+          <lightning-input-field field-name="Date__c" ></lightning-input-field>
+          <lightning-input-field field-name="Account__c"></lightning-input-field>
+          <lightning-input-field field-name="Event__c"></lightning-input-field>
+          <lightning-input-field field-name="Description__c"></lightning-input-field>
+          <lightning-button type="" label="Previous" class="slds-m-top_medium" onclick={prevStep}> </lightning-button>
+          <lightning-button type="" label="Next" class="slds-m-top_medium" onclick={nextStep}> </lightning-button>
+        </template>
+        
+        <template if:true={renderStep3}>
+          <lightning-slider label="Amount for Diana" value="0" step="50" min="0" max={amount}></lightning-slider>
+          <lightning-button type="" label="Previous" class="slds-m-top_medium" onclick={prevStep}> </lightning-button>
+          <lightning-button type="submit" label="Create expense" class="slds-m-top_medium"> </lightning-button>
+        </template>
 
-        <lightning-button type="submit" label="Create expense" class="slds-m-top_medium"> </lightning-button>
+        
     </lightning-record-edit-form>
-</template>
+  </template>e
