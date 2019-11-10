@@ -3,7 +3,7 @@
     <apiVersion>47.0</apiVersion>
     <availableInTouch>true</availableInTouch>
     <confirmationTokenRequired>true</confirmationTokenRequired>
-    <label>SharedExpenseVFPage</label>
+    <label>Status</label>
     <packageVersions>
         <majorNumber>1</majorNumber>
         <minorNumber>19</minorNumber>

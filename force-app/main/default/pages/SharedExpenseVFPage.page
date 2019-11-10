@@ -3,12 +3,13 @@
   @Description        : 
   @Author             : Luis Campos lucam75@gmail.com
   @Group              : 
-  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
-  @Last Modified On   : 10/19/2019, 1:42:00 PM
+  @Last Modified By   : Luis Campos (lucam75@gmail.com)
+  @Last Modified On   : 10/19/2019, 5:35:28 PM
   @Modification Log   : 
-  Ver       Date            Author      		    Modification
+  Ver       Date            Author                  Modification
   1.0    10/19/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
 -->
-<apex:page>
-    <c:CreateSharedExpense></c:CreateSharedExpense>
-</apex:page>
+<apex:page lightningStylesheets="true"> 
+  <flow:interview name="Create_shared_expense">
+  </flow:interview>
+​</apex:page>
