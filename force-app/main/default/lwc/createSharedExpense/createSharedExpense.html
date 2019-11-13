@@ -1,45 +1,57 @@
 <!--
   @File Name          : createSharedExpense.html
   @Description        : 
-  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Author             : Luis Campos (lucam75@gmail.com)
   @Group              : 
-  @Last Modified By   : Luis Campos (lucam75@gmail.com)
-  @Last Modified On   : 11/10/2019, 10:52:23 AM
+  @Last Modified By   : Luis Campos (LC)
+  @Last Modified On   : 11/13/2019, 11:25:26 AM
   @Modification Log   : 
   Ver       Date            Author      		    Modification
-  1.0    10/19/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+  1.0    10/19/2019   Luis Campos (lucam75@gmail.com)     Initial Version
 -->
 <template>
-    <lightning-record-edit-form object-api-name="Transaction__c" onsuccess={handleSuccess}>
+	<lightning-record-edit-form object-api-name="Transaction__c" onsuccess={handleSuccess} onsubmit={handleSubmit}>
         <lightning-messages></lightning-messages>
         
         <template if:true={renderStep1}>
-          <lightning-input-field field-name="Amount__c" value={amount}></lightning-input-field>
-          <lightning-input-field field-name="Paid_By__c" value={paidBy} ></lightning-input-field>
-          <lightning-checkbox-group name="Checkbox Group"
-          label="Billed to:"
-          options={comms}
-          onchange={handleSelected}>
-          </lightning-checkbox-group>
-          <lightning-button type="" label="Next" class="slds-m-top_medium" onclick={nextStep}> </lightning-button>
+			<h3 class="title">Main Information</h3>
+			<lightning-input-field 	field-name="Amount__c" value={amount} onchange={updateTrackedAmount}></lightning-input-field>
+			<lightning-radio-group 	name="Paid_By__c"
+                          			label="Paid By"
+									options={options}
+									value={paidBy}
+									type="radio"
+									required
+									class="horizontal-radio"
+									onchange={handlePaidBySelected}>
+			</lightning-radio-group>
+          	<lightning-checkbox-group 	name="Billed to" variant="label-stacked" required
+            							label="Billed To"
+            							options={options}
+            							value={billedToSelected}
+            							onchange={handleSelected}>
+          	</lightning-checkbox-group>
+          	<lightning-button type="" label="Next" class="slds-m-top_medium" onclick={nextStep}></lightning-button>
         </template>
         
         <template if:true={renderStep2}>
-          <lightning-input-field field-name="Category__c" ></lightning-input-field>
-          <lightning-input-field field-name="Date__c" ></lightning-input-field>
-          <lightning-input-field field-name="Account__c"></lightning-input-field>
-          <lightning-input-field field-name="Event__c"></lightning-input-field>
-          <lightning-input-field field-name="Description__c"></lightning-input-field>
-          <lightning-button type="" label="Previous" class="slds-m-top_medium" onclick={prevStep}> </lightning-button>
-          <lightning-button type="" label="Next" class="slds-m-top_medium" onclick={nextStep}> </lightning-button>
-        </template>
-        
+			<h3 class="title">Additional Details</h3>
+          	<lightning-input-field field-name="Category__c" value={category} onchange={updateTrackedCategory}></lightning-input-field>
+          	<lightning-input-field field-name="Date__c" value={date} onchange={updateTrackedDate}></lightning-input-field>
+          	<lightning-input-field field-name="Account__c" value={account} onchange={updateTrackedAccount}></lightning-input-field>
+          	<lightning-input-field field-name="Event__c" value={event} onchange={updateTrackedEvent}></lightning-input-field>
+			  <lightning-input-field field-name="Description__c" value={description} onchange={updateTrackedDescription}></lightning-input-field>
+          	<lightning-button type="" label="Previous" class="slds-m-top_medium" onclick={prevStep}> </lightning-button>
+          	<lightning-button type="" label="Next" class="slds-m-top_medium" onclick={nextStep}> </lightning-button>
+		</template>
+		
         <template if:true={renderStep3}>
-          <lightning-slider label="Amount for Diana" value="0" step="50" min="0" max={amount}></lightning-slider>
-          <lightning-button type="" label="Previous" class="slds-m-top_medium" onclick={prevStep}> </lightning-button>
-          <lightning-button type="submit" label="Create expense" class="slds-m-top_medium"> </lightning-button>
-        </template>
-
-        
-    </lightning-record-edit-form>
-  </template>e
+			<h3 class="title">Individual amounts</h3>
+			<template for:each={billedToSelectedList} for:item="contactSelected">
+				<lightning-slider key={contactSelected.value} data-item={contactSelected.value} label={contactSelected.label} value={dividedAmount} step="50" min="0" max={amount} onchange={handleSliderChange}></lightning-slider>
+			</template>
+			<lightning-button type="" label="Previous" class="slds-m-top_medium" onclick={prevStep}> </lightning-button>
+			<lightning-button variant="brand" label="Create expense" class="slds-m-top_medium" onclick={handleCreateExpense}> </lightning-button>
+		</template>
+	</lightning-record-edit-form>
+</template>
