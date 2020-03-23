@@ -1,0 +1,89 @@
+<!--
+  @File Name          : createSharedExpense.html
+  @Description        : 
+  @Author             : Luis Campos (lucam75@gmail.com)
+  @Group              : 
+  @Last Modified By   : Luis Campos (LC)
+  @Last Modified On   : 3/23/2020, 12:29:13 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    10/19/2019   Luis Campos (lucam75@gmail.com)     Initial Version
+-->
+<template>
+	<lightning-record-edit-form object-api-name="Transaction__c" onsuccess={handleSuccess} onsubmit={handleSubmit}>
+        <lightning-messages></lightning-messages>
+        
+        <template if:true={renderStep1}>
+			<h3 class="title">Main Information</h3>
+			<lightning-input-field 	field-name="Amount__c" value={amount} onchange={updateTrackedAmount}></lightning-input-field>
+			<lightning-radio-group	name="Paid_By__c"
+                          			label="Paid By"
+									options={contactsOptions}
+									value={paidBy}
+									type="radio"
+									required
+									class="horizontal-radio"
+									onchange={handlePaidBySelected}>
+			</lightning-radio-group>
+          	<lightning-checkbox-group	name="Billed to" variant="label-stacked" required
+            							label="Billed To"
+            							options={contactsOptions}
+            							value={billedToSelected}
+            							onchange={handleSelected}>
+          	</lightning-checkbox-group>
+          	<lightning-button type="" label="Next" class="slds-m-top_medium" onclick={nextStep}></lightning-button>
+        </template>
+        
+        <template if:true={renderStep2}>
+			<h3 class="title">Additional Details</h3>
+			<c-lookup
+				errors={errors}
+				onsearch={handleSearch}
+				onselectionchange={handleSelectionChange}
+				label="Category"
+				placeholder="Search Category"
+				custom-key="category_lookup"
+				onclickpreview={handleSearch}
+				required
+			></c-lookup>
+          	
+			<lightning-input-field field-name="Date__c" value={date} onchange={updateTrackedDate}></lightning-input-field>
+			  
+			<c-lookup
+				errors={errors}
+				onsearch={handleSearch}
+				onselectionchange={handleSelectionChange}
+				label="Company"
+				placeholder="Search Company"
+				custom-key="account_lookup"
+				onclickpreview={handleSearch}
+			></c-lookup>
+
+			<c-lookup
+				errors={errors}
+				onsearch={handleSearch}
+				onselectionchange={handleSelectionChange}
+				label="Event"
+				placeholder="Search Event"
+				custom-key="event_lookup"
+				onclickpreview={handleSearch}
+			></c-lookup>
+
+			<lightning-input-field field-name="Description__c" value={description} onchange={updateTrackedDescription}></lightning-input-field>
+
+			<lightning-button type="" label="Previous" class="slds-m-top_medium" onclick={prevStep}> </lightning-button>
+			  
+          	<lightning-button type="" label="Next" class="slds-m-top_medium" onclick={nextStep}> </lightning-button>
+		</template>
+		
+        <template if:true={renderStep3}>
+			<h3 class="title">Individual amounts</h3>
+			<template for:each={billedToSelectedList} for:item="contactSelected">
+				<lightning-slider key={contactSelected.value} data-item={contactSelected.value} label={contactSelected.label} value={dividedAmount} step="50" min="0" max={amount} onchange={handleSliderChange}></lightning-slider>
+			</template>
+			<lightning-button type="" label="Previous" class="slds-m-top_medium" onclick={prevStep}> </lightning-button>
+			<lightning-button variant="brand" label="Create expense" class="slds-m-top_medium" onclick={handleCreateExpense}> </lightning-button>
+		</template>
+		
+	</lightning-record-edit-form>
+</template>

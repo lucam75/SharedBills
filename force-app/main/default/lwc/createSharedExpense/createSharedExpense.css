@@ -1,0 +1,14 @@
+.horizontal-radio .slds-form-element__control .slds-radio{
+    display : inline-block !important;
+    font-size: 22px;
+}
+.horizontal-radio .slds-form-element__control{
+    font-size: 30px;
+}
+.title{
+    font-weight: bold;
+}
+
+body{
+    background-color: #F3F2F2;
+}
