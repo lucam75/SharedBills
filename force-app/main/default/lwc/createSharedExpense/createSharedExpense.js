@@ -4,9 +4,8 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { createRecord } from 'lightning/uiRecordApi';
 import getAllContacts from '@salesforce/apex/CreateSharedExpenseHelper.getAllContacts';
 import getLoggedContact from '@salesforce/apex/CreateSharedExpenseHelper.getLoggedContact';
-
-/** SampleLookupController.search() Apex method */
 import apexSearch from '@salesforce/apex/CreateSharedExpenseHelper.search';
+
 
 import TRANSACTION_OBJECT from '@salesforce/schema/Transaction__c';
 import AMOUNT_FIELD from '@salesforce/schema/Transaction__c.Amount__c';

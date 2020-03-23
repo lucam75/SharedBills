@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "orgName": "luis.campos Company",
   "edition": "Developer",
   "features": [],
@@ -7,4 +8,9 @@
       "s1DesktopEnabled": true
     }
   }
+=======
+  "orgName": "Demo Company",
+  "edition": "Developer",
+  "features": []
+>>>>>>> 0121f9a8addbc89adbd5c5d30ca7e487715f0125
 }

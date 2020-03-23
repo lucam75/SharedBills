@@ -1,0 +1,17 @@
+<!--
+  @File Name          : CreateSharedExpenseWrapper.cmp
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : Luis Campos (lucam75@gmail.com)
+  @Last Modified On   : 10/19/2019, 5:27:48 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    10/19/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<aura:component implements="flexipage:availableForAllPageTypes, flexipage:availableForRecordHome, force:lightningQuickActionWithoutHeader" access="global" >
+
+<aura:handler name="init" value="{!this}" action="{!c.init}" />
+FLOW3
+<lightning:flow aura:id="/flow/Create_shared_expense" />
+</aura:component>

@@ -8,7 +8,10 @@
     <columns>Billed_to__c</columns>
     <columns>Date__c</columns>
     <columns>Description__c</columns>
+<<<<<<< HEAD
     <columns>Account__c</columns>
+=======
+>>>>>>> 0121f9a8addbc89adbd5c5d30ca7e487715f0125
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

@@ -4,8 +4,11 @@
     <isExposed>true</isExposed>
     <targets>
         <target>lightning__Tab</target>
+<<<<<<< HEAD
         <target>lightning__AppPage</target>
         <target>lightning__RecordPage</target>
         <target>lightning__HomePage</target>
+=======
+>>>>>>> 0121f9a8addbc89adbd5c5d30ca7e487715f0125
     </targets>
 </LightningComponentBundle>

@@ -10,7 +10,10 @@
     <relationshipLabel>Transactions</relationshipLabel>
     <relationshipName>Transactions</relationshipName>
     <required>false</required>
+<<<<<<< HEAD
     <trackFeedHistory>true</trackFeedHistory>
+=======
+>>>>>>> 0121f9a8addbc89adbd5c5d30ca7e487715f0125
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

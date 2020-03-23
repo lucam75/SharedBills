@@ -6,8 +6,12 @@
     <inlineHelpText>A detail about the expense</inlineHelpText>
     <label>Description</label>
     <length>255</length>
+<<<<<<< HEAD
     <required>true</required>
     <trackFeedHistory>true</trackFeedHistory>
+=======
+    <required>false</required>
+>>>>>>> 0121f9a8addbc89adbd5c5d30ca7e487715f0125
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>
