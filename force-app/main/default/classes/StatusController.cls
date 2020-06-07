@@ -111,6 +111,10 @@ public with sharing class StatusController {
     public String emailLuis {get;set;}
 
     public statusController() {
+        this(false);
+    }
+
+    public statusController(Boolean isSchedule) {
         try{
             this.deudaLuis = 0;
             this.deudaDiana = 0;
@@ -123,7 +127,8 @@ public with sharing class StatusController {
             this.emailLuis = '';
             
             if (Schema.sObjectType.Transaction__c.isQueryable()) {
-                for(AggregateResult ar : [SELECT SUM(Amount__c), Paid_By__r.Name Paidby, Paid_By__r.Email PaidByEmail, Billed_to__r.Name BilledTo FROM Transaction__c WHERE Date__c = THIS_MONTH and It_is_debt__c = true GROUP BY Billed_to__r.Name, Paid_By__r.Name, Paid_By__r.Email]){
+                String query = 'SELECT SUM(Amount__c), Paid_By__r.Name Paidby, Paid_By__r.Email PaidByEmail, Billed_to__r.Name BilledTo FROM Transaction__c WHERE Date__c = ' + (isSchedule? 'LAST_MONTH' : 'THIS_MONTH') +' and It_is_debt__c = true GROUP BY Billed_to__r.Name, Paid_By__r.Name, Paid_By__r.Email';
+                for(AggregateResult ar : Database.query(query)){
                     if(ar != null){
                         if(ar.get('Paidby') == 'Diana Gonzalez'){
                             this.deudaLuis = (Decimal)ar.get('expr0');

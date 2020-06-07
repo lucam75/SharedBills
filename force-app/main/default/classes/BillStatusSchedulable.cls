@@ -18,19 +18,46 @@
 //String jobID = system.schedule('Calculate month bills', sch, m);
 
 global with sharing class BillStatusSchedulable implements Schedulable {
-    global void execute(SchedulableContext sc) {
-        StatusSchedule currentStatus = new StatusSchedule();
-        this.sendEmail(currentStatus);
-   }
 
-   public void sendEmail(StatusSchedule currentStatus){
-       String messageText = currentStatus.deudor + ' le debe a ' + currentStatus.cobrador + ' la cantidad de ' + currentStatus.totalDebtAmountString;
+    EmailTemplate endMonthEmailTemplate;
+    String END_MONTH_EMAIL_DEVELOPER_NAME = 'End_Month_Status';
+
+    public BillStatusSchedulable(){
+        try{
+            endMonthEmailTemplate = [SELECT Id, Name, Body, HtmlValue, Subject FROM EmailTemplate WHERE developername =: END_MONTH_EMAIL_DEVELOPER_NAME LIMIT 1];
+        }catch(Exception e){
+            system.debug(e.getMessage());
+        }
+    }
+
+    global void execute(SchedulableContext sc) {
+        StatusController currentStatus = new StatusController(true);
+        this.sendEmail(currentStatus);
+    }
+
+    public void sendEmail(StatusController currentStatus){
 
         Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
-        message.toAddresses = new String[] { currentStatus.emailLuis, currentStatus.emailDiana };
+
+        if(endMonthEmailTemplate != null){
+            system.debug('template version');
+
+            message.setTemplateId(endMonthEmailTemplate.Id);
+            message.Subject = endMonthEmailTemplate.Subject.replace('[LAST_MONTH]', this.getMonthText());
+            message.setTreatBodiesAsTemplate(True);
+            message.setHtmlBody(endMonthEmailTemplate.HtmlValue.replace('%DEUDOR%', currentStatus.deudor).replace('%COBRADOR%', currentStatus.cobrador).replace('%DEUDA%', currentStatus.totalDebtAmountString));
+
+        }else{
+            system.debug('normal version');
+            message.subject = '[SharedBills] Status for ' + this.getMonthText();
+            message.setPlainTextBody(currentStatus.deudor + ' le debe a ' + currentStatus.cobrador + ' la cantidad de ' + currentStatus.totalDebtAmountString);
+        }
+
+        
+        //message.toAddresses = new String[] { currentStatus.emailLuis, currentStatus.emailDiana };
+        message.toAddresses = new String[] { currentStatus.emailLuis };
         message.optOutPolicy = 'FILTER';
-        message.subject = '[SharedBills] Status for ' + this.getMonthText();
-        message.plainTextBody = messageText;
+
         Messaging.SingleEmailMessage[] messages =   new List<Messaging.SingleEmailMessage> {message};
         Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
 
@@ -39,7 +66,7 @@ global with sharing class BillStatusSchedulable implements Schedulable {
         } else {
             System.debug('The email failed to send: ' + results[0].errors[0].message);
         }
-   }
+    }
     public String getMonthText(){
         Integer month = System.Today().addDays(-1).month();
         if(month == 1){
