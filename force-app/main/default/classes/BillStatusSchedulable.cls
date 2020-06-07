@@ -54,8 +54,8 @@ global with sharing class BillStatusSchedulable implements Schedulable {
         }
 
         
-        //message.toAddresses = new String[] { currentStatus.emailLuis, currentStatus.emailDiana };
-        message.toAddresses = new String[] { currentStatus.emailLuis };
+        message.toAddresses = new String[] { currentStatus.emailLuis, currentStatus.emailDiana };
+        //message.toAddresses = new String[] { currentStatus.emailLuis };
         message.optOutPolicy = 'FILTER';
 
         Messaging.SingleEmailMessage[] messages =   new List<Messaging.SingleEmailMessage> {message};
