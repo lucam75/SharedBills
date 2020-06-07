@@ -9,7 +9,7 @@
   Ver       Date            Author      		    Modification
   1.0    10/19/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
 -->
-<aura:component implements="flexipage:availableForAllPageTypes, flexipage:availableForRecordHome, force:lightningQuickActionWithoutHeader" access="global" >
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:lightningQuickActionWithoutHeader" access="global" >
 
 <aura:handler name="init" value="{!this}" action="{!c.init}" />
 FLOW3
