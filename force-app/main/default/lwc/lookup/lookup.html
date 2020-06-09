@@ -1,27 +1,12 @@
-<!--
-  @File Name          : lookup.html
-  @Description        : 
-  @Author             : Luis Campos (LC)
-  @Group              : 
-  @Last Modified By   : Luis Campos (LC)
-  @Last Modified On   : 3/23/2020, 11:43:43 AM
-  @Modification Log   : 
-  Ver       Date            Author      		    Modification
-  1.0    3/19/2020   Luis Campos (LC)     Initial Version
--->
 <template>
     <div class="slds-form-element">
-        <label if:true={label} class="slds-form-element__label" for="combobox"
-            ><abbr if:true={required} title="required" class="slds-required">*</abbr>{label}</label
-        >
+        <label if:true={label} class="slds-form-element__label" for="combobox">
+            <abbr if:true={required} title="required" class="slds-required">*</abbr>
+            {label}
+        </label>
         <div class="slds-form-element__control">
             <div class={getContainerClass}>
-                <div
-                    class={getDropdownClass}
-                    aria-expanded={isExpanded}
-                    aria-haspopup="listbox"
-                    role="combobox"
-                >
+                <div class={getDropdownClass} aria-expanded={isExpanded} aria-haspopup="listbox" role="combobox">
                     <!-- Search input start -->
                     <div class={getComboboxClass} role="none">
                         <template if:false={isMultiEntry}>
@@ -79,33 +64,18 @@
                         </template>
                     </div>
                     <!-- Search input end -->
-                    
+
                     <!-- Result list box start -->
-                    <div
-                        id="listbox"
-                        role="listbox"
-                        onclick={handleComboboxClick}
-                    >
+                    <div id="listbox" role="listbox" onclick={handleComboboxClick}>
                         <ul class={getListboxClass} role="presentation">
                             <!-- Spinner to display when waiting for results of search -->
                             <div if:true={loading}>
-                                <lightning-spinner
-                                    alternative-text="Loading"
-                                    size="small"
-                                ></lightning-spinner>
+                                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
                             </div>
 
                             <!-- Display if results are present -->
-                            <template
-                                for:each={searchResults}
-                                for:item="result"
-                                if:true={isExpanded}
-                            >
-                                <li
-                                    key={result.id}
-                                    role="presentation"
-                                    class="slds-listbox__item"
-                                >
+                            <template for:each={searchResults} for:item="result" if:true={isExpanded}>
+                                <li key={result.id} role="presentation" class="slds-listbox__item">
                                     <span
                                         class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
                                         role="option"
@@ -120,30 +90,33 @@
                                             ></lightning-icon>
                                         </span>
                                         <span class="slds-media__body">
-                                            <span
-                                                class="slds-listbox__option-text slds-listbox__option-text_entity"
-                                                >{result.title}</span
-                                            >
-                                            <span
-                                                class="slds-listbox__option-meta slds-listbox__option-meta_entity"
-                                                >{result.subtitle}</span
-                                            >
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                                <lightning-formatted-rich-text
+                                                    value={result.titleFormatted}
+                                                    disable-linkify
+                                                >
+                                                </lightning-formatted-rich-text>
+                                            </span>
+                                            <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">
+                                                <lightning-formatted-rich-text
+                                                    value={result.subtitleFormatted}
+                                                    disable-linkify
+                                                >
+                                                </lightning-formatted-rich-text>
+                                            </span>
                                         </span>
                                     </span>
                                 </li>
                             </template>
                             <!-- Display that there are no results -->
                             <template if:false={isExpanded}>
-                                <li
-                                    role="presentation"
-                                    class="slds-listbox__item"
-                                >
-                                    <span
-                                        class="slds-media slds-listbox__option_entity"
-                                        role="option"
-                                    >
-                                        <span class="slds-media__body">
+                                <li role="presentation" class="slds-listbox__item">
+                                    <span class="slds-media slds-listbox__option_entity" role="option">
+                                        <span if:false={loading} class="slds-media__body">
                                             No results.
+                                        </span>
+                                        <span if:true={loading} class="slds-media__body">
+                                            Loading...
                                         </span>
                                     </span>
                                 </li>
@@ -156,31 +129,21 @@
 
             <!-- Multi-selection start -->
             <template if:true={isMultiEntry}>
-                <div
-                    id="selection"
-                    role="listbox"
-                    aria-orientation="horizontal"
-                >
+                <div id="selection" role="listbox" aria-orientation="horizontal">
                     <ul
-                        class="slds-listbox slds-listbox_inline slds-p-top_xxx-small"
+                        class="slds-listbox slds-listbox_inline slds-var-p-top_xxx-small"
                         role="group"
                         aria-label="Selected Options:"
                     >
-                        <template for:each={selection} for:item="item">
-                            <li
-                                key={item.id}
-                                role="presentation"
-                                class="slds-listbox__item"
-                            >
+                        <template for:each={curSelection} for:item="item">
+                            <li key={item.id} role="presentation" class="slds-listbox__item">
                                 <lightning-pill
                                     label={item.title}
                                     title={item.title}
                                     onremove={handleRemoveSelectedItem}
                                     name={item.id}
                                 >
-                                    <lightning-icon
-                                        icon-name={item.icon}
-                                    ></lightning-icon>
+                                    <lightning-icon icon-name={item.icon}></lightning-icon>
                                 </lightning-pill>
                             </li>
                         </template>
@@ -191,10 +154,7 @@
 
             <!-- Errors start -->
             <template for:each={errors} for:item="error">
-                <label
-                    key={error.id}
-                    role="alert"
-                    class="slds-form-element__label slds-m-top_xx-small form-error"
+                <label key={error.id} role="alert" class="slds-form-element__label slds-var-m-top_xx-small form-error"
                     >{error.message}</label
                 >
             </template>

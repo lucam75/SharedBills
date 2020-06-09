@@ -36,6 +36,11 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
     contacts;
 
     connectedCallback(){
+        const now = new Date();
+        const offsetMs = now.getTimezoneOffset() * 60 * 1000;
+        const dateLocal = new Date(now.getTime() - offsetMs);
+        this.date = dateLocal.toISOString().slice(0, 19).replace(/-/g, "-").replace("T", " ");
+
         getLoggedContact()
             .then(result => {
                 this.paidBy = result.Id;
@@ -124,6 +129,11 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 
     handleCreateExpense(){
         console.log('handleCreateExpense');
+        console.log('this.category', this.category);
+        console.log('this.date', this.date);
+        console.log('this.event', this.event);
+        console.log('this.description', this.description);
+        console.log('this.account', this.account);
 
         for(let contact in this.billedToAmounts) {
             if (Object.prototype.hasOwnProperty.call(this.billedToAmounts, contact)) {
@@ -196,15 +206,16 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
     }
 
     handleSelectionChange(event) {
-        let lookupType = event.target.getkey();
+        const lookupType = event.target.getkey();
         const itemSelected = event.target.getSelection();
         // [{"icon":"custom:custom46","id":"a003j00000TkrGJAAZ","sObjectType":"Category","subtitle":"","title":"Comida vegana"}]
+
         if(lookupType == 'category_lookup'){
-            this.category = itemSelected.id;
+            this.category = itemSelected[0].id;
         }else if(lookupType == 'account_lookup'){
-            this.account = itemSelected.id;
+            this.account = itemSelected[0].id;
         }else if(lookupType == 'event_lookup'){
-            this.event = itemSelected.id;
+            this.event = itemSelected[0].id;
         }
     }
 

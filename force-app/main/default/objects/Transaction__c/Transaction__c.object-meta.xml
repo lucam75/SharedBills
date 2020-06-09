@@ -128,7 +128,6 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-<<<<<<< HEAD
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Transaction</content>
         <formFactor>Large</formFactor>
@@ -149,31 +148,11 @@
     </actionOverrides>
     <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>Transaction_default</compactLayoutAssignment>
-=======
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <allowInChatterGroups>true</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
->>>>>>> 0121f9a8addbc89adbd5c5d30ca7e487715f0125
     <deploymentStatus>Deployed</deploymentStatus>
     <description>To keep track of all the transactions performed between the contacts.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-<<<<<<< HEAD
     <enableFeeds>true</enableFeeds>
-=======
-    <enableFeeds>false</enableFeeds>
->>>>>>> 0121f9a8addbc89adbd5c5d30ca7e487715f0125
     <enableHistory>true</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
@@ -185,10 +164,7 @@
     <nameField>
         <displayFormat>T-{00000}</displayFormat>
         <label>Transaction Number</label>
-<<<<<<< HEAD
         <trackFeedHistory>true</trackFeedHistory>
-=======
->>>>>>> 0121f9a8addbc89adbd5c5d30ca7e487715f0125
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
