@@ -12,3 +12,10 @@
 body{
     background-color: #F3F2F2;
 }
+
+.card-container div.slds-card__body{
+    padding-left: 17px !important;
+}
+.card-container article.slds-card{
+    padding: 10px !important;
+}

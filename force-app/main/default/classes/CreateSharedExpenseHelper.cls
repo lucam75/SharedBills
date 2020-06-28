@@ -109,7 +109,7 @@ public with sharing class CreateSharedExpenseHelper {
         }catch(Exception e){
             return results;
         }
-        System.debug('Results: ' + results.size());
+        System.debug('Results: ' + results);
         return results;
     }
 }

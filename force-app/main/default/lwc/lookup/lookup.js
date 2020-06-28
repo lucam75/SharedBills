@@ -43,7 +43,7 @@ export default class Lookup extends LightningElement {
         // Format results
         this.searchResults = resultsLocal.map((result) => {
             // Clone and complete search result if icon is missing
-            if (this.searchTerm.length > 0) {
+            if (this.searchTerm.length > 0 || this.isPreview) {
                 const regex = new RegExp(`(${this.searchTerm})`, 'gi');
                 result.titleFormatted = result.title
                     ? result.title.replace(regex, '<strong>$1</strong>')
