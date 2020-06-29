@@ -1,21 +1,30 @@
-.horizontal-radio .slds-form-element__control .slds-radio{
+.horizontal-radio .slds-form-element__control .slds-radio {
     display : inline-block !important;
     font-size: 22px;
 }
-.horizontal-radio .slds-form-element__control{
+
+.horizontal-radio .slds-form-element__control {
     font-size: 30px;
 }
-.title{
+
+.title {
     font-weight: bold;
 }
 
-body{
-    background-color: #F3F2F2;
+.shared-expense-content {
+    padding: 17px !important;
+    background-color: white;
 }
 
-.card-container div.slds-card__body{
-    padding-left: 17px !important;
+.shared-expense-content lightning-checkbox-group {
+    margin-top: 10px;
 }
-.card-container article.slds-card{
-    padding: 10px !important;
+
+div.navigation-buttons {
+    border-top: 1px solid lightgray;
+    padding-top: 5px;
+    margin-top: 15px;
+}
+div.navigation-buttons > lightning-button {
+    margin-right: 10px;
 }

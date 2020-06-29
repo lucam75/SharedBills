@@ -10,13 +10,13 @@
   1.0    10/19/2019   Luis Campos (lucam75@gmail.com)     Initial Version
 -->
 <template>
-	<lightning-card title="Create Bill" icon-name="standard:partner_marketing_budget" class="card-container">
-		<lightning-record-edit-form object-api-name="Transaction__c" onsuccess={handleSuccess} onsubmit={handleSubmit}>
+	<div class="shared-expense-content">
+		<lightning-record-edit-form object-api-name="Transaction__c" onsuccess={handleSuccess} onsubmit={handleSubmit} class="shared-expense-form">
 			<lightning-messages></lightning-messages>
 			
 			<template if:true={renderStep1}>
 				<h3 class="title">Main Information</h3>
-				<lightning-input-field 	field-name="Amount__c" value={amount} onchange={updateTrackedAmount}></lightning-input-field>
+				<lightning-input-field 	field-name="Amount__c" value={amount} onchange={handleAmountChange}></lightning-input-field>
 				<lightning-radio-group	name="Paid_By__c"
 										label="Paid By"
 										options={contactsOptions}
@@ -31,9 +31,11 @@
 											label="Billed To"
 											options={contactsOptions}
 											value={billedToSelected}
-											onchange={handleSelected}>
+											onchange={handleBilledSelectedChange}>
 				</lightning-checkbox-group>
-				<lightning-button type="" label="Next" class="slds-m-top_medium" onclick={nextStep}></lightning-button>
+				<div class="navigation-buttons">
+					<lightning-button type="" label="Next" class="slds-m-top_medium" onclick={nextStep}></lightning-button>
+				</div>
 			</template>
 			
 			<template if:true={renderStep2}>
@@ -41,57 +43,73 @@
 				<c-lookup
 					data-id="category_lookup"
 					id="category_lookup"
-					name="category_lookup"
 					errors={errors}
-					onsearch={handleSearch}
-					onselectionchange={handleSelectionChange}
+					onsearch={handleLookupSearch}
+					onselectionchange={handleLookupSelectionChange}
 					label="Category"
 					placeholder="Search Category"
 					custom-key="category_lookup"
-					onclickpreview={handleSearch}
+					onclickpreview={handleLookupSearch}
 					required
 				></c-lookup>
 				
-				<lightning-input-field field-name="Date__c" value={date} onchange={updateTrackedDate}></lightning-input-field>
+				<lightning-input-field field-name="Date__c" value={date} onchange={handleDateChange}></lightning-input-field>
 				
 				<c-lookup
 					errors={errors}
-					onsearch={handleSearch}
-					onselectionchange={handleSelectionChange}
+					onsearch={handleLookupSearch}
+					onselectionchange={handleLookupSelectionChange}
 					label="Company"
 					placeholder="Search Company"
 					custom-key="account_lookup"
-					onclickpreview={handleSearch}
-					value={account}
+					onclickpreview={handleLookupSearch}
 				></c-lookup>
 
 				<c-lookup
 					errors={errors}
-					onsearch={handleSearch}
-					onselectionchange={handleSelectionChange}
+					onsearch={handleLookupSearch}
+					onselectionchange={handleLookupSelectionChange}
 					label="Event"
 					placeholder="Search Event"
 					custom-key="event_lookup"
-					onclickpreview={handleSearch}
-					value={event}
+					onclickpreview={handleLookupSearch}
 				></c-lookup>
 
-				<lightning-input-field field-name="Description__c" value={description} onchange={updateTrackedDescription}></lightning-input-field>
+				<lightning-input-field field-name="Description__c" value={description} onchange={handleDescriptionChange}></lightning-input-field>
 
-				<lightning-button type="" label="Previous" class="slds-m-top_medium" onclick={prevStep}> </lightning-button>
-				
-				<lightning-button type="" label="Next" class="slds-m-top_medium" onclick={nextStep}> </lightning-button>
+				<div class="navigation-buttons">
+					<lightning-button type="" label="Previous" class="slds-m-top_medium" onclick={prevStep}> </lightning-button>
+					<template if:true={showSliders}>
+						<lightning-button type="" label="Next" class="slds-m-top_medium" onclick={nextStep}> </lightning-button>
+					</template>
+					<template if:false={showSliders}>
+						<lightning-button variant="brand" label="Create expense" class="slds-m-top_medium" onclick={handleCreateExpense}> </lightning-button>
+					</template>
+					
+				</div>
 			</template>
 			
 			<template if:true={renderStep3}>
+				<lightning-input type="checkbox" label="Manual Mode" value={manualMode} onchange={handleManualModeChange}> </lightning-input>
 				<h3 class="title">Individual amounts</h3>
-				<template for:each={billedToSelectedList} for:item="contactSelected">
-					<lightning-slider key={contactSelected.value} data-item={contactSelected.value} label={contactSelected.label} value={dividedAmount} step="50" min="0" max={amount} onchange={handleSliderChange}></lightning-slider>
+
+				<template if:false={manualMode}>
+					<template for:each={billedToSelectedList} for:item="contactSelected">
+						<lightning-slider key={contactSelected.key} data-item={contactSelected.key} label={contactSelected.value.label} value={contactSelected.value.amount} step="50" min="0" max={amount} onchange={handleSliderChange}></lightning-slider>
+					</template>
 				</template>
-				<lightning-button type="" label="Previous" class="slds-m-top_medium" onclick={prevStep}> </lightning-button>
-				<lightning-button variant="brand" label="Create expense" class="slds-m-top_medium" onclick={handleCreateExpense}> </lightning-button>
+
+				<template if:true={manualMode}>
+					<template for:each={billedToSelectedList} for:item="contactSelected">
+						<lightning-input type="number" key={contactSelected.key} data-item={contactSelected.key} label={contactSelected.value.label} value={contactSelected.value.amount} onchange={handleManualAmountChange}></lightning-input>
+					</template>
+				</template>
+
+				<div class="navigation-buttons">
+					<lightning-button type="" label="Previous" class="slds-m-top_medium" onclick={prevStep}> </lightning-button>
+					<lightning-button variant="brand" label="Create expense" class="slds-m-top_medium" onclick={handleCreateExpense}> </lightning-button>
+				</div>
 			</template>
-			
 		</lightning-record-edit-form>
-	</lightning-card>
+	</div>
 </template>
