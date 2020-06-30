@@ -41,12 +41,6 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	contacts;
 
 	connectedCallback(){
-		// Set Date to Today
-		const now = new Date();
-		const offsetMs = now.getTimezoneOffset() * 60 * 1000;
-		const dateLocal = new Date(now.getTime() - offsetMs);
-		this.date = dateLocal.toISOString().slice(0, 19).replace(/-/g, "-").replace("T", " ");
-
 		getLoggedContact()
 			.then(result => {
 				this.paidBy = result.Id;
@@ -54,18 +48,20 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 			.catch(error => {
 				console.error(error);
 			});
+
+		this.initializeDefaultValues();
 	}
 
-	get renderStep1() {
-		return this.currentStep === 1;
+	get step1Class() {
+		return this.currentStep === 1 ? 'show': 'hidden';
 	}
 
-	get renderStep2() {
-		return this.currentStep === 2;
+	get step2Class() {
+		return this.currentStep === 2 ? 'show': 'hidden';;
 	}
 
-	get renderStep3() {
-		return this.currentStep === 3;
+	get step3Class() {
+		return this.currentStep === 3 ? 'show': 'hidden';;
 	}
 
 	get dividedAmount() {
@@ -114,19 +110,28 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		});
 	}
 	handleManualAmountChange(event) {
-		let sliderContactId = event.target.dataset.item;
+		let contactId = event.target.dataset.item;
 		let sliderContactAmount = event.detail.value;
-		this.billedToSelectedList.find(x => x.key === sliderContactId).value.amount = sliderContactAmount;
+		this.billedToSelectedList.find(x => x.key === contactId).value.amount = sliderContactAmount;
+
+		let calculatedNewAmount = (this.amount - sliderContactAmount) / (this.billedToSelectedList.length - 1);
+
+		this.billedToSelectedList.forEach(contact => {
+			if (contact.key != contactId ) {
+				contact.value.amount = calculatedNewAmount;
+			}
+		});
 	}
-	handleCreateExpense(){
+	handleCreateExpense() {
 		console.log('handleCreateExpense');
 
-		console.log('this.billedToSelectedList.length ', this.billedToSelectedList.length);
-		if(this.billedToSelectedList.length > 1 ){
+		if(this.billedToSelectedList.length > 1 ) {
+			console.log('Multi mode');
 			this.billedToSelectedList.forEach(contact => {
 				this.createSingleTransaction(contact.key, contact.value.amount);
 			});
 		}else if (this.billedToSelectedList.length == 1) {
+			console.log('Single mode');
 			this.createSingleTransaction(this.billedToSelectedList[0].key, this.billedToSelectedList[0].amount);
 		}else {
 			this.notifyUser('Error', 'Please select at least one contact to create the bill.', 'error');
@@ -178,30 +183,56 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	// Navigation events
 	nextStep(){
 		this.currentStep++;
+		this.stepsLogic();
+	}
+	prevStep(){
+		this.currentStep--;
+		this.stepsLogic();
+	}
+
+
+	// Utilitary methods
+	initializeDefaultValues() {
+		// Set Date to Today
+		const now = new Date();
+		const offsetMs = now.getTimezoneOffset() * 60 * 1000;
+		const dateLocal = new Date(now.getTime() - offsetMs);
+		this.date = dateLocal.toISOString().slice(0, 19).replace(/-/g, "-").replace("T", " ");
+
+		this.amount = null;
+		this.currentStep = 1;
+		this.billedToSelected = [''];
+		this.category = undefined;
+		this.account = undefined;
+		this.event = undefined;
+		this.description = undefined;
+		this.billedToSelectedList = [];
+
+		this.errors = [];
+
+		this.createdTransactionsIds = [];
+		this.showSliders = true;
+		this.manualMode = false;
+	}
+	stepsLogic() {
+		if (this.currentStep === 2) {
+			this.step2logic();
+		}
 		if(this.currentStep === 3){
 			this.step3Logic();
 		}
 	}
-	prevStep(){
-		this.currentStep--;
-		if (this.currentStep === 2) {
-			if (this.category != null) {
-				let category_lookup = this.template.querySelectorAll('category_lookup');
-				console.log(JSON.stringify(category_lookup));
-				category_lookup.selection = this.category;
-			}
-		}
-	}
-
-	// Utilitary methods
 	getContactLabel(contactId){
 		if(this.contacts.data !== undefined && contactId !== ''){
 			return this.contacts.data.find(contact => contact.Id === contactId).Name;
 		}
 		return '';
 	}
+	step2logic() {
 
-	step3Logic(){
+	}
+
+	step3Logic() {
 		this.showSliders = true;
 	}
 
@@ -229,16 +260,16 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		fields[ACCOUNT_FIELD.fieldApiName] = this.account != undefined ? this.account.id : '';
 
 		const recordInput = { apiName: TRANSACTION_OBJECT.objectApiName, fields };
-		console.log('recordInput ', recordInput);
-		/*createRecord(recordInput)
+		createRecord(recordInput)
 			.then(transaction => {
 				this.createdTransactionsIds.push(transaction.id);
 				this.notifyUser('Success', 'Shared transaction created', 'success');
+				this.initializeDefaultValues();
 			})
 			.catch(error => {
 				console.log(JSON.stringify(error));
 				this.notifyUser('Error creating shared transaction', error.body.message, 'error');
-			});*/
+			});
 	}
 
 	notifyUser(title, message, variant) {

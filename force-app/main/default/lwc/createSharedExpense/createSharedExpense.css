@@ -28,3 +28,15 @@ div.navigation-buttons {
 div.navigation-buttons > lightning-button {
     margin-right: 10px;
 }
+
+.text-right {
+    text-align: right;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
