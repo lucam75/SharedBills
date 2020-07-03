@@ -8,7 +8,7 @@
     <columns>Billed_to__c</columns>
     <columns>Date__c</columns>
     <columns>Description__c</columns>
-    <columns>Account__c</columns>
+    <columns>Event__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>
