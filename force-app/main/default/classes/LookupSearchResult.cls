@@ -8,19 +8,22 @@ public class LookupSearchResult {
     private String icon;
     private String title;
     private String subtitle;
+    private String imageUrl;
 
     public LookupSearchResult(
         Id id,
         String sObjectType,
         String icon,
         String title,
-        String subtitle
+        String subtitle,
+        String imageUrl
     ) {
         this.id = id;
         this.sObjectType = sObjectType;
         this.icon = icon;
         this.title = title;
         this.subtitle = subtitle;
+        this.imageUrl = imageUrl;
     }
 
     @AuraEnabled
@@ -46,5 +49,10 @@ public class LookupSearchResult {
     @AuraEnabled
     public String getSubtitle() {
         return subtitle;
+    }
+
+    @AuraEnabled
+    public String getImageUrl() {
+        return imageUrl;
     }
 }

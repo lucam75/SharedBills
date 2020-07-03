@@ -132,7 +132,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 			});
 		}else if (this.billedToSelectedList.length == 1) {
 			console.log('Single mode');
-			this.createSingleTransaction(this.billedToSelectedList[0].key, this.billedToSelectedList[0].amount);
+			this.createSingleTransaction(this.billedToSelectedList[0].key, this.amount);
 		}else {
 			this.notifyUser('Error', 'Please select at least one contact to create the bill.', 'error');
 		}
@@ -147,6 +147,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 
 		apexSearch(parameters)
 			.then(results => {
+				console.log(JSON.stringify(results));
 				target.setSearchResults(results);
 			})
 			.catch(error => {

@@ -83,10 +83,12 @@
                                         data-recordid={result.id}
                                     >
                                         <span class="slds-media__figure">
+                                            <img src={result.imageUrl} if:true={result.imageUrl}></img>
                                             <lightning-icon
                                                 icon-name={result.icon}
                                                 size="small"
                                                 alternative-text="Result item icon"
+                                                if:false={result.imageUrl}
                                             ></lightning-icon>
                                         </span>
                                         <span class="slds-media__body">
