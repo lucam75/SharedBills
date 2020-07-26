@@ -46,11 +46,12 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 				this.paidBy = result.Id;
 			})
 			.catch(error => {
-				console.error(error);
+				console.log(JSON.stringify(error));
 			});
 
 		this.initializeDefaultValues();
 	}
+
 
 	get step1Class() {
 		return this.currentStep === 1 ? 'show': 'hidden';
@@ -123,19 +124,16 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		});
 	}
 	handleCreateExpense() {
-		console.log('handleCreateExpense');
-
 		if(this.billedToSelectedList.length > 1 ) {
-			console.log('Multi mode');
 			this.billedToSelectedList.forEach(contact => {
 				this.createSingleTransaction(contact.key, contact.value.amount);
 			});
 		}else if (this.billedToSelectedList.length == 1) {
-			console.log('Single mode');
 			this.createSingleTransaction(this.billedToSelectedList[0].key, this.amount);
 		}else {
 			this.notifyUser('Error', 'Please select at least one contact to create the bill.', 'error');
 		}
+		this.initializeDefaultValues();
 		
 	}
 	handleLookupSearch(event) {
@@ -147,7 +145,6 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 
 		apexSearch(parameters)
 			.then(results => {
-				console.log(JSON.stringify(results));
 				target.setSearchResults(results);
 			})
 			.catch(error => {
@@ -177,7 +174,6 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	}
 
 	handleManualModeChange(event) {
-		console.log('handleManualModeChange ');
 		this.manualMode = event.target.checked;
 	}
 
@@ -195,10 +191,10 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	// Utilitary methods
 	initializeDefaultValues() {
 		// Set Date to Today
-		const now = new Date();
+		/*const now = new Date();
 		const offsetMs = now.getTimezoneOffset() * 60 * 1000;
 		const dateLocal = new Date(now.getTime() - offsetMs);
-		this.date = dateLocal.toISOString().slice(0, 19).replace(/-/g, "-").replace("T", " ");
+		this.date = dateLocal.toISOString().slice(0, 19).replace(/-/g, "-").replace("T", " ");*/
 
 		this.amount = null;
 		this.currentStep = 1;
@@ -214,6 +210,12 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		this.createdTransactionsIds = [];
 		this.showSliders = true;
 		this.manualMode = false;
+
+		let lookups = this.template.querySelectorAll('c-lookup');
+		lookups.forEach(lookup => {
+			lookup.selection = [];
+		});
+		
 	}
 	stepsLogic() {
 		if (this.currentStep === 2) {
@@ -238,7 +240,6 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	}
 
 	updateBilledToSelectedList() {
-		console.log('updateBilledToSelectedList ');
 		let tempBilledToSelectedList = [];
 		this.billedToSelected.forEach(billed => {
 			let added = { key: billed, value: { 'label': this.getContactLabel(billed), 'contactId': billed, 'amount' : this.dividedAmount }};
@@ -249,7 +250,6 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	}
 
 	createSingleTransaction(billedTo, amount){
-		console.log('createSingleTransaction');
 		const fields = {};
 		fields[AMOUNT_FIELD.fieldApiName] = amount;
 		fields[BILLED_TO_FIELD.fieldApiName] = billedTo;
@@ -265,7 +265,6 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 			.then(transaction => {
 				this.createdTransactionsIds.push(transaction.id);
 				this.notifyUser('Success', 'Shared transaction created', 'success');
-				this.initializeDefaultValues();
 			})
 			.catch(error => {
 				console.log(JSON.stringify(error));
