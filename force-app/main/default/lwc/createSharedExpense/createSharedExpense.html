@@ -15,6 +15,9 @@
 			<lightning-messages></lightning-messages>
 			<div class={step1Class}>
 				<h3 class="title">Main Information</h3>
+				<div class="predefined-buttons">
+					<lightning-button label="Arriendo" value="arriendo" class="slds-m-top_medium" onclick={handleLoadPredefined}></lightning-button>
+				</div>
 				<lightning-input-field 	field-name="Amount__c" value={amount} onchange={handleAmountChange}></lightning-input-field>
 				<lightning-radio-group	name="Paid_By__c"
 										label="Paid By"
@@ -40,7 +43,7 @@
 			<div class={step2Class}>
 				<h3 class="title">Additional Details</h3>
 				<c-lookup
-					data-id="category_lookup"
+					class="category_lookup"
 					id="category_lookup"
 					errors={errors}
 					onsearch={handleLookupSearch}
@@ -55,6 +58,7 @@
 				<lightning-input-field field-name="Date__c"  onchange={handleDateChange}></lightning-input-field>
 				
 				<c-lookup
+					class="account_lookup"
 					errors={errors}
 					onsearch={handleLookupSearch}
 					onselectionchange={handleLookupSelectionChange}
@@ -65,6 +69,7 @@
 				></c-lookup>
 
 				<c-lookup
+					class="event_lookup"
 					errors={errors}
 					onsearch={handleLookupSearch}
 					onselectionchange={handleLookupSelectionChange}

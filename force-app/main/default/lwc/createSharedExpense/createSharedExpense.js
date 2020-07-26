@@ -5,6 +5,7 @@ import { createRecord } from 'lightning/uiRecordApi';
 import getAllContacts from '@salesforce/apex/CreateSharedExpenseHelper.getAllContacts';
 import getLoggedContact from '@salesforce/apex/CreateSharedExpenseHelper.getLoggedContact';
 import apexSearch from '@salesforce/apex/CreateSharedExpenseHelper.search';
+import { predefinedValues } from 'c/utils';
 
 
 import TRANSACTION_OBJECT from '@salesforce/schema/Transaction__c';
@@ -79,10 +80,35 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		return contactsOptions;
 	}
 
+	handleLoadPredefined(e) {
+		console.log(predefinedValues);
+		let predefined = e.target.value;
+
+		if (predefinedValues.hasOwnProperty(predefined)) {
+			let config = predefinedValues[predefined];
+
+			console.log('Values loaded ', config);
+			this.amount = config.amount;
+			this.category = config.category;
+			this.account = config.account;
+			this.event = config.event;
+			this.description = config.description;
+			this.paidBy = config.paidBy;
+			this.billedToSelected = config.billedTo;
+
+			this.updateBilledToSelectedList();
+			this.template.querySelector('.category_lookup').selection = this.category;
+			this.template.querySelector('.account_lookup').selection = this.account;
+			this.template.querySelector('.event_lookup').selection = this.event;
+		} else {
+			this.notifyUser('No configuration for ' + predefined, 'No default values were loaded.' , 'warning');
+		}
+		
+	}
+
 	// Handle field updates
 	handleBilledSelectedChange(e) {
 		this.billedToSelected = e.detail.value;
-		this.showSliders = this.billedToSelected.length > 1
 		this.updateBilledToSelectedList();
 	}
 	handlePaidBySelected(e){
@@ -180,11 +206,9 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	// Navigation events
 	nextStep(){
 		this.currentStep++;
-		this.stepsLogic();
 	}
 	prevStep(){
 		this.currentStep--;
-		this.stepsLogic();
 	}
 
 
@@ -204,6 +228,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		this.event = undefined;
 		this.description = undefined;
 		this.billedToSelectedList = [];
+		this.description = '';
 
 		this.errors = [];
 
@@ -217,29 +242,17 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		});
 		
 	}
-	stepsLogic() {
-		if (this.currentStep === 2) {
-			this.step2logic();
-		}
-		if(this.currentStep === 3){
-			this.step3Logic();
-		}
-	}
+
 	getContactLabel(contactId){
 		if(this.contacts.data !== undefined && contactId !== ''){
 			return this.contacts.data.find(contact => contact.Id === contactId).Name;
 		}
 		return '';
 	}
-	step2logic() {
-
-	}
-
-	step3Logic() {
-		this.showSliders = true;
-	}
 
 	updateBilledToSelectedList() {
+		this.showSliders = this.billedToSelected.length > 1
+
 		let tempBilledToSelectedList = [];
 		this.billedToSelected.forEach(billed => {
 			let added = { key: billed, value: { 'label': this.getContactLabel(billed), 'contactId': billed, 'amount' : this.dividedAmount }};

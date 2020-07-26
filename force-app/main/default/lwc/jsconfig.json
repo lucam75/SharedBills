@@ -11,6 +11,9 @@
             ],
             "c/lookup": [
                 "lookup/lookup.js"
+            ],
+            "c/utils": [
+                "utils/utils.js"
             ]
         }
     },

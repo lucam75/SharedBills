@@ -29,7 +29,7 @@ public with sharing class CreateSharedExpenseHelper {
 		}
 	}
 
-	@AuraEnabled(Cacheable=false)
+	@AuraEnabled(Cacheable=true)
 	public static List<LookupSearchResult> search(String searchTerm, List<String> selectedIds, String lookupType) {
 		List<LookupSearchResult> results = new List<LookupSearchResult>();
 		if(searchTerm != null && searchTerm != ''){
