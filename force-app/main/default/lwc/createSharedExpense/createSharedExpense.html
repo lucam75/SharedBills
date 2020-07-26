@@ -14,10 +14,10 @@
 		<lightning-record-edit-form object-api-name="Transaction__c" onsuccess={handleSuccess} onsubmit={handleSubmit} class="shared-expense-form">
 			<lightning-messages></lightning-messages>
 			<div class={step1Class}>
-				<h3 class="title">Main Information</h3>
 				<div class="predefined-buttons">
 					<lightning-button label="Arriendo" value="arriendo" class="slds-m-top_medium" onclick={handleLoadPredefined}></lightning-button>
 				</div>
+				<h3 class="title">Main Information</h3>
 				<lightning-input-field 	field-name="Amount__c" value={amount} onchange={handleAmountChange}></lightning-input-field>
 				<lightning-radio-group	name="Paid_By__c"
 										label="Paid By"

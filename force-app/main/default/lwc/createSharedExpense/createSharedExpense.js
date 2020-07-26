@@ -1,4 +1,4 @@
-import { LightningElement, track, wire, api } from 'lwc';
+import { LightningElement, track, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { createRecord } from 'lightning/uiRecordApi';
@@ -20,23 +20,24 @@ import ACCOUNT_FIELD from '@salesforce/schema/Transaction__c.Account__c';
 
 export default class CreateSharedExpense extends NavigationMixin(LightningElement) {
 
-	@track amount;
-	@track paidBy;
-	@track currentStep = 1;
-	@track billedToSelected = [''];
-	@track category;
-	@track date;
-	@track account;
-	@track event;
-	@track description;
 	@track billedToSelectedList = [];
-
-	@api notifyViaAlerts = false;
 	@track errors = [];
 
-	createdTransactionsIds = [];
-	showSliders = true;
-	@track manualMode = false;
+	// Field map properties
+	amount;
+	paidBy;
+	billedToSelected;
+	category;
+	date;
+	account;
+	event;
+	description;
+
+	// internal app properties
+	createdTransactionsIds;
+	showSliders;
+	manualMode;
+	currentStep;
 
 	@wire(getAllContacts)
 	contacts;
@@ -51,33 +52,6 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 			});
 
 		this.initializeDefaultValues();
-	}
-
-
-	get step1Class() {
-		return this.currentStep === 1 ? 'show': 'hidden';
-	}
-
-	get step2Class() {
-		return this.currentStep === 2 ? 'show': 'hidden';;
-	}
-
-	get step3Class() {
-		return this.currentStep === 3 ? 'show': 'hidden';;
-	}
-
-	get dividedAmount() {
-		return this.amount / this.billedToSelected.length;
-	}
-
-	get contactsOptions() {
-		let contactsOptions = [];
-		if(this.contacts.data !== undefined){
-			this.contacts.data.forEach(val => {
-				contactsOptions.push({ 'label': val.Name, 'value': val.Id });
-			});
-		}
-		return contactsOptions;
 	}
 
 	handleLoadPredefined(e) {
@@ -103,7 +77,6 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		} else {
 			this.notifyUser('No configuration for ' + predefined, 'No default values were loaded.' , 'warning');
 		}
-		
 	}
 
 	// Handle field updates
@@ -188,7 +161,6 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	handleLookupSelectionChange(event) {
 		const lookupType = event.target.getkey();
 		const itemSelected = event.target.getSelection();
-		// [{"icon":"custom:custom46","id":"a003j00000TkrGJAAZ","sObjectType":"Category","subtitle":"","title":"Comida vegana"}]
 
 		if(lookupType == 'category_lookup'){
 			this.category = itemSelected[0];
@@ -250,6 +222,32 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		return '';
 	}
 
+	get step1Class() {
+		return this.currentStep === 1 ? 'show': 'hidden';
+	}
+
+	get step2Class() {
+		return this.currentStep === 2 ? 'show': 'hidden';;
+	}
+
+	get step3Class() {
+		return this.currentStep === 3 ? 'show': 'hidden';;
+	}
+
+	get dividedAmount() {
+		return this.amount / this.billedToSelected.length;
+	}
+
+	get contactsOptions() {
+		let contactsOptions = [];
+		if(this.contacts.data !== undefined){
+			this.contacts.data.forEach(val => {
+				contactsOptions.push({ 'label': val.Name, 'value': val.Id });
+			});
+		}
+		return contactsOptions;
+	}
+
 	updateBilledToSelectedList() {
 		this.showSliders = this.billedToSelected.length > 1
 
@@ -286,14 +284,8 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	}
 
 	notifyUser(title, message, variant) {
-		if (this.notifyViaAlerts) {
-			// Notify via alert
-			// eslint-disable-next-line no-alert
-			alert(`${title}\n${message}`);
-		} else {
-			// Notify via toast
-			const toastEvent = new ShowToastEvent({ title, message, variant });
-			this.dispatchEvent(toastEvent);
-		}
+		// Notify via toast
+		const toastEvent = new ShowToastEvent({ title, message, variant });
+		this.dispatchEvent(toastEvent);
 	}
 }
