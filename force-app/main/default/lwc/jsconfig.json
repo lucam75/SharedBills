@@ -6,9 +6,6 @@
             "c/createSharedExpense": [
                 "createSharedExpense/createSharedExpense.js"
             ],
-            "c/createSingleExpense": [
-                "createSingleExpense/createSingleExpense.js"
-            ],
             "c/lookup": [
                 "lookup/lookup.js"
             ],
