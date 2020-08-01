@@ -38,6 +38,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	showSliders;
 	manualMode;
 	currentStep;
+	showSpinner;
 
 	@wire(getAllContacts)
 	contacts;
@@ -123,6 +124,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		});
 	}
 	handleCreateExpense() {
+		this.showSpinner = true;
 		if(this.billedToSelectedList.length > 1 ) {
 			this.billedToSelectedList.forEach(contact => {
 				this.createSingleTransaction(contact.key, contact.value.amount);
@@ -207,6 +209,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		this.createdTransactionsIds = [];
 		this.showSliders = true;
 		this.manualMode = false;
+		this.showSpinner = false;
 
 		let lookups = this.template.querySelectorAll('c-lookup');
 		lookups.forEach(lookup => {
@@ -284,6 +287,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	}
 
 	notifyUser(title, message, variant) {
+		this.showSpinner = false;
 		// Notify via toast
 		const toastEvent = new ShowToastEvent({ title, message, variant });
 		this.dispatchEvent(toastEvent);

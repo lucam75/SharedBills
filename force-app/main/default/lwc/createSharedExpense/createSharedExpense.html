@@ -11,6 +11,9 @@
 -->
 <template>
 	<div class="shared-expense-content">
+		<template if:true={showSpinner}>
+			<lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+		</template>
 		<lightning-record-edit-form object-api-name="Transaction__c" onsuccess={handleSuccess} onsubmit={handleSubmit} class="shared-expense-form">
 			<lightning-messages></lightning-messages>
 			<div class={step1Class}>
