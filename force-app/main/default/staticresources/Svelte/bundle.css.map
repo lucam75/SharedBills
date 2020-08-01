@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "..\\..\\..\\..\\..\\shared-bills-svelte-cmp\\App.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n\t// props\n\texport let name = 'world';\n</script>\n\n<main>\n\t<h1>Hello</h1>\n\t<h2>{name}</h2>\n</main>\n\n<style>\n\tmain {\n\t\ttext-align: center;\n\t\tmargin: 0 auto;\n\t\tpadding: var(--lwc-varSpacingVerticalMedium,1rem) var(--lwc-varSpacingHorizontalMedium,1rem);\n\t\tborder-bottom: var(--lwc-borderWidthThin,1px) solid var(--lwc-pageHeaderColorBorder,rgb(221, 219, 218));\n\t\tborder-radius: var(--lwc-pageHeaderBorderRadius,0.25rem);\n\t\tbackground: var(--lwc-pageHeaderColorBackground,rgb(243, 242, 242));\n\t\tbackground-clip: padding-box;\n\t\tbox-shadow: var(--lwc-pageHeaderShadow,0 2px 2px 0 rgba(0, 0, 0, 0.10));\n\t\tborder: var(--lwc-borderWidthThin,1px) solid var(--lwc-pageHeaderColorBorder,rgb(221, 219, 218));\n\t}\n\n\tmain h1 {\n\t\tfont-size: 2rem;\n\t}\n\n\tmain h2 {\n\t\tfont-size: 1.5rem;\n\t}\n</style>"
+  ],
+  "names": [],
+  "mappings": "AAWC,IAAI,4BAAC,CAAC,AACL,UAAU,CAAE,MAAM,CAClB,MAAM,CAAE,CAAC,CAAC,IAAI,CACd,OAAO,CAAE,IAAI,8BAA8B,CAAC,IAAI,CAAC,CAAC,IAAI,gCAAgC,CAAC,IAAI,CAAC,CAC5F,aAAa,CAAE,IAAI,qBAAqB,CAAC,GAAG,CAAC,CAAC,KAAK,CAAC,IAAI,2BAA2B,CAAC,kBAAkB,CAAC,CACvG,aAAa,CAAE,IAAI,4BAA4B,CAAC,OAAO,CAAC,CACxD,UAAU,CAAE,IAAI,+BAA+B,CAAC,kBAAkB,CAAC,CACnE,eAAe,CAAE,WAAW,CAC5B,UAAU,CAAE,IAAI,sBAAsB,CAAC,+BAA+B,CAAC,CACvE,MAAM,CAAE,IAAI,qBAAqB,CAAC,GAAG,CAAC,CAAC,KAAK,CAAC,IAAI,2BAA2B,CAAC,kBAAkB,CAAC,AACjG,CAAC,AAED,kBAAI,CAAC,EAAE,cAAC,CAAC,AACR,SAAS,CAAE,IAAI,AAChB,CAAC,AAED,kBAAI,CAAC,EAAE,cAAC,CAAC,AACR,SAAS,CAAE,MAAM,AAClB,CAAC"
+}

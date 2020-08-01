@@ -11,6 +11,9 @@
             ],
             "c/utils": [
                 "utils/utils.js"
+            ],
+            "c/currentStatus": [
+                "currentStatus/currentStatus.js"
             ]
         }
     },
