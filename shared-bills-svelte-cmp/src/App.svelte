@@ -4,18 +4,11 @@
 	export let getBills;
 
 	let bills = [];
-	let now = new Date();
-	let selectedMonth = now.getMonth() + 1;
-	let selectedYear = now.getFullYear();
-	let selectedYearMonth = selectedYear + '-' + selectedMonth;
+	let selectedYearMonth;
 
 	let debtor;
 	let debtCollector;
 	let debt = 0;
-
-	onMount(() => {
-		console.log('onMount');
-	});
 
 	// Functions
 
@@ -23,12 +16,29 @@
 		getBills({yearMonth: selectedYearMonth})
 		.then(result => {
 			bills = result;
-
-			console.log(JSON.stringify(bills));
 			debtCalculation();
 		})
 		.catch(error => console.error(error))
 	}
+
+	onMount(async () => {
+
+		let now = new Date(), month, day, year;
+		month = '' + (now.getMonth() + 1),
+		day = '' + now.getDate(),
+		year = now.getFullYear();
+
+		if (month.length < 2) {
+			month = '0' + month;
+		}
+			
+		selectedYearMonth = [year, month].join('-');
+		if (typeof(getBills) === 'function') {
+			const tempBills = await getBills({yearMonth: selectedYearMonth});
+			bills = await tempBills;
+			debtCalculation();
+		}
+	});
 
 	let debtCalculation = () => {
 		if (bills.length > 1) {
@@ -72,19 +82,22 @@
 	</div>
 	{/if}
 
-	<div class="debt-information">
-		<table>
+	{#if bills.length > 0}
+	<div class="debt-container">
+		<div class="debt-info">
 			{#each bills as { expr0, Paidby, BilledTo }, i}
-				<tr>
-					<td><strong>{BilledTo}</strong></td>
-					<td>le debe a </td>
-					<td><strong>{Paidby}</strong></td>
-					<td>la cantidad de </td>
-					<td class="align-right"><span class="money">{formatMoney(expr0, 2, ",", ".")}</span></td>
-				</tr>
+				<div class="debt-info-item">
+					<div class="column">
+						<strong>{BilledTo}</strong> le debe a <strong>{Paidby}</strong> la cantidad de 
+					</div>
+					<div class="column">
+						<span class="money align-right">{formatMoney(expr0, 2, ",", ".")}</span>
+					</div>
+				</div>
 			{/each}
-		</table>
+		</div>
 	</div>
+	{/if}
 </main>
 
 <style>
@@ -104,20 +117,29 @@
 		font-size: 2rem;
 	}
 
-	main .debt-information {
+	main .debt-container {
 		padding-top: 30px;
+		display: flex;
+    	justify-content: center;
 	}
 
-	main .debt-information table {
-		width: 40%;
-		margin: 0 auto;
+	main .debt-info {
 		background-color: white;
 		border-radius: 10px;
 		padding: 10px;
+		
 	}
 
-	main .debt-information table td{
-		padding: 15px;
+	main .debt-info .debt-info-item {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 8px;
+	}
+
+	main .debt-info .debt-info-item .column {
+		margin-right: 10px;
 	}
 
 	main .debt-summary {

@@ -25,6 +25,6 @@ export default class CurrentStatus extends LightningElement {
 			getBills
 		});
 	  })
-	  .catch(error => console.log(error))
+	  .catch(error => console.log('lwc error', JSON.stringify(error)))
 	}
   }
