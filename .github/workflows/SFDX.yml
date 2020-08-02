@@ -1,0 +1,5 @@
+- name: Salesforce SFDX CLI Action
+  uses: sfdx-actions/setup-sfdx@v1
+  with:
+    # Authorize a Salesforce org using an SFDX auth URL
+    sfdx-auth-url: # optional
