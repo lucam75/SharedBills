@@ -3,7 +3,7 @@ name: Code Style (Prettier)
 
 # Definition when the workflow should run
 on:
-  push:
+  [push]
 
 # Jobs to be executed
 jobs:
