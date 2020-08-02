@@ -1,10 +1,10 @@
 {
-  "orgName": "luis.campos Company",
-  "edition": "Developer",
-  "features": [],
-  "settings": {
-    "orgPreferenceSettings": {
-      "s1DesktopEnabled": true
-    }
-  }
+	"orgName": "luis.campos Company",
+	"edition": "Developer",
+	"features": [],
+	"settings": {
+		"orgPreferenceSettings": {
+			"s1DesktopEnabled": true
+		}
+	}
 }

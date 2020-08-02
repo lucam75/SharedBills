@@ -1,6 +1,5 @@
 public with sharing class CurrentStatusUtils {
 	public CurrentStatusUtils() {
-
 	}
 
 	@AuraEnabled
@@ -16,7 +15,7 @@ public with sharing class CurrentStatusUtils {
 				data = Database.query(query);
 			}
 		}
-		
+
 		return data;
 	}
 }

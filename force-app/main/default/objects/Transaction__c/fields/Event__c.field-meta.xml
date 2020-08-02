@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Event__c</fullName>
     <deleteConstraint>Restrict</deleteConstraint>
-    <description>Use if the transaction is related to a special event.</description>
+    <description
+	>Use if the transaction is related to a special event.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Use if the transaction is related to a special event.</inlineHelpText>
+    <inlineHelpText
+	>Use if the transaction is related to a special event.</inlineHelpText>
     <label>Event</label>
     <referenceTo>Event__c</referenceTo>
     <relationshipLabel>Transactions</relationshipLabel>

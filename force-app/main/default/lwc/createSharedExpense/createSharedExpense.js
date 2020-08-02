@@ -1,25 +1,25 @@
-import { LightningElement, track, wire } from 'lwc';
-import { NavigationMixin } from 'lightning/navigation';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { createRecord } from 'lightning/uiRecordApi';
-import getAllContacts from '@salesforce/apex/CreateSharedExpenseHelper.getAllContacts';
-import getLoggedContact from '@salesforce/apex/CreateSharedExpenseHelper.getLoggedContact';
-import apexSearch from '@salesforce/apex/CreateSharedExpenseHelper.search';
-import { predefinedValues } from 'c/utils';
+import { LightningElement, track, wire } from "lwc";
+import { NavigationMixin } from "lightning/navigation";
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
+import { createRecord } from "lightning/uiRecordApi";
+import getAllContacts from "@salesforce/apex/CreateSharedExpenseHelper.getAllContacts";
+import getLoggedContact from "@salesforce/apex/CreateSharedExpenseHelper.getLoggedContact";
+import apexSearch from "@salesforce/apex/CreateSharedExpenseHelper.search";
+import { predefinedValues } from "c/utils";
 
+import TRANSACTION_OBJECT from "@salesforce/schema/Transaction__c";
+import AMOUNT_FIELD from "@salesforce/schema/Transaction__c.Amount__c";
+import BILLED_TO_FIELD from "@salesforce/schema/Transaction__c.Billed_to__c";
+import CATEGORY_FIELD from "@salesforce/schema/Transaction__c.Category__c";
+import DATE_FIELD from "@salesforce/schema/Transaction__c.Date__c";
+import EVENT_FIELD from "@salesforce/schema/Transaction__c.Event__c";
+import PAID_BY_FIELD from "@salesforce/schema/Transaction__c.Paid_By__c";
+import DESCRIPTION_FIELD from "@salesforce/schema/Transaction__c.Description__c";
+import ACCOUNT_FIELD from "@salesforce/schema/Transaction__c.Account__c";
 
-import TRANSACTION_OBJECT from '@salesforce/schema/Transaction__c';
-import AMOUNT_FIELD from '@salesforce/schema/Transaction__c.Amount__c';
-import BILLED_TO_FIELD from '@salesforce/schema/Transaction__c.Billed_to__c';
-import CATEGORY_FIELD from '@salesforce/schema/Transaction__c.Category__c';
-import DATE_FIELD from '@salesforce/schema/Transaction__c.Date__c';
-import EVENT_FIELD from '@salesforce/schema/Transaction__c.Event__c';
-import PAID_BY_FIELD from '@salesforce/schema/Transaction__c.Paid_By__c';
-import DESCRIPTION_FIELD from '@salesforce/schema/Transaction__c.Description__c';
-import ACCOUNT_FIELD from '@salesforce/schema/Transaction__c.Account__c';
-
-export default class CreateSharedExpense extends NavigationMixin(LightningElement) {
-
+export default class CreateSharedExpense extends NavigationMixin(
+	LightningElement
+) {
 	@track billedToSelectedList = [];
 	@track errors = [];
 
@@ -43,12 +43,12 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	@wire(getAllContacts)
 	contacts;
 
-	connectedCallback(){
+	connectedCallback() {
 		getLoggedContact()
-			.then(result => {
+			.then((result) => {
 				this.paidBy = result.Id;
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.log(JSON.stringify(error));
 			});
 
@@ -62,7 +62,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		if (predefinedValues.hasOwnProperty(predefined)) {
 			let config = predefinedValues[predefined];
 
-			console.log('Values loaded ', config);
+			console.log("Values loaded ", config);
 			this.amount = config.amount;
 			this.category = config.category;
 			this.account = config.account;
@@ -72,11 +72,19 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 			this.billedToSelected = config.billedTo;
 
 			this.updateBilledToSelectedList();
-			this.template.querySelector('.category_lookup').selection = this.category;
-			this.template.querySelector('.account_lookup').selection = this.account;
-			this.template.querySelector('.event_lookup').selection = this.event;
+			this.template.querySelector(
+				".category_lookup"
+			).selection = this.category;
+			this.template.querySelector(
+				".account_lookup"
+			).selection = this.account;
+			this.template.querySelector(".event_lookup").selection = this.event;
 		} else {
-			this.notifyUser('No configuration for ' + predefined, 'No default values were loaded.' , 'warning');
+			this.notifyUser(
+				"No configuration for " + predefined,
+				"No default values were loaded.",
+				"warning"
+			);
 		}
 	}
 
@@ -85,7 +93,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		this.billedToSelected = e.detail.value;
 		this.updateBilledToSelectedList();
 	}
-	handlePaidBySelected(e){
+	handlePaidBySelected(e) {
 		this.paidBy = e.detail.value;
 	}
 	handleAmountChange(e) {
@@ -100,12 +108,16 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	handleSliderChange(event) {
 		let sliderContactId = event.target.dataset.item;
 		let sliderContactAmount = event.detail.value;
-		this.billedToSelectedList.find(x => x.key === sliderContactId).value.amount = sliderContactAmount;
+		this.billedToSelectedList.find(
+			(x) => x.key === sliderContactId
+		).value.amount = sliderContactAmount;
 
-		let calculatedNewAmount = (this.amount - sliderContactAmount) / (this.billedToSelectedList.length - 1);
+		let calculatedNewAmount =
+			(this.amount - sliderContactAmount) /
+			(this.billedToSelectedList.length - 1);
 
-		this.billedToSelectedList.forEach(contact => {
-			if (contact.key != sliderContactId ) {
+		this.billedToSelectedList.forEach((contact) => {
+			if (contact.key != sliderContactId) {
 				contact.value.amount = calculatedNewAmount;
 			}
 		});
@@ -113,49 +125,59 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	handleManualAmountChange(event) {
 		let contactId = event.target.dataset.item;
 		let sliderContactAmount = event.detail.value;
-		this.billedToSelectedList.find(x => x.key === contactId).value.amount = sliderContactAmount;
+		this.billedToSelectedList.find(
+			(x) => x.key === contactId
+		).value.amount = sliderContactAmount;
 
-		let calculatedNewAmount = (this.amount - sliderContactAmount) / (this.billedToSelectedList.length - 1);
+		let calculatedNewAmount =
+			(this.amount - sliderContactAmount) /
+			(this.billedToSelectedList.length - 1);
 
-		this.billedToSelectedList.forEach(contact => {
-			if (contact.key != contactId ) {
+		this.billedToSelectedList.forEach((contact) => {
+			if (contact.key != contactId) {
 				contact.value.amount = calculatedNewAmount;
 			}
 		});
 	}
 	handleCreateExpense() {
 		this.showSpinner = true;
-		if(this.billedToSelectedList.length > 1 ) {
-			this.billedToSelectedList.forEach(contact => {
+		if (this.billedToSelectedList.length > 1) {
+			this.billedToSelectedList.forEach((contact) => {
 				this.createSingleTransaction(contact.key, contact.value.amount);
 			});
-		}else if (this.billedToSelectedList.length == 1) {
-			this.createSingleTransaction(this.billedToSelectedList[0].key, this.amount);
-		}else {
-			this.notifyUser('Error', 'Please select at least one contact to create the bill.', 'error');
+		} else if (this.billedToSelectedList.length == 1) {
+			this.createSingleTransaction(
+				this.billedToSelectedList[0].key,
+				this.amount
+			);
+		} else {
+			this.notifyUser(
+				"Error",
+				"Please select at least one contact to create the bill.",
+				"error"
+			);
 		}
 		this.initializeDefaultValues();
-		
 	}
 	handleLookupSearch(event) {
 		let lookupType = event.target.getkey();
 		let parameters = event.detail;
-		
+
 		parameters.lookupType = lookupType;
 		const target = event.target;
 
 		apexSearch(parameters)
-			.then(results => {
+			.then((results) => {
 				target.setSearchResults(results);
 			})
-			.catch(error => {
+			.catch((error) => {
 				this.notifyUser(
-					'Lookup Error',
-					'An error occured while searching with the lookup field.',
-					'error'
+					"Lookup Error",
+					"An error occured while searching with the lookup field.",
+					"error"
 				);
 				// eslint-disable-next-line no-console
-				console.error('Lookup error', JSON.stringify(error));
+				console.error("Lookup error", JSON.stringify(error));
 				this.errors = [error];
 			});
 	}
@@ -164,11 +186,11 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		const lookupType = event.target.getkey();
 		const itemSelected = event.target.getSelection();
 
-		if(lookupType == 'category_lookup'){
+		if (lookupType == "category_lookup") {
 			this.category = itemSelected[0];
-		}else if(lookupType == 'account_lookup'){
+		} else if (lookupType == "account_lookup") {
 			this.account = itemSelected[0];
-		}else if(lookupType == 'event_lookup'){
+		} else if (lookupType == "event_lookup") {
 			this.event = itemSelected[0];
 		}
 	}
@@ -178,13 +200,12 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	}
 
 	// Navigation events
-	nextStep(){
+	nextStep() {
 		this.currentStep++;
 	}
-	prevStep(){
+	prevStep() {
 		this.currentStep--;
 	}
-
 
 	// Utilitary methods
 	initializeDefaultValues() {
@@ -196,13 +217,13 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 
 		this.amount = null;
 		this.currentStep = 1;
-		this.billedToSelected = [''];
+		this.billedToSelected = [""];
 		this.category = undefined;
 		this.account = undefined;
 		this.event = undefined;
 		this.description = undefined;
 		this.billedToSelectedList = [];
-		this.description = '';
+		this.description = "";
 
 		this.errors = [];
 
@@ -211,30 +232,31 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		this.manualMode = false;
 		this.showSpinner = false;
 
-		let lookups = this.template.querySelectorAll('c-lookup');
-		lookups.forEach(lookup => {
+		let lookups = this.template.querySelectorAll("c-lookup");
+		lookups.forEach((lookup) => {
 			lookup.selection = [];
 		});
-		
 	}
 
-	getContactLabel(contactId){
-		if(this.contacts.data !== undefined && contactId !== ''){
-			return this.contacts.data.find(contact => contact.Id === contactId).Name;
+	getContactLabel(contactId) {
+		if (this.contacts.data !== undefined && contactId !== "") {
+			return this.contacts.data.find(
+				(contact) => contact.Id === contactId
+			).Name;
 		}
-		return '';
+		return "";
 	}
 
 	get step1Class() {
-		return this.currentStep === 1 ? 'show': 'hidden';
+		return this.currentStep === 1 ? "show" : "hidden";
 	}
 
 	get step2Class() {
-		return this.currentStep === 2 ? 'show': 'hidden';;
+		return this.currentStep === 2 ? "show" : "hidden";
 	}
 
 	get step3Class() {
-		return this.currentStep === 3 ? 'show': 'hidden';;
+		return this.currentStep === 3 ? "show" : "hidden";
 	}
 
 	get dividedAmount() {
@@ -243,46 +265,66 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 
 	get contactsOptions() {
 		let contactsOptions = [];
-		if(this.contacts.data !== undefined){
-			this.contacts.data.forEach(val => {
-				contactsOptions.push({ 'label': val.Name, 'value': val.Id });
+		if (this.contacts.data !== undefined) {
+			this.contacts.data.forEach((val) => {
+				contactsOptions.push({ label: val.Name, value: val.Id });
 			});
 		}
 		return contactsOptions;
 	}
 
 	updateBilledToSelectedList() {
-		this.showSliders = this.billedToSelected.length > 1
+		this.showSliders = this.billedToSelected.length > 1;
 
 		let tempBilledToSelectedList = [];
-		this.billedToSelected.forEach(billed => {
-			let added = { key: billed, value: { 'label': this.getContactLabel(billed), 'contactId': billed, 'amount' : this.dividedAmount }};
-            tempBilledToSelectedList.push(added);
+		this.billedToSelected.forEach((billed) => {
+			let added = {
+				key: billed,
+				value: {
+					label: this.getContactLabel(billed),
+					contactId: billed,
+					amount: this.dividedAmount
+				}
+			};
+			tempBilledToSelectedList.push(added);
 		});
 
-		this.billedToSelectedList = tempBilledToSelectedList;		
+		this.billedToSelectedList = tempBilledToSelectedList;
 	}
 
-	createSingleTransaction(billedTo, amount){
+	createSingleTransaction(billedTo, amount) {
 		const fields = {};
 		fields[AMOUNT_FIELD.fieldApiName] = amount;
 		fields[BILLED_TO_FIELD.fieldApiName] = billedTo;
 		fields[CATEGORY_FIELD.fieldApiName] = this.category.id;
 		fields[DATE_FIELD.fieldApiName] = this.date;
-		fields[EVENT_FIELD.fieldApiName] = this.event != undefined ? this.event.id : '';
+		fields[EVENT_FIELD.fieldApiName] =
+			this.event != undefined ? this.event.id : "";
 		fields[PAID_BY_FIELD.fieldApiName] = this.paidBy;
 		fields[DESCRIPTION_FIELD.fieldApiName] = this.description;
-		fields[ACCOUNT_FIELD.fieldApiName] = this.account != undefined ? this.account.id : '';
+		fields[ACCOUNT_FIELD.fieldApiName] =
+			this.account != undefined ? this.account.id : "";
 
-		const recordInput = { apiName: TRANSACTION_OBJECT.objectApiName, fields };
+		const recordInput = {
+			apiName: TRANSACTION_OBJECT.objectApiName,
+			fields
+		};
 		createRecord(recordInput)
-			.then(transaction => {
+			.then((transaction) => {
 				this.createdTransactionsIds.push(transaction.id);
-				this.notifyUser('Success', 'Shared transaction created', 'success');
+				this.notifyUser(
+					"Success",
+					"Shared transaction created",
+					"success"
+				);
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.log(JSON.stringify(error));
-				this.notifyUser('Error creating shared transaction', error.body.message, 'error');
+				this.notifyUser(
+					"Error creating shared transaction",
+					error.body.message,
+					"error"
+				);
 			});
 	}
 

@@ -1,42 +1,42 @@
 .horizontal-radio .slds-form-element__control .slds-radio {
-    display : inline-block !important;
-    font-size: 22px;
+	display: inline-block !important;
+	font-size: 22px;
 }
 
 .horizontal-radio .slds-form-element__control {
-    font-size: 30px;
+	font-size: 30px;
 }
 
 .title {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .shared-expense-content {
-    padding: 17px !important;
-    background-color: white;
+	padding: 17px !important;
+	background-color: white;
 }
 
 .shared-expense-content lightning-checkbox-group {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 div.navigation-buttons {
-    border-top: 1px solid lightgray;
-    padding-top: 5px;
-    margin-top: 15px;
+	border-top: 1px solid lightgray;
+	padding-top: 5px;
+	margin-top: 15px;
 }
 div.navigation-buttons > lightning-button {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 .text-right {
-    text-align: right;
+	text-align: right;
 }
 
 .hidden {
-    display: none;
+	display: none;
 }
 
 .show {
-    display: block;
+	display: block;
 }

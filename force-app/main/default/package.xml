@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Shared Bills</fullName>
     <description>Shared Bills unmanaged package</description>
@@ -121,7 +121,8 @@
         <members>SharedBills/All_Transactions_Created_count_K5J</members>
         <members>SharedBills/All_Transactions_Paid_By_TLO</members>
         <members>SharedBills/All_Transactions_by_Account_tia</members>
-        <members>SharedBills/All_Transactions_by_Month_By_Billed_to_Eyb</members>
+        <members
+		>SharedBills/All_Transactions_by_Month_By_Billed_to_Eyb</members>
         <members>SharedBills/All_Transactions_monthly_wII</members>
         <members>SharedBills/Events_by_person_Fft</members>
         <members>SharedBills/Top_5_categories_monthly_dFm</members>
