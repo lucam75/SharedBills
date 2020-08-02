@@ -1,6 +1,6 @@
 import { LightningElement } from 'lwc';
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
-// import getContacts from '@salesforce/apex/SvelteController.getContacts';
+import getBills from '@salesforce/apex/CurrentStatusUtils.getBills';
 // import updateContactToPizza from '@salesforce/apex/SvelteController.updateContactToPizza';
 
 // import Svelte static resource
@@ -21,8 +21,10 @@ export default class CurrentStatus extends LightningElement {
 		loadStyle(this, svelteApp + '/bundle.css')
 	  ])
 	  .then(() => {
-		mount(this.template.querySelector('div[data-id="app"]'), {});
+		mount(this.template.querySelector('div[data-id="app"]'), {
+			getBills
+		});
 	  })
-	  .catch(error => console.error(error))
+	  .catch(error => console.log(error))
 	}
   }
