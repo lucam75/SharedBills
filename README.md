@@ -1,3 +1,5 @@
+![Code Style (Prettier)](https://github.com/lucam75/SharedBills/workflows/Code%20Style%20(Prettier)/badge.svg?branch=master)
+
 # Shared Bills Application
 
 Shared bills is a personal project to keep track of my individual and shared expenses, borns from the necessity to keep track of shared expenses easily without unnecessary or complicated stuff. With a mobile-first approach, SB takes advantage of the LWC framework to allow complex data entry in a natural way.
