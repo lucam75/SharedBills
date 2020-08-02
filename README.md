@@ -5,7 +5,8 @@ Shared bills is a personal project to keep track of my individual and shared exp
 The goal is to keep track of the daily expenses specifying who paid and if it's shared or individual, at the end of the month, a report is generated and send it via email with the summary of each user expense and status of who owes money to whom.
 
 ## Tech
-- Salesforce: Lightning application with custom objects, Dashboards and Report, Email templates, Schedule Jobs and Apex classes. - Lightning Web Components: To allow data entry easily from mobile phones.
+- Salesforce: Lightning application with custom objects, Dashboards and Report, Email templates, Schedule Jobs and Apex classes.
+- Lightning Web Components: To allow data entry easily from mobile phones.
 - Svelte: POC. Take advantage of the greate features of Svelte, like the reactivity, to create great UI with less code. It's used to provide the current and historical status of the end month debts.
 
 
