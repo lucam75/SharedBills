@@ -244,18 +244,16 @@ export default class Lookup extends LightningElement {
 		// eslint-disable-next-line @lwc/lwc/no-async-operation
 		this.searchThrottlingTimeout = setTimeout(() => {
 			// Send search event if search term is long enougth
-			if (true) {
-				// Display spinner until results are returned
-				this.loading = true;
+			// Display spinner until results are returned
+			this.loading = true;
 
-				const clickpreview = new CustomEvent("clickpreview", {
-					detail: {
-						searchTerm: this.cleanSearchTerm,
-						selectedIds: this.selection.map((element) => element.id)
-					}
-				});
-				this.dispatchEvent(clickpreview);
-			}
+			const clickpreview = new CustomEvent("clickpreview", {
+				detail: {
+					searchTerm: this.cleanSearchTerm,
+					selectedIds: this.selection.map((element) => element.id)
+				}
+			});
+			this.dispatchEvent(clickpreview);
 			this.searchThrottlingTimeout = null;
 		}, 1);
 	}

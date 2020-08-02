@@ -58,8 +58,9 @@ export default class CreateSharedExpense extends NavigationMixin(
 	handleLoadPredefined(e) {
 		console.log(predefinedValues);
 		let predefined = e.target.value;
-
-		if (predefinedValues.hasOwnProperty(predefined)) {
+		if (
+			Object.prototype.hasOwnProperty.call(predefinedValues, predefined)
+		) {
 			let config = predefinedValues[predefined];
 
 			console.log("Values loaded ", config);
@@ -117,7 +118,7 @@ export default class CreateSharedExpense extends NavigationMixin(
 			(this.billedToSelectedList.length - 1);
 
 		this.billedToSelectedList.forEach((contact) => {
-			if (contact.key != sliderContactId) {
+			if (contact.key !== sliderContactId) {
 				contact.value.amount = calculatedNewAmount;
 			}
 		});
@@ -134,7 +135,7 @@ export default class CreateSharedExpense extends NavigationMixin(
 			(this.billedToSelectedList.length - 1);
 
 		this.billedToSelectedList.forEach((contact) => {
-			if (contact.key != contactId) {
+			if (contact.key !== contactId) {
 				contact.value.amount = calculatedNewAmount;
 			}
 		});
@@ -145,7 +146,7 @@ export default class CreateSharedExpense extends NavigationMixin(
 			this.billedToSelectedList.forEach((contact) => {
 				this.createSingleTransaction(contact.key, contact.value.amount);
 			});
-		} else if (this.billedToSelectedList.length == 1) {
+		} else if (this.billedToSelectedList.length === 1) {
 			this.createSingleTransaction(
 				this.billedToSelectedList[0].key,
 				this.amount
@@ -186,11 +187,11 @@ export default class CreateSharedExpense extends NavigationMixin(
 		const lookupType = event.target.getkey();
 		const itemSelected = event.target.getSelection();
 
-		if (lookupType == "category_lookup") {
+		if (lookupType === "category_lookup") {
 			this.category = itemSelected[0];
-		} else if (lookupType == "account_lookup") {
+		} else if (lookupType === "account_lookup") {
 			this.account = itemSelected[0];
-		} else if (lookupType == "event_lookup") {
+		} else if (lookupType === "event_lookup") {
 			this.event = itemSelected[0];
 		}
 	}
@@ -299,11 +300,11 @@ export default class CreateSharedExpense extends NavigationMixin(
 		fields[CATEGORY_FIELD.fieldApiName] = this.category.id;
 		fields[DATE_FIELD.fieldApiName] = this.date;
 		fields[EVENT_FIELD.fieldApiName] =
-			this.event != undefined ? this.event.id : "";
+			this.event !== undefined ? this.event.id : "";
 		fields[PAID_BY_FIELD.fieldApiName] = this.paidBy;
 		fields[DESCRIPTION_FIELD.fieldApiName] = this.description;
 		fields[ACCOUNT_FIELD.fieldApiName] =
-			this.account != undefined ? this.account.id : "";
+			this.account !== undefined ? this.account.id : "";
 
 		const recordInput = {
 			apiName: TRANSACTION_OBJECT.objectApiName,

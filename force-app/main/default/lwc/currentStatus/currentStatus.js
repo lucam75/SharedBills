@@ -20,6 +20,7 @@ export default class CurrentStatus extends LightningElement {
 			loadStyle(this, svelteApp + "/bundle.css")
 		])
 			.then(() => {
+				// eslint-disable-next-line no-undef
 				mount(this.template.querySelector('div[data-id="app"]'), {
 					getBills
 				});
