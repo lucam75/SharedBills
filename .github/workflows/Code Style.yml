@@ -23,9 +23,9 @@ jobs:
                   restore-keys: |
                       npm-${{ env.cache-name }}-
                       npm-
-            
+
             # Install npm dependencies for Prettier and Jest
-            - name: 'Install npm dependencies'
+            - name: "Install npm dependencies"
               if: steps.cache-npm.outputs.cache-hit != 'true'
               run: npm ci
 
