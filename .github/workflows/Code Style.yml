@@ -13,11 +13,20 @@ jobs:
             - name: "Checkout source code"
               uses: actions/checkout@v2
 
-            - name: "Setup Node.js"
-              uses: actions/setup-node@v2.1.1
+            # Cache node_modules to speed up the process
+            - name: Restore node_modules cache
+              id: cache-npm
+              uses: actions/cache@v1
               with:
-                  node-version: "12.x"
-            - name: Install dependencies
+                  path: node_modules
+                  key: npm-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      npm-${{ env.cache-name }}-
+                      npm-
+            
+            # Install npm dependencies for Prettier and Jest
+            - name: 'Install npm dependencies'
+              if: steps.cache-npm.outputs.cache-hit != 'true'
               run: npm ci
 
             # Prettier formatting
