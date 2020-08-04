@@ -1,4 +1,4 @@
-![Code Style (Prettier)](https://github.com/lucam75/SharedBills/workflows/Code%20Style%20(Prettier)/badge.svg)
+![Code Style (Prettier)](https://github.com/lucam75/SharedBills/workflows/Code%20Style%20(Prettier)/badge.svg?branch=master)
 
 # Shared Bills Application
 
