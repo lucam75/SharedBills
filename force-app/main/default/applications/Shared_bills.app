@@ -46,8 +46,6 @@
     </actionOverrides>
     <brand>
         <headerColor>#0ABBD7</headerColor>
-        <logo>IMG_0649</logo>
-        <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
     </brand>
     <description>To keep track of both private and shared bills.</description>
@@ -58,14 +56,15 @@
     <label>Shared Bills</label>
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
-    <tabs>Create_Shared_Expense_Flow</tabs>
     <tabs>Transaction__c</tabs>
     <tabs>Status</tabs>
+    <tabs>Current_Status1</tabs>
     <tabs>standard-Account</tabs>
     <tabs>Event__c</tabs>
     <tabs>Category__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
+    <tabs>standard-OrgMetric</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Shared_bills_UtilityBar</utilityBar>
 </CustomApplication>

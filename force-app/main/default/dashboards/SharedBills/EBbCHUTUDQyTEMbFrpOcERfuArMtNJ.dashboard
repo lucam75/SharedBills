@@ -41,6 +41,13 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Transaction__c$Account__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortColumn>s!Transaction__c.Amount__c</sortColumn>
+                        <sortOrder>d</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>My Top 10 Accounts</header>
                 <legendPosition>Bottom</legendPosition>
                 <maxValuesDisplayed>10</maxValuesDisplayed>
@@ -76,6 +83,13 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Transaction__c$Category__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortColumn>s!Transaction__c.Amount__c</sortColumn>
+                        <sortOrder>d</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>My Top 10 Categories</header>
                 <legendPosition>Right</legendPosition>
                 <maxValuesDisplayed>10</maxValuesDisplayed>
@@ -112,6 +126,16 @@
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Transaction__c$Date__c</groupingColumn>
                 <groupingColumn>Transaction__c$Billed_to__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                    <groupingSorts>
+                        <groupingLevel>g2</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>My Historical Expenses</header>
                 <legendPosition>Right</legendPosition>
                 <report>SharedBills/All_Transactions_by_Month_By_Billed_to_Eyb</report>
@@ -146,6 +170,16 @@
                 <expandOthers>false</expandOthers>
                 <groupingColumn>CDF1</groupingColumn>
                 <groupingColumn>Transaction__c$Category__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                    <groupingSorts>
+                        <groupingLevel>g2</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>Categories monthly</header>
                 <legendPosition>Right</legendPosition>
                 <report>SharedBills/Top_5_categories_monthly_dFm</report>

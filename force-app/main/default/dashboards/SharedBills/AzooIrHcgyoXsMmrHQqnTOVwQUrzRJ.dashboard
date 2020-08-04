@@ -34,6 +34,7 @@
                 </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Integer</displayUnits>
+                <groupingSortProperties/>
                 <header>Total Spent</header>
                 <indicatorBreakpoint1>900000.0</indicatorBreakpoint1>
                 <indicatorBreakpoint2>1000000.0</indicatorBreakpoint2>
@@ -68,6 +69,13 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Transaction__c$Category__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortColumn>s!Transaction__c.Amount__c</sortColumn>
+                        <sortOrder>d</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>Top 10 Categories</header>
                 <legendPosition>Right</legendPosition>
                 <maxValuesDisplayed>10</maxValuesDisplayed>
@@ -103,6 +111,13 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Transaction__c$Account__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortColumn>s!Transaction__c.Amount__c</sortColumn>
+                        <sortOrder>d</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>Top 10 Companies</header>
                 <legendPosition>Bottom</legendPosition>
                 <maxValuesDisplayed>10</maxValuesDisplayed>
@@ -138,6 +153,12 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Transaction__c$Date__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>Monthly average expense</header>
                 <legendPosition>Bottom</legendPosition>
                 <report>SharedBills/All_Transactions_monthly_wII</report>

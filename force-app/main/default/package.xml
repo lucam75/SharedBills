@@ -6,6 +6,7 @@
         <members>BillStatusSchedulable</members>
         <members>CreateExpenseExtension</members>
         <members>CreateSharedExpenseHelper</members>
+        <members>CurrentStatusUtils</members>
         <members>ITrigger</members>
         <members>LookupSearchResult</members>
         <members>StatusController</members>
@@ -17,18 +18,12 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>CreateExpense</members>
-        <members>SharedExpenseVFPage</members>
         <members>Status</members>
         <name>ApexPage</name>
     </types>
     <types>
         <members>TransactionTrigger</members>
         <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>CreateSharedExpenseWrapper</members>
-        <name>AuraDefinitionBundle</name>
     </types>
     <types>
         <members>Transaction__c.Transaction_default</members>
@@ -62,7 +57,8 @@
     </types>
     <types>
         <members>Category__c</members>
-        <members>Create_Shared_Expense_Flow</members>
+        <members>Create_Shared_Bill</members>
+        <members>Current_Status1</members>
         <members>Event__c</members>
         <members>Status</members>
         <members>Transaction__c</members>
@@ -86,14 +82,14 @@
     </types>
     <types>
         <members>Account_Record_Page</members>
-        <members>Create_Shared_Expense</members>
+        <members>Current_Status</members>
         <members>Event</members>
         <members>Home_Page_Default</members>
         <members>Shared_bills_UtilityBar</members>
         <name>FlexiPage</name>
     </types>
     <types>
-        <members>Create_shared_expense</members>
+        <members>Process_on_Transaction</members>
         <name>Flow</name>
     </types>
     <types>
@@ -103,16 +99,14 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>*</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
         <members>Category__c.All</members>
         <members>Event__c.All</members>
         <members>Transaction__c.All</members>
         <name>ListView</name>
-    </types>
-    <types>
-        <members>CSE</members>
-        <members>Create_Expense</members>
-        <members>Shared_Expense</members>
-        <name>QuickAction</name>
     </types>
     <types>
         <members>SharedBills</members>
@@ -133,6 +127,10 @@
     <types>
         <members>Transactions</members>
         <name>ReportType</name>
+    </types>
+    <types>
+        <members>Svelte</members>
+        <name>StaticResource</name>
     </types>
     <version>48.0</version>
 </Package>

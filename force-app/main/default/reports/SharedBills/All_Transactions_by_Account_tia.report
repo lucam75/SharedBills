@@ -26,6 +26,7 @@
     <filter>
         <criteriaItems>
             <column>Transaction__c$Account__c</column>
+            <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
             <value></value>

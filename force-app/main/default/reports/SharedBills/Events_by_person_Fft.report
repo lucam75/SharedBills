@@ -35,6 +35,7 @@
     <filter>
         <criteriaItems>
             <column>Transaction__c$Event__c.Id</column>
+            <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
             <value></value>

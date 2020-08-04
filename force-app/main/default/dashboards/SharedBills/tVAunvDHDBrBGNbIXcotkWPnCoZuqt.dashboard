@@ -27,6 +27,12 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Transaction__c$Paid_By__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortOrder>d</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>Transactions Paid By</header>
                 <legendPosition>Right</legendPosition>
                 <maxValuesDisplayed>6</maxValuesDisplayed>
@@ -59,6 +65,13 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Transaction__c$Category__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortColumn>s!Transaction__c.Amount__c</sortColumn>
+                        <sortOrder>d</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>Most Expenses Categories</header>
                 <legendPosition>Right</legendPosition>
                 <maxValuesDisplayed>5</maxValuesDisplayed>
@@ -90,6 +103,12 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Transaction__c$Billed_to__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortOrder>d</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>Transactions Billed To</header>
                 <legendPosition>Right</legendPosition>
                 <maxValuesDisplayed>6</maxValuesDisplayed>
@@ -121,6 +140,12 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Transaction__c$CreatedBy</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>Transactions count</header>
                 <legendPosition>Bottom</legendPosition>
                 <report>SharedBills/All_Transactions_Created_count_K5J</report>
@@ -152,6 +177,13 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Transaction__c$Account__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortColumn>s!Transaction__c.Amount__c</sortColumn>
+                        <sortOrder>d</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>Top 10 Accounts</header>
                 <legendPosition>Bottom</legendPosition>
                 <maxValuesDisplayed>10</maxValuesDisplayed>
@@ -184,6 +216,16 @@
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Transaction__c$Date__c</groupingColumn>
                 <groupingColumn>Transaction__c$Billed_to__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                    <groupingSorts>
+                        <groupingLevel>g2</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
                 <header>Month Historical</header>
                 <legendPosition>Right</legendPosition>
                 <report>SharedBills/All_Transactions_by_Month_By_Billed_to_Eyb</report>

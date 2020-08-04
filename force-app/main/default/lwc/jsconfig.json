@@ -1,29 +1,19 @@
 {
     "compilerOptions": {
-        "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
             "c/createSharedExpense": [
                 "createSharedExpense/createSharedExpense.js"
+            ],
+            "c/currentStatus": [
+                "currentStatus/currentStatus.js"
             ],
             "c/lookup": [
                 "lookup/lookup.js"
             ],
             "c/utils": [
                 "utils/utils.js"
-            ],
-            "c/currentStatus": [
-                "currentStatus/currentStatus.js"
             ]
         }
-    },
-    "include": [
-        "**/*",
-        "../../../../.sfdx/typings/lwc/**/*.d.ts"
-    ],
-    "typeAcquisition": {
-        "include": [
-            "jest"
-        ]
     }
 }

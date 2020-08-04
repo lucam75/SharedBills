@@ -23,7 +23,19 @@
         <field>Transaction__c$Date__c</field>
     </columns>
     <currency>CLP</currency>
+    <customDetailFormulas>
+        <calculatedFormula>MONTH(Transaction__c.Date__c)</calculatedFormula>
+        <dataType>Double</dataType>
+        <developerName>CDF1</developerName>
+        <label>Month</label>
+        <scale>0</scale>
+    </customDetailFormulas>
     <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>CDF1</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>Transaction__c$Category__c</field>
