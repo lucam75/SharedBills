@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
             "c/createSharedExpense": [
@@ -14,8 +15,7 @@
             "c/utils": [
                 "utils/utils.js"
             ]
-        },
-        "experimentalDecorators": true
+        }
     },
     "include": [
         "**/*",
