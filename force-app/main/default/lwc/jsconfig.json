@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
             "c/createSharedExpense": [
@@ -15,5 +16,14 @@
                 "utils/utils.js"
             ]
         }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
     }
 }

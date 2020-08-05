@@ -2,10 +2,16 @@
 	"orgName": "SharedBills Scratch",
 	"edition": "Developer",
 	"language": "en_US",
+	"features": ["MultiCurrency"],
 	"hasSampleData": true,
 	"settings": {
 		"lightningExperienceSettings": {
 			"enableS1DesktopEnabled": true
+		},
+		"securitySettings": {
+			"passwordPolicies": {
+				"enableSetPasswordInApi": true
+			}
 		},
 		"mobileSettings": {
 			"enableS1EncryptedStoragePref2": false
