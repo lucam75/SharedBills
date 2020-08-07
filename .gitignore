@@ -37,3 +37,4 @@ $RECYCLE.BIN/
 
 # Codecov
 coverage
+tests/
