@@ -35,7 +35,7 @@ global with sharing class BillStatusSchedulable implements Schedulable {
 	}
 
 	global void execute(SchedulableContext sc) {
-		currentStatus = new StatusController(true);
+		currentStatus = new StatusController();
 		sendEmail();
 	}
 
@@ -45,19 +45,16 @@ global with sharing class BillStatusSchedulable implements Schedulable {
 		String monthName = getMonthText(month);
 
 		if (endMonthEmailTemplate != null) {
-			system.debug('template version');
-
 			message.setTemplateId(endMonthEmailTemplate.Id);
 			message.Subject = endMonthEmailTemplate.Subject.replace('[LAST_MONTH]', monthName);
 			message.setTreatBodiesAsTemplate(true);
-			message.setHtmlBody(endMonthEmailTemplate.HtmlValue.replace('%DEUDOR%', currentStatus.deudor).replace('%COBRADOR%', currentStatus.cobrador).replace('%DEUDA%', currentStatus.totalDebtAmountString));
+			message.setHtmlBody(endMonthEmailTemplate.HtmlValue.replace('%DEUDOR%', currentStatus.getDebtor()).replace('%COBRADOR%', currentStatus.getDebtCollector()).replace('%DEUDA%', currentStatus.getTotalDebtFormatted()));
 		} else {
-			system.debug('normal version');
 			message.subject = '[SharedBills] Status for ' + monthName;
-			message.setPlainTextBody(currentStatus.deudor + ' le debe a ' + currentStatus.cobrador + ' la cantidad de ' + currentStatus.totalDebtAmountString);
+			message.setPlainTextBody(currentStatus.getDebtor() + ' le debe a ' + currentStatus.getDebtCollector() + ' la cantidad de ' + currentStatus.getTotalDebtFormatted());
 		}
 
-		message.toAddresses = new List<String>{ currentStatus.emailLuis, currentStatus.emailDiana };
+		message.toAddresses = currentStatus.getContactsEmail();
 		message.optOutPolicy = 'FILTER';
 
 		Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage>{ message };

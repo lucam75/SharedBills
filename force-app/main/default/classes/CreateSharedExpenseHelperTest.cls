@@ -53,7 +53,7 @@ public class CreateSharedExpenseHelperTest {
 		Category__c streetFood = UtilityTest.createCategory('Street Food');
 		Category__c clothes = UtilityTest.createCategory('Clothes');
 
-		List<LookupSearchResult> results;
+		List<CreateSharedExpenseHelper.LookupSearchResult> results;
 
 		Test.startTest();
 		results = CreateSharedExpenseHelper.search('oo', 'category_lookup');
@@ -68,7 +68,7 @@ public class CreateSharedExpenseHelperTest {
 		Category__c streetFood = UtilityTest.createCategory('Street Food');
 		Category__c clothes = UtilityTest.createCategory('Clothes');
 
-		List<LookupSearchResult> results;
+		List<CreateSharedExpenseHelper.LookupSearchResult> results;
 
 		Test.startTest();
 		results = CreateSharedExpenseHelper.search(null, 'category_lookup');
@@ -83,7 +83,7 @@ public class CreateSharedExpenseHelperTest {
 		Account sportBrand1 = UtilityTest.createAccount('Sport Brand1');
 		Account sportBrand2 = UtilityTest.createAccount('Sport Brand2');
 
-		List<LookupSearchResult> results;
+		List<CreateSharedExpenseHelper.LookupSearchResult> results;
 
 		Test.startTest();
 		results = CreateSharedExpenseHelper.search('rand', 'account_lookup');
@@ -98,7 +98,7 @@ public class CreateSharedExpenseHelperTest {
 		Account sportBrand1 = UtilityTest.createAccount('Sport Brand1');
 		Account sportBrand2 = UtilityTest.createAccount('Sport Brand2');
 
-		List<LookupSearchResult> results;
+		List<CreateSharedExpenseHelper.LookupSearchResult> results;
 
 		Test.startTest();
 		results = CreateSharedExpenseHelper.search(null, 'account_lookup');
@@ -113,7 +113,7 @@ public class CreateSharedExpenseHelperTest {
 		Event__c travel2 = UtilityTest.createEvent('Travel to Mountains');
 		Event__c disaster = UtilityTest.createEvent('Tropical storm');
 
-		List<LookupSearchResult> results;
+		List<CreateSharedExpenseHelper.LookupSearchResult> results;
 
 		Test.startTest();
 		results = CreateSharedExpenseHelper.search('trav', 'event_lookup');
@@ -128,7 +128,7 @@ public class CreateSharedExpenseHelperTest {
 		Event__c travel2 = UtilityTest.createEvent('Travel to Mountains');
 		Event__c disaster = UtilityTest.createEvent('Tropical storm');
 
-		List<LookupSearchResult> results;
+		List<CreateSharedExpenseHelper.LookupSearchResult> results;
 
 		Test.startTest();
 		results = CreateSharedExpenseHelper.search(null, 'event_lookup');
