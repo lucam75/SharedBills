@@ -10,7 +10,15 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BillStatusSchedulableTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CreateSharedExpenseHelper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreateSharedExpenseHelperTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -18,11 +26,15 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CurrentStatusUtilsTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>ITrigger</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>LookupSearchResult</apexClass>
+        <apexClass>SharedBillsException</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -47,6 +59,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>TriggerFactory</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>UtilityTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <custom>false</custom>
@@ -89,6 +105,9 @@
         <layout>Category__c-Category Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Contact-Contact Layout %28Shared Bills%29</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Event__c-Event Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -121,10 +140,6 @@
         <object>Transaction__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <pageAccesses>
-        <apexPage>Status</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <tabVisibilities>
         <tab>Category__c</tab>
         <visibility>Hidden</visibility>
@@ -134,15 +149,15 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Create_Shared_Expense</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Current_Status1</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Event__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Status</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>

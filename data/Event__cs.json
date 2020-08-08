@@ -1,0 +1,25 @@
+{
+	"records": [
+		{
+			"attributes": {
+				"type": "Event__c",
+				"referenceId": "Event__cRef1"
+			},
+			"Name": "Caribbean travel - 2019"
+		},
+		{
+			"attributes": {
+				"type": "Event__c",
+				"referenceId": "Event__cRef2"
+			},
+			"Name": "Family vacations - 2018"
+		},
+		{
+			"attributes": {
+				"type": "Event__c",
+				"referenceId": "Event__cRef3"
+			},
+			"Name": "Travel to the beach"
+		}
+	]
+}

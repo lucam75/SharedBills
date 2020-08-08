@@ -94,5 +94,35 @@ public with sharing class CreateSharedExpenseHelper {
 			this.subtitle = subtitle;
 			this.imageUrl = imageUrl;
 		}
+
+		@AuraEnabled
+		public Id getId() {
+			return id;
+		}
+
+		@AuraEnabled
+		public String getSObjectType() {
+			return sObjectType;
+		}
+
+		@AuraEnabled
+		public String getIcon() {
+			return icon;
+		}
+
+		@AuraEnabled
+		public String getTitle() {
+			return title;
+		}
+
+		@AuraEnabled
+		public String getSubtitle() {
+			return subtitle;
+		}
+
+		@AuraEnabled
+		public String getImageUrl() {
+			return imageUrl;
+		}
 	}
 }

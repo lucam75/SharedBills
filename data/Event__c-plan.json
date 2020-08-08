@@ -1,0 +1,8 @@
+[
+	{
+		"sobject": "Event__c",
+		"saveRefs": true,
+		"resolveRefs": false,
+		"files": ["Event__cs.json"]
+	}
+]

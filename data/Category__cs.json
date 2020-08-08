@@ -1,0 +1,81 @@
+{
+	"records": [
+		{
+			"attributes": {
+				"type": "Category__c",
+				"referenceId": "Category__cRef1"
+			},
+			"Name": "Food"
+		},
+		{
+			"attributes": {
+				"type": "Category__c",
+				"referenceId": "Category__cRef2"
+			},
+			"Name": "Entertainment"
+		},
+		{
+			"attributes": {
+				"type": "Category__c",
+				"referenceId": "Category__cRef3"
+			},
+			"Name": "Shoes"
+		},
+		{
+			"attributes": {
+				"type": "Category__c",
+				"referenceId": "Category__cRef4"
+			},
+			"Name": "House"
+		},
+		{
+			"attributes": {
+				"type": "Category__c",
+				"referenceId": "Category__cRef5"
+			},
+			"Name": "Clothes"
+		},
+		{
+			"attributes": {
+				"type": "Category__c",
+				"referenceId": "Category__cRef6"
+			},
+			"Name": "Health"
+		},
+		{
+			"attributes": {
+				"type": "Category__c",
+				"referenceId": "Category__cRef7"
+			},
+			"Name": "Junk Food"
+		},
+		{
+			"attributes": {
+				"type": "Category__c",
+				"referenceId": "Category__cRef8"
+			},
+			"Name": "Tech"
+		},
+		{
+			"attributes": {
+				"type": "Category__c",
+				"referenceId": "Category__cRef9"
+			},
+			"Name": "Gifts"
+		},
+		{
+			"attributes": {
+				"type": "Category__c",
+				"referenceId": "Category__cRef10"
+			},
+			"Name": "Drinks"
+		},
+		{
+			"attributes": {
+				"type": "Category__c",
+				"referenceId": "Category__cRef11"
+			},
+			"Name": "Cellphone"
+		}
+	]
+}
