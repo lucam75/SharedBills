@@ -180,6 +180,6 @@
         <searchResultsAdditionalFields>Paid_By__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Billed_to__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

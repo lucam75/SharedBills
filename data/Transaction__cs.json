@@ -1,0 +1,84 @@
+{
+	"records": [
+		{
+			"attributes": {
+				"type": "Transaction__c",
+				"referenceId": "Transaction__cRef1"
+			},
+			"Amount__c": 22.5,
+			"Date__c": "2020-08-07",
+			"Description__c": "Cellphone data plan for August",
+			"Paid_By__c": "@ContactRef2",
+			"Billed_to__c": "@ContactRef1",
+			"Category__c": "@Category__cRef11",
+			"Account__c": "@AccountRef3"
+		},
+		{
+			"attributes": {
+				"type": "Transaction__c",
+				"referenceId": "Transaction__cRef2"
+			},
+			"Amount__c": 250,
+			"Date__c": "2020-08-07",
+			"Description__c": "Gift for a dear friend",
+			"Paid_By__c": "@ContactRef2",
+			"Billed_to__c": "@ContactRef2",
+			"Category__c": "@Category__cRef9",
+			"Account__c": "@AccountRef2",
+			"Event__c": "@Event__cRef2"
+		},
+		{
+			"attributes": {
+				"type": "Transaction__c",
+				"referenceId": "Transaction__cRef3"
+			},
+			"Amount__c": 60,
+			"Date__c": "2020-08-07",
+			"Description__c": "Week food",
+			"Paid_By__c": "@ContactRef1",
+			"Billed_to__c": "@ContactRef2",
+			"Category__c": "@Category__cRef1",
+			"Account__c": "@AccountRef7"
+		},
+		{
+			"attributes": {
+				"type": "Transaction__c",
+				"referenceId": "Transaction__cRef4"
+			},
+			"Amount__c": 60,
+			"Date__c": "2020-08-07",
+			"Description__c": "Week food",
+			"Paid_By__c": "@ContactRef1",
+			"Billed_to__c": "@ContactRef1",
+			"Category__c": "@Category__cRef1",
+			"Account__c": "@AccountRef7"
+		},
+		{
+			"attributes": {
+				"type": "Transaction__c",
+				"referenceId": "Transaction__cRef5"
+			},
+			"Amount__c": 250,
+			"Date__c": "2020-08-07",
+			"Description__c": "Gift for a dear friend",
+			"Paid_By__c": "@ContactRef2",
+			"Billed_to__c": "@ContactRef1",
+			"Category__c": "@Category__cRef9",
+			"Account__c": "@AccountRef2",
+			"Event__c": "@Event__cRef2"
+		},
+		{
+			"attributes": {
+				"type": "Transaction__c",
+				"referenceId": "Transaction__cRef6"
+			},
+			"Amount__c": 22.5,
+			"Date__c": "2020-08-07",
+			"Description__c": "Cellphone data plan for August",
+			"Paid_By__c": "@ContactRef2",
+			"Billed_to__c": "@ContactRef2",
+			"Category__c": "@Category__cRef11",
+			"Account__c": "@AccountRef3"
+		}
+	]
+}

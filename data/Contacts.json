@@ -5,7 +5,8 @@
 				"type": "Contact",
 				"referenceId": "ContactRef1"
 			},
-			"Name": "Jhon Smith",
+			"FirstName": "Jhon",
+			"LastName": "Smith",
 			"Active__c": true
 		},
 		{
@@ -13,7 +14,8 @@
 				"type": "Contact",
 				"referenceId": "ContactRef2"
 			},
-			"Name": "Maria Peterson",
+			"FirstName": "Maria",
+			"LastName": "Peterson",
 			"Active__c": true
 		}
 	]

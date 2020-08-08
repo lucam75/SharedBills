@@ -1,8 +1,0 @@
-[
-	{
-		"sobject": "Category__c",
-		"saveRefs": true,
-		"resolveRefs": false,
-		"files": ["Category__cs.json"]
-	}
-]

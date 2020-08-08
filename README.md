@@ -55,7 +55,16 @@ The Shared Bills app provides the following features:
     ```
     sfdx force:source:push
     ```
+1. Assign permissionset to default user
 
+    ```
+    sfdx force:user:permset:assign -n Shared_Bills_User
+    ```
+1. Import sample data (optional)
+
+    ```
+    sfdx force:data:tree:import -p ./data/Sample-plan.json
+    ```
 1. Open the scratch org:
 
     ```
@@ -63,5 +72,5 @@ The Shared Bills app provides the following features:
     ```
 
 1) In App Launcher, select the **SharedBills** app.
-1) Create master objects data like Categories, Accounts, Contacts and Events.
+1) Create master objects records like Categories, Accounts, Contacts and Events.
 1) Start tracking your expenses using either Salesforce standard Record creation or the LWC to create Shared Bills

@@ -74,7 +74,7 @@ public class CreateSharedExpenseHelperTest {
 		results = CreateSharedExpenseHelper.search(null, 'category_lookup');
 		Test.stopTest();
 
-		System.assertEquals(3, results.size(), 'Must return 3 categories');
+		System.assertEquals(true, results.size() <= 5, 'Must return not more than 5 categories');
 	}
 
 	@IsTest
@@ -104,7 +104,7 @@ public class CreateSharedExpenseHelperTest {
 		results = CreateSharedExpenseHelper.search(null, 'account_lookup');
 		Test.stopTest();
 
-		System.assertEquals(3, results.size(), 'Must return 3 accounts');
+		System.assertEquals(true, results.size() <= 5, 'Must return not more than 5 accounts');
 	}
 
 	@IsTest
@@ -134,6 +134,24 @@ public class CreateSharedExpenseHelperTest {
 		results = CreateSharedExpenseHelper.search(null, 'event_lookup');
 		Test.stopTest();
 
-		System.assertEquals(3, results.size(), 'Must return 3 events');
+		System.assertEquals(true, results.size() <= 5, 'Must return not more than 5 events');
+	}
+
+	@IsTest
+	static void lookupMethodsTest() {
+		Event__c travel1 = UtilityTest.createEvent('Travel to beach');
+
+		List<CreateSharedExpenseHelper.LookupSearchResult> results;
+
+		Test.startTest();
+		results = CreateSharedExpenseHelper.search('beach', 'event_lookup');
+		Test.stopTest();
+
+		System.assertEquals(travel1.Id, results.get(0).getId(), 'Must return the correct field value.');
+		System.assertEquals('Event', results.get(0).getSObjectType(), 'Must return the correct field value.');
+		System.assertEquals('custom:custom20', results.get(0).getIcon(), 'Must return the correct field value.');
+		System.assertEquals(travel1.Name, results.get(0).getTitle(), 'Must return the correct field value.');
+		System.assertEquals('Event • ' + travel1.Name, results.get(0).getSubtitle(), 'Must return the correct field value.');
+		System.assertEquals(null, results.get(0).getImageUrl(), 'Must return the correct field value.');
 	}
 }

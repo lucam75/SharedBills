@@ -1,4 +1,4 @@
-@IsTest
+@IsTest(isParallel=true)
 public class CurrentStatusUtilsTest {
 	@IsTest
 	static void getBillsTest() {

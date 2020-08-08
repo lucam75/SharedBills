@@ -9,7 +9,7 @@
  * Ver       Date            Author      		    Modification
  * 1.0    1/8/2020   Luis Campos (LC)     Initial Version
  **/
-@IsTest
+@IsTest(isParallel=true)
 public class TransactionTriggerTest {
 	@TestSetup
 	static void setup() {
