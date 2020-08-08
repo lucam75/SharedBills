@@ -1,8 +1,10 @@
 # Unique name for this workflow
-name: Code Style (Prettier)
+name: Salesforce DX PR (scratch org)
 
 # Definition when the workflow should run
-on: [push]
+on:
+    pull_request:
+        types: [opened, edited, synchronize, reopened]
 
 # Jobs to be executed
 jobs:
