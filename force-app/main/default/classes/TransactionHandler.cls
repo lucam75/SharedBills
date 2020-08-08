@@ -1,5 +1,5 @@
 /**
- * @author Sebastian Mendoza
+ * @author Luis Campos
  * @date 3/26/2018
  * @description
  *
@@ -7,8 +7,6 @@
  *
  */
 public with sharing class TransactionHandler implements ITrigger {
-	//>>flags
-	//public static boolean firstRun = true;
 	List<Event__c> eventsToUpdate = new List<Event__c>();
 
 	public TransactionHandler() {
@@ -32,13 +30,9 @@ public with sharing class TransactionHandler implements ITrigger {
 	 */
 	public void bulkAfter() {
 		if (Trigger.isDelete) {
-			eventsToUpdate = TransactionHelper.calculateAmountPerEvent(
-				Trigger.old
-			);
+			eventsToUpdate = TransactionHelper.calculateAmountPerEvent(Trigger.old);
 		} else {
-			eventsToUpdate = TransactionHelper.calculateAmountPerEvent(
-				Trigger.new
-			);
+			eventsToUpdate = TransactionHelper.calculateAmountPerEvent(Trigger.new);
 		}
 	}
 

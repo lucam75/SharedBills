@@ -1,0 +1,22 @@
+{
+	"records": [
+		{
+			"attributes": {
+				"type": "Contact",
+				"referenceId": "ContactRef1"
+			},
+			"FirstName": "Jhon",
+			"LastName": "Smith",
+			"Active__c": true
+		},
+		{
+			"attributes": {
+				"type": "Contact",
+				"referenceId": "ContactRef2"
+			},
+			"FirstName": "Maria",
+			"LastName": "Peterson",
+			"Active__c": true
+		}
+	]
+}

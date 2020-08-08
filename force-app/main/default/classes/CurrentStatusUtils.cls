@@ -1,7 +1,4 @@
 public with sharing class CurrentStatusUtils {
-	public CurrentStatusUtils() {
-	}
-
 	@AuraEnabled
 	public static List<AggregateResult> getBills(String yearMonth) {
 		List<AggregateResult> data = new List<AggregateResult>();

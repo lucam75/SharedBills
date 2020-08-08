@@ -1,6 +1,6 @@
-![Code Style (Prettier)](https://github.com/lucam75/SharedBills/workflows/Code%20Style%20(Prettier)/badge.svg?branch=master)
-
 # Shared Bills Application
+
+[![Salesforce DX PR (Scratch Org)](<https://github.com/lucam75/SharedBills/workflows/Salesforce%20DX%20PR%20(scratch%20org)/badge.svg?branch=develop>)](https://github.com/lucam75/SharedBills/actions?query=workflow%3A%22Salesforce+DX+%28scratch+org%29%22) [![codecov](https://codecov.io/gh/lucam75/SharedBills/branch/master/graph/badge.svg)](https://codecov.io/gh/lucam75/SharedBills)
 
 Shared bills is a personal project to keep track of my individual and shared expenses, borns from the necessity to keep track of shared expenses easily without unnecessary or complicated stuff. With a mobile-first approach, SB takes advantage of the LWC framework to allow complex data entry in a natural way.
 
@@ -55,7 +55,16 @@ The Shared Bills app provides the following features:
     ```
     sfdx force:source:push
     ```
+1. Assign permissionset to default user
 
+    ```
+    sfdx force:user:permset:assign -n Shared_Bills_User
+    ```
+1. Import sample data (optional)
+
+    ```
+    sfdx force:data:tree:import -p ./data/Sample-plan.json
+    ```
 1. Open the scratch org:
 
     ```
@@ -63,5 +72,5 @@ The Shared Bills app provides the following features:
     ```
 
 1) In App Launcher, select the **SharedBills** app.
-1) Create master objects data like Categories, Accounts, Contacts and Events.
+1) Create master objects records like Categories, Accounts, Contacts and Events.
 1) Start tracking your expenses using either Salesforce standard Record creation or the LWC to create Shared Bills

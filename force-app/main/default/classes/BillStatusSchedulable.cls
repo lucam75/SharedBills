@@ -6,8 +6,9 @@
  * @Last Modified By   : Luis Campos (lucam75@gmail.com)
  * @Last Modified On   : 11/1/2019, 5:26:13 PM
  * @Modification Log   :
- * Ver       Date            Author      		    Modification
- * 1.0    10/28/2019   Luis Campos (LC)     Initial Version
+ * Ver       Date           Author				Modification
+ * 1.0    10/28/2019   	Luis Campos (LC)    	Initial Version
+ * 1.1	  07/08/2020	Luis Campos (LC)		Fixes and code coverage
  **/
 
 //BillStatusSchedulable abc = new BillStatusSchedulable();
@@ -18,81 +19,54 @@
 //String jobID = system.schedule('Calculate month bills', sch, m);
 
 global with sharing class BillStatusSchedulable implements Schedulable {
-	EmailTemplate endMonthEmailTemplate;
-	String END_MONTH_EMAIL_DEVELOPER_NAME = 'End_Month_Status';
+	@TestVisible
+	private EmailTemplate endMonthEmailTemplate;
+	@TestVisible
+	private StatusController currentStatus;
+	@TestVisible
+	private Messaging.SingleEmailMessage message;
+	public final static String END_MONTH_EMAIL_DEVELOPER_NAME = 'End_Month_Status';
 
 	public BillStatusSchedulable() {
-		try {
-			endMonthEmailTemplate = [
-				SELECT Id, Name, Body, HtmlValue, Subject
-				FROM EmailTemplate
-				WHERE developername = :END_MONTH_EMAIL_DEVELOPER_NAME
-				LIMIT 1
-			];
-		} catch (Exception e) {
-			system.debug(e.getMessage());
+		List<EmailTemplate> emailTemplates = [SELECT Id, Name, Body, HtmlValue, Subject FROM EmailTemplate WHERE developername = :END_MONTH_EMAIL_DEVELOPER_NAME LIMIT 1];
+		if (!emailTemplates.isEmpty()) {
+			endMonthEmailTemplate = emailTemplates.get(0);
 		}
 	}
 
 	global void execute(SchedulableContext sc) {
-		StatusController currentStatus = new StatusController(true);
-		this.sendEmail(currentStatus);
+		currentStatus = new StatusController();
+		sendEmail();
 	}
 
-	public void sendEmail(StatusController currentStatus) {
-		Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
+	public void sendEmail() {
+		message = new Messaging.SingleEmailMessage();
+		Integer month = System.Today().addDays(-1).month();
+		String monthName = getMonthText(month);
 
 		if (endMonthEmailTemplate != null) {
-			system.debug('template version');
-
 			message.setTemplateId(endMonthEmailTemplate.Id);
-			message.Subject = endMonthEmailTemplate.Subject.replace(
-				'[LAST_MONTH]',
-				this.getMonthText()
-			);
+			message.Subject = endMonthEmailTemplate.Subject.replace('[LAST_MONTH]', monthName);
 			message.setTreatBodiesAsTemplate(true);
-			message.setHtmlBody(
-				endMonthEmailTemplate.HtmlValue.replace(
-						'%DEUDOR%',
-						currentStatus.deudor
-					)
-					.replace('%COBRADOR%', currentStatus.cobrador)
-					.replace('%DEUDA%', currentStatus.totalDebtAmountString)
-			);
+			message.setHtmlBody(endMonthEmailTemplate.HtmlValue.replace('%DEUDOR%', currentStatus.getDebtor()).replace('%COBRADOR%', currentStatus.getDebtCollector()).replace('%DEUDA%', currentStatus.getTotalDebtFormatted()));
 		} else {
-			system.debug('normal version');
-			message.subject = '[SharedBills] Status for ' + this.getMonthText();
-			message.setPlainTextBody(
-				currentStatus.deudor +
-				' le debe a ' +
-				currentStatus.cobrador +
-				' la cantidad de ' +
-				currentStatus.totalDebtAmountString
-			);
+			message.subject = '[SharedBills] Status for ' + monthName;
+			message.setPlainTextBody(currentStatus.getDebtor() + ' le debe a ' + currentStatus.getDebtCollector() + ' la cantidad de ' + currentStatus.getTotalDebtFormatted());
 		}
 
-		message.toAddresses = new List<String>{
-			currentStatus.emailLuis,
-			currentStatus.emailDiana
-		};
-		//message.toAddresses = new String[] { currentStatus.emailLuis };
+		message.toAddresses = currentStatus.getContactsEmail();
 		message.optOutPolicy = 'FILTER';
 
-		Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage>{
-			message
-		};
+		Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage>{ message };
 		Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
 
 		if (results[0].success) {
 			System.debug('The email was sent successfully.');
 		} else {
-			System.debug(
-				'The email failed to send: ' + results[0].errors[0].message
-			);
+			System.debug('The email failed to send: ' + results[0].errors[0].message);
 		}
 	}
-	public String getMonthText() {
-		Integer month = System.Today().addDays(-1).month();
+	public String getMonthText(Integer month) {
 		if (month == 1) {
 			return 'January';
 		} else if (month == 2) {

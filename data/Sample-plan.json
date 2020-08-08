@@ -1,0 +1,32 @@
+[
+	{
+		"sobject": "Account",
+		"saveRefs": true,
+		"resolveRefs": false,
+		"files": ["Accounts.json"]
+	},
+	{
+		"sobject": "Category__c",
+		"saveRefs": true,
+		"resolveRefs": false,
+		"files": ["Category__cs.json"]
+	},
+	{
+		"sobject": "Contact",
+		"saveRefs": true,
+		"resolveRefs": false,
+		"files": ["Contacts.json"]
+	},
+	{
+		"sobject": "Event__c",
+		"saveRefs": true,
+		"resolveRefs": false,
+		"files": ["Event__cs.json"]
+	},
+	{
+		"sobject": "Transaction__c",
+		"saveRefs": true,
+		"resolveRefs": true,
+		"files": ["Transaction__cs.json"]
+	}
+]

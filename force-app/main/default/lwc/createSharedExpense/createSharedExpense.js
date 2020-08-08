@@ -17,9 +17,7 @@ import PAID_BY_FIELD from "@salesforce/schema/Transaction__c.Paid_By__c";
 import DESCRIPTION_FIELD from "@salesforce/schema/Transaction__c.Description__c";
 import ACCOUNT_FIELD from "@salesforce/schema/Transaction__c.Account__c";
 
-export default class CreateSharedExpense extends NavigationMixin(
-	LightningElement
-) {
+export default class CreateSharedExpense extends NavigationMixin(LightningElement) {
 	@track billedToSelectedList = [];
 	@track errors = [];
 
@@ -58,9 +56,7 @@ export default class CreateSharedExpense extends NavigationMixin(
 	handleLoadPredefined(e) {
 		console.log(predefinedValues);
 		let predefined = e.target.value;
-		if (
-			Object.prototype.hasOwnProperty.call(predefinedValues, predefined)
-		) {
+		if (Object.prototype.hasOwnProperty.call(predefinedValues, predefined)) {
 			let config = predefinedValues[predefined];
 
 			console.log("Values loaded ", config);
@@ -73,19 +69,11 @@ export default class CreateSharedExpense extends NavigationMixin(
 			this.billedToSelected = config.billedTo;
 
 			this.updateBilledToSelectedList();
-			this.template.querySelector(
-				".category_lookup"
-			).selection = this.category;
-			this.template.querySelector(
-				".account_lookup"
-			).selection = this.account;
+			this.template.querySelector(".category_lookup").selection = this.category;
+			this.template.querySelector(".account_lookup").selection = this.account;
 			this.template.querySelector(".event_lookup").selection = this.event;
 		} else {
-			this.notifyUser(
-				"No configuration for " + predefined,
-				"No default values were loaded.",
-				"warning"
-			);
+			this.notifyUser("No configuration for " + predefined, "No default values were loaded.", "warning");
 		}
 	}
 
@@ -109,13 +97,9 @@ export default class CreateSharedExpense extends NavigationMixin(
 	handleSliderChange(event) {
 		let sliderContactId = event.target.dataset.item;
 		let sliderContactAmount = event.detail.value;
-		this.billedToSelectedList.find(
-			(x) => x.key === sliderContactId
-		).value.amount = sliderContactAmount;
+		this.billedToSelectedList.find((x) => x.key === sliderContactId).value.amount = sliderContactAmount;
 
-		let calculatedNewAmount =
-			(this.amount - sliderContactAmount) /
-			(this.billedToSelectedList.length - 1);
+		let calculatedNewAmount = (this.amount - sliderContactAmount) / (this.billedToSelectedList.length - 1);
 
 		this.billedToSelectedList.forEach((contact) => {
 			if (contact.key !== sliderContactId) {
@@ -126,13 +110,9 @@ export default class CreateSharedExpense extends NavigationMixin(
 	handleManualAmountChange(event) {
 		let contactId = event.target.dataset.item;
 		let sliderContactAmount = event.detail.value;
-		this.billedToSelectedList.find(
-			(x) => x.key === contactId
-		).value.amount = sliderContactAmount;
+		this.billedToSelectedList.find((x) => x.key === contactId).value.amount = sliderContactAmount;
 
-		let calculatedNewAmount =
-			(this.amount - sliderContactAmount) /
-			(this.billedToSelectedList.length - 1);
+		let calculatedNewAmount = (this.amount - sliderContactAmount) / (this.billedToSelectedList.length - 1);
 
 		this.billedToSelectedList.forEach((contact) => {
 			if (contact.key !== contactId) {
@@ -147,16 +127,9 @@ export default class CreateSharedExpense extends NavigationMixin(
 				this.createSingleTransaction(contact.key, contact.value.amount);
 			});
 		} else if (this.billedToSelectedList.length === 1) {
-			this.createSingleTransaction(
-				this.billedToSelectedList[0].key,
-				this.amount
-			);
+			this.createSingleTransaction(this.billedToSelectedList[0].key, this.amount);
 		} else {
-			this.notifyUser(
-				"Error",
-				"Please select at least one contact to create the bill.",
-				"error"
-			);
+			this.notifyUser("Error", "Please select at least one contact to create the bill.", "error");
 		}
 		this.initializeDefaultValues();
 	}
@@ -172,11 +145,7 @@ export default class CreateSharedExpense extends NavigationMixin(
 				target.setSearchResults(results);
 			})
 			.catch((error) => {
-				this.notifyUser(
-					"Lookup Error",
-					"An error occured while searching with the lookup field.",
-					"error"
-				);
+				this.notifyUser("Lookup Error", "An error occured while searching with the lookup field.", "error");
 				// eslint-disable-next-line no-console
 				console.error("Lookup error", JSON.stringify(error));
 				this.errors = [error];
@@ -241,9 +210,7 @@ export default class CreateSharedExpense extends NavigationMixin(
 
 	getContactLabel(contactId) {
 		if (this.contacts.data !== undefined && contactId !== "") {
-			return this.contacts.data.find(
-				(contact) => contact.Id === contactId
-			).Name;
+			return this.contacts.data.find((contact) => contact.Id === contactId).Name;
 		}
 		return "";
 	}
@@ -299,12 +266,10 @@ export default class CreateSharedExpense extends NavigationMixin(
 		fields[BILLED_TO_FIELD.fieldApiName] = billedTo;
 		fields[CATEGORY_FIELD.fieldApiName] = this.category.id;
 		fields[DATE_FIELD.fieldApiName] = this.date;
-		fields[EVENT_FIELD.fieldApiName] =
-			this.event !== undefined ? this.event.id : "";
+		fields[EVENT_FIELD.fieldApiName] = this.event !== undefined ? this.event.id : "";
 		fields[PAID_BY_FIELD.fieldApiName] = this.paidBy;
 		fields[DESCRIPTION_FIELD.fieldApiName] = this.description;
-		fields[ACCOUNT_FIELD.fieldApiName] =
-			this.account !== undefined ? this.account.id : "";
+		fields[ACCOUNT_FIELD.fieldApiName] = this.account !== undefined ? this.account.id : "";
 
 		const recordInput = {
 			apiName: TRANSACTION_OBJECT.objectApiName,
@@ -313,19 +278,11 @@ export default class CreateSharedExpense extends NavigationMixin(
 		createRecord(recordInput)
 			.then((transaction) => {
 				this.createdTransactionsIds.push(transaction.id);
-				this.notifyUser(
-					"Success",
-					"Shared transaction created",
-					"success"
-				);
+				this.notifyUser("Success", "Shared transaction created", "success");
 			})
 			.catch((error) => {
 				console.log(JSON.stringify(error));
-				this.notifyUser(
-					"Error creating shared transaction",
-					error.body.message,
-					"error"
-				);
+				this.notifyUser("Error creating shared transaction", error.body.message, "error");
 			});
 	}
 
