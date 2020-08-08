@@ -4,8 +4,7 @@
     <deleteConstraint>Restrict</deleteConstraint>
     <description>Place or store where be performed the transaction</description>
     <externalId>false</externalId>
-    <inlineHelpText
-	>Place or store where be performed the transaction</inlineHelpText>
+    <inlineHelpText>Place or store where be performed the transaction</inlineHelpText>
     <label>Account</label>
     <referenceTo>Account</referenceTo>
     <relationshipLabel>Transactions</relationshipLabel>

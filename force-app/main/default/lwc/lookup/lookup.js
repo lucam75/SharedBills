@@ -27,9 +27,7 @@ export default class Lookup extends LightningElement {
 	// EXPOSED FUNCTIONS
 	@api
 	set selection(initialSelection) {
-		this.curSelection = Array.isArray(initialSelection)
-			? initialSelection
-			: [initialSelection];
+		this.curSelection = Array.isArray(initialSelection) ? initialSelection : [initialSelection];
 		this.isDirty = false;
 	}
 	get selection() {
@@ -47,12 +45,8 @@ export default class Lookup extends LightningElement {
 			// Clone and complete search result if icon is missing
 			if (this.searchTerm.length > 0 || this.isPreview) {
 				const regex = new RegExp(`(${this.searchTerm})`, "gi");
-				result.titleFormatted = result.title
-					? result.title.replace(regex, "<strong>$1</strong>")
-					: result.title;
-				result.subtitleFormatted = result.subtitle
-					? result.subtitle.replace(regex, "<strong>$1</strong>")
-					: result.subtitle;
+				result.titleFormatted = result.title ? result.title.replace(regex, "<strong>$1</strong>") : result.title;
+				result.subtitleFormatted = result.subtitle ? result.subtitle.replace(regex, "<strong>$1</strong>") : result.subtitle;
 			}
 			if (typeof result.icon === "undefined") {
 				const { id, sObjectType, title, subtitle } = result;
@@ -84,10 +78,7 @@ export default class Lookup extends LightningElement {
 		this.searchTerm = newSearchTerm;
 
 		// Compare clean new search term with current one and abort if identical
-		const newCleanSearchTerm = newSearchTerm
-			.trim()
-			.replace(/\*/g, "")
-			.toLowerCase();
+		const newCleanSearchTerm = newSearchTerm.trim().replace(/\*/g, "").toLowerCase();
 		if (this.cleanSearchTerm === newCleanSearchTerm) {
 			return;
 		}
@@ -115,9 +106,7 @@ export default class Lookup extends LightningElement {
 				const searchEvent = new CustomEvent("search", {
 					detail: {
 						searchTerm: this.cleanSearchTerm,
-						selectedIds: this.curSelection.map(
-							(element) => element.id
-						)
+						selectedIds: this.curSelection.map((element) => element.id)
 					}
 				});
 				this.dispatchEvent(searchEvent);
@@ -156,9 +145,7 @@ export default class Lookup extends LightningElement {
 		const recordId = event.currentTarget.dataset.recordid;
 
 		// Save selection
-		let selectedItem = this.searchResults.filter(
-			(result) => result.id === recordId
-		);
+		let selectedItem = this.searchResults.filter((result) => result.id === recordId);
 		if (selectedItem.length === 0) {
 			return;
 		}
@@ -209,9 +196,7 @@ export default class Lookup extends LightningElement {
 
 	handleRemoveSelectedItem(event) {
 		const recordId = event.currentTarget.name;
-		this.curSelection = this.curSelection.filter(
-			(item) => item.id !== recordId
-		);
+		this.curSelection = this.curSelection.filter((item) => item.id !== recordId);
 		this.isDirty = true;
 		// Notify parent components that selection has changed
 		this.dispatchEvent(new CustomEvent("selectionchange"));
@@ -272,14 +257,8 @@ export default class Lookup extends LightningElement {
 	}
 
 	get getDropdownClass() {
-		let css =
-			"slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click ";
-		if (
-			(this.hasFocus &&
-				this.cleanSearchTerm &&
-				this.cleanSearchTerm.length >= MINIMAL_SEARCH_TERM_LENGTH) ||
-			this.isPreview
-		) {
+		let css = "slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click ";
+		if ((this.hasFocus && this.cleanSearchTerm && this.cleanSearchTerm.length >= MINIMAL_SEARCH_TERM_LENGTH) || this.isPreview) {
 			css += "slds-is-open";
 		}
 		return css;
@@ -287,16 +266,11 @@ export default class Lookup extends LightningElement {
 
 	get getInputClass() {
 		let css = "slds-input slds-combobox__input has-custom-height ";
-		if (
-			this.errors.length > 0 ||
-			(this.isDirty && this.required && !this.hasSelection())
-		) {
+		if (this.errors.length > 0 || (this.isDirty && this.required && !this.hasSelection())) {
 			css += "has-custom-error ";
 		}
 		if (!this.isMultiEntry) {
-			css +=
-				"slds-combobox__input-value " +
-				(this.hasSelection() ? "has-custom-border" : "");
+			css += "slds-combobox__input-value " + (this.hasSelection() ? "has-custom-border" : "");
 		}
 		return css;
 	}
@@ -306,9 +280,7 @@ export default class Lookup extends LightningElement {
 		if (this.isMultiEntry) {
 			css += "slds-input-has-icon_right";
 		} else {
-			css += this.hasSelection()
-				? "slds-input-has-icon_left-right"
-				: "slds-input-has-icon_right";
+			css += this.hasSelection() ? "slds-input-has-icon_left-right" : "slds-input-has-icon_right";
 		}
 		return css;
 	}
@@ -322,32 +294,22 @@ export default class Lookup extends LightningElement {
 	}
 
 	get getClearSelectionButtonClass() {
-		return (
-			"slds-button slds-button_icon slds-input__icon slds-input__icon_right " +
-			(this.hasSelection() ? "" : "slds-hide")
-		);
+		return "slds-button slds-button_icon slds-input__icon slds-input__icon_right " + (this.hasSelection() ? "" : "slds-hide");
 	}
 
 	get getSelectIconName() {
-		return this.hasSelection()
-			? this.curSelection[0].icon
-			: "standard:default";
+		return this.hasSelection() ? this.curSelection[0].icon : "standard:default";
 	}
 
 	get getSelectIconClass() {
-		return (
-			"slds-combobox__input-entity-icon " +
-			(this.hasSelection() ? "" : "slds-hide")
-		);
+		return "slds-combobox__input-entity-icon " + (this.hasSelection() ? "" : "slds-hide");
 	}
 
 	get getInputValue() {
 		if (this.isMultiEntry) {
 			return this.searchTerm;
 		}
-		return this.hasSelection()
-			? this.curSelection[0].title
-			: this.searchTerm;
+		return this.hasSelection() ? this.curSelection[0].title : this.searchTerm;
 	}
 
 	get getInputTitle() {
@@ -359,12 +321,7 @@ export default class Lookup extends LightningElement {
 	}
 
 	get getListboxClass() {
-		return (
-			"slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid " +
-			(this.scrollAfterNItems
-				? "slds-dropdown_length-with-icon-" + this.scrollAfterNItems
-				: "")
-		);
+		return "slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid " + (this.scrollAfterNItems ? "slds-dropdown_length-with-icon-" + this.scrollAfterNItems : "");
 	}
 
 	get isInputReadonly() {

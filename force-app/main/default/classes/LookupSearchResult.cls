@@ -10,14 +10,7 @@ public class LookupSearchResult {
 	private String subtitle;
 	private String imageUrl;
 
-	public LookupSearchResult(
-		Id id,
-		String sObjectType,
-		String icon,
-		String title,
-		String subtitle,
-		String imageUrl
-	) {
+	public LookupSearchResult(Id id, String sObjectType, String icon, String title, String subtitle, String imageUrl) {
 		this.id = id;
 		this.sObjectType = sObjectType;
 		this.icon = icon;

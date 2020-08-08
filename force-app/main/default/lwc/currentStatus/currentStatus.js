@@ -15,10 +15,7 @@ export default class CurrentStatus extends LightningElement {
 		}
 		this.hasInitialRender = true;
 
-		Promise.all([
-			loadScript(this, svelteApp + "/bundle.js"),
-			loadStyle(this, svelteApp + "/bundle.css")
-		])
+		Promise.all([loadScript(this, svelteApp + "/bundle.js"), loadStyle(this, svelteApp + "/bundle.css")])
 			.then(() => {
 				// eslint-disable-next-line no-undef
 				mount(this.template.querySelector('div[data-id="app"]'), {

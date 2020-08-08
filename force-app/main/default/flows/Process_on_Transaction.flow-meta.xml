@@ -4,8 +4,7 @@
         <processMetadataValues>
             <name>textJson</name>
             <value>
-                <stringValue
-				>{&quot;mentions&quot;:[{&quot;name&quot;:&quot;Diana Gonzalez&quot;,&quot;id&quot;:&quot;0053j000009stDiAAI&quot;}],&quot;message&quot;:&quot;@[0053j000009stDiAAI] \n{![Transaction__c].Paid_By__r.FirstName} just created this transaction billed to you for {![Transaction__c].Amount__c} corresponding to {![Transaction__c].Description__c}&quot;}</stringValue>
+                <stringValue>{&quot;mentions&quot;:[{&quot;name&quot;:&quot;Diana Gonzalez&quot;,&quot;id&quot;:&quot;0053j000009stDiAAI&quot;}],&quot;message&quot;:&quot;@[0053j000009stDiAAI] \n{![Transaction__c].Paid_By__r.FirstName} just created this transaction billed to you for {![Transaction__c].Amount__c} corresponding to {![Transaction__c].Description__c}&quot;}</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
@@ -35,8 +34,7 @@
         <processMetadataValues>
             <name>textJson</name>
             <value>
-                <stringValue
-				>{&quot;mentions&quot;:[{&quot;name&quot;:&quot;Luis Campos&quot;,&quot;id&quot;:&quot;0053j000009ssJTAAY&quot;}],&quot;message&quot;:&quot;@[0053j000009ssJTAAY]  \n{![Transaction__c].Paid_By__r.FirstName} just created this transaction billed to you for {![Transaction__c].Amount__c} corresponding to {![Transaction__c].Description__c}&quot;}</stringValue>
+                <stringValue>{&quot;mentions&quot;:[{&quot;name&quot;:&quot;Luis Campos&quot;,&quot;id&quot;:&quot;0053j000009ssJTAAY&quot;}],&quot;message&quot;:&quot;@[0053j000009ssJTAAY]  \n{![Transaction__c].Paid_By__r.FirstName} just created this transaction billed to you for {![Transaction__c].Amount__c} corresponding to {![Transaction__c].Description__c}&quot;}</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_3_A1</name>
@@ -105,8 +103,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference
-				>myVariable_current.It_is_debt__c</leftValueReference>
+                <leftValueReference>myVariable_current.It_is_debt__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -137,8 +134,7 @@
                         <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference
-				>myVariable_current.Billed_to__r.FirstName</leftValueReference>
+                <leftValueReference>myVariable_current.Billed_to__r.FirstName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Diana</stringValue>
@@ -190,8 +186,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference
-				>myVariable_current.It_is_debt__c</leftValueReference>
+                <leftValueReference>myVariable_current.It_is_debt__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -222,8 +217,7 @@
                         <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference
-				>myVariable_current.Billed_to__r.FirstName</leftValueReference>
+                <leftValueReference>myVariable_current.Billed_to__r.FirstName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Luis</stringValue>
@@ -263,7 +257,7 @@
     </processMetadataValues>
     <processType>Workflow</processType>
     <startElementReference>myDecision</startElementReference>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>

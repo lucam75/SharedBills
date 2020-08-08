@@ -27,28 +27,12 @@
 			<apex:pageBlock>
 				<apex:pageMessages></apex:pageMessages>
 				<h1>
-					Current Bills status (<apex:outputText value="{0,date,MMMM}"
-						><apex:param value="{!TODAY()}" /></apex:outputText
-					>)
+					Current Bills status (<apex:outputText value="{0,date,MMMM}"><apex:param value="{!TODAY()}" /></apex:outputText>)
 				</h1>
-				<apex:panelGrid
-					columns="2"
-					styleClass=""
-					cellspacing="0"
-					cellpadding="0"
-				>
-					<apex:outputText
-						value="Diana le debe a Luis"
-						styleClass=""
-					/>
-					<apex:outputText
-						value="{!deudaDianaString}"
-						styleClass=""
-					/>
-					<apex:outputText
-						value="Luis le debe a Diana"
-						styleClass=""
-					/>
+				<apex:panelGrid columns="2" styleClass="" cellspacing="0" cellpadding="0">
+					<apex:outputText value="Diana le debe a Luis" styleClass="" />
+					<apex:outputText value="{!deudaDianaString}" styleClass="" />
+					<apex:outputText value="Luis le debe a Diana" styleClass="" />
 					<apex:outputText value="{!deudaLuisString}" styleClass="" />
 				</apex:panelGrid>
 			</apex:pageBlock>

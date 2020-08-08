@@ -17,9 +17,7 @@ public class TriggerFactory {
 
 		// Make sure we have a handler registered, new handlers must be registered in the getHandler method.
 		if (handler == null) {
-			throw new TriggerException(
-				'No Trigger Handler registered for Object Type: ' + soType
-			);
+			throw new TriggerException('No Trigger Handler registered for Object Type: ' + soType);
 		}
 
 		// Execute the handler to fulfil the trigger

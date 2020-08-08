@@ -37,10 +37,7 @@ public with sharing class StatusController {
 			this.emailLuis = '';
 
 			if (Schema.sObjectType.Transaction__c.isQueryable()) {
-				String query =
-					'SELECT SUM(Amount__c), Paid_By__r.Name Paidby, Paid_By__r.Email PaidByEmail, Billed_to__r.Name BilledTo FROM Transaction__c WHERE Date__c = ' +
-					(isSchedule ? 'LAST_MONTH' : 'THIS_MONTH') +
-					' and It_is_debt__c = true GROUP BY Billed_to__r.Name, Paid_By__r.Name, Paid_By__r.Email';
+				String query = 'SELECT SUM(Amount__c), Paid_By__r.Name Paidby, Paid_By__r.Email PaidByEmail, Billed_to__r.Name BilledTo FROM Transaction__c WHERE Date__c = ' + (isSchedule ? 'LAST_MONTH' : 'THIS_MONTH') + ' and It_is_debt__c = true GROUP BY Billed_to__r.Name, Paid_By__r.Name, Paid_By__r.Email';
 				for (AggregateResult ar : Database.query(query)) {
 					if (ar != null) {
 						if (ar.get('Paidby') == 'Diana Gonzalez') {
@@ -55,17 +52,11 @@ public with sharing class StatusController {
 
 				setDeudor();
 			} else {
-				ApexPages.Message msg = new ApexPages.Message(
-					ApexPages.Severity.Error,
-					'You don\'t have permission to read the Transaction Object.'
-				);
+				ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.Error, 'You don\'t have permission to read the Transaction Object.');
 				ApexPages.addMessage(msg);
 			}
 		} catch (Exception e) {
-			ApexPages.Message msg = new ApexPages.Message(
-				ApexPages.Severity.Error,
-				e.getMessage()
-			);
+			ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.Error, e.getMessage());
 			ApexPages.addMessage(msg);
 		}
 	}
@@ -86,13 +77,9 @@ public with sharing class StatusController {
 		this.deudaDianaString = this.amountToDisplay(this.deudaDiana);
 		this.deudaLuisString = this.amountToDisplay(this.deudaLuis);
 		if (this.deudaDiana > this.deudaLuis) {
-			totalDebtAmountString = this.amountToDisplay(
-				this.deudaDiana - this.deudaLuis
-			);
+			totalDebtAmountString = this.amountToDisplay(this.deudaDiana - this.deudaLuis);
 		} else {
-			totalDebtAmountString = this.amountToDisplay(
-				this.deudaLuis - this.deudaDiana
-			);
+			totalDebtAmountString = this.amountToDisplay(this.deudaLuis - this.deudaDiana);
 		}
 	}
 

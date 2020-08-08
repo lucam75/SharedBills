@@ -143,8 +143,7 @@
     <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>Transaction_default</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description
-	>To keep track of all the transactions performed between the contacts.</description>
+    <description>To keep track of all the transactions performed between the contacts.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>true</enableFeeds>
@@ -165,31 +164,22 @@
     <pluralLabel>Transactions</pluralLabel>
     <searchLayouts>
         <customTabListAdditionalFields>Amount__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields
-		>Paid_By__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields
-		>Billed_to__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Paid_By__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Billed_to__c</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>Amount__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields
-		>Paid_By__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields
-		>Billed_to__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields
-		>Amount__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields
-		>Paid_By__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields
-		>Billed_to__c</lookupPhoneDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Paid_By__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Billed_to__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Amount__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Paid_By__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Billed_to__c</lookupPhoneDialogsAdditionalFields>
         <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>Amount__c</searchFilterFields>
         <searchFilterFields>Paid_By__c</searchFilterFields>
         <searchFilterFields>Billed_to__c</searchFilterFields>
         <searchResultsAdditionalFields>Amount__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-		>Paid_By__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields
-		>Billed_to__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Paid_By__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Billed_to__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

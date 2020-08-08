@@ -15,8 +15,7 @@
         <groupingColumn>Transaction__c$Billed_to__c</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
-        <secondaryGroupingColumn
-		>Transaction__c$Event__c</secondaryGroupingColumn>
+        <secondaryGroupingColumn>Transaction__c$Event__c</secondaryGroupingColumn>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
