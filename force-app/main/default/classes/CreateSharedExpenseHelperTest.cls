@@ -76,4 +76,64 @@ public class CreateSharedExpenseHelperTest {
 
 		System.assertEquals(3, results.size(), 'Must return 3 categories');
 	}
+
+	@IsTest
+	static void searchForAccount() {
+		Account internet = UtilityTest.createAccount('Internet');
+		Account sportBrand1 = UtilityTest.createAccount('Sport Brand1');
+		Account sportBrand2 = UtilityTest.createAccount('Sport Brand2');
+
+		List<LookupSearchResult> results;
+
+		Test.startTest();
+		results = CreateSharedExpenseHelper.search('rand', 'account_lookup');
+		Test.stopTest();
+
+		System.assertEquals(2, results.size(), 'Must return 2 accounts');
+	}
+
+	@IsTest
+	static void searchForAccountWithoutSearchTerm() {
+		Account internet = UtilityTest.createAccount('Internet');
+		Account sportBrand1 = UtilityTest.createAccount('Sport Brand1');
+		Account sportBrand2 = UtilityTest.createAccount('Sport Brand2');
+
+		List<LookupSearchResult> results;
+
+		Test.startTest();
+		results = CreateSharedExpenseHelper.search(null, 'account_lookup');
+		Test.stopTest();
+
+		System.assertEquals(3, results.size(), 'Must return 3 accounts');
+	}
+
+	@IsTest
+	static void searchForEvent() {
+		Event__c travel1 = UtilityTest.createEvent('Travel to beach');
+		Event__c travel2 = UtilityTest.createEvent('Travel to Mountains');
+		Event__c disaster = UtilityTest.createEvent('Tropical storm');
+
+		List<LookupSearchResult> results;
+
+		Test.startTest();
+		results = CreateSharedExpenseHelper.search('trav', 'event_lookup');
+		Test.stopTest();
+
+		System.assertEquals(2, results.size(), 'Must return 2 events');
+	}
+
+	@IsTest
+	static void searchForEventWithoutSearchTerm() {
+		Event__c travel1 = UtilityTest.createEvent('Travel to beach');
+		Event__c travel2 = UtilityTest.createEvent('Travel to Mountains');
+		Event__c disaster = UtilityTest.createEvent('Tropical storm');
+
+		List<LookupSearchResult> results;
+
+		Test.startTest();
+		results = CreateSharedExpenseHelper.search(null, 'event_lookup');
+		Test.stopTest();
+
+		System.assertEquals(3, results.size(), 'Must return 3 events');
+	}
 }

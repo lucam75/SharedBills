@@ -34,10 +34,26 @@ public class UtilityTest {
 	}
 
 	public static Account createAccount() {
-		Account acc = new Account(Name = 'Test');
+		return createAccount('Test');
+	}
+
+	public static Account createAccount(String name) {
+		Account acc = new Account(Name = name);
 		insert acc;
 
 		return acc;
+	}
+
+	public static Event__c createEvent() {
+		return createEvent('Test Event');
+	}
+
+	public static Event__c createEvent(String eventName) {
+		Event__c evt = new Event__c(Name = eventName);
+
+		insert evt;
+
+		return evt;
 	}
 
 	public static Category__c createCategory(String name) {
