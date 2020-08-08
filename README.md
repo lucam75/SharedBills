@@ -1,6 +1,6 @@
 # Shared Bills Application
 
-[![Github Workflow](<https://github.com/lucam75/SharedBills/workflows/Salesforce%20DX%20(scratch%20org)/badge.svg?branch=master>)](https://github.com/lucam75/SharedBills/actions?query=workflow%3A%22Salesforce+DX+%28scratch+org%29%22) [![codecov](https://codecov.io/gh/lucam75/SharedBills/branch/master/graph/badge.svg)](https://codecov.io/gh/lucam75/SharedBills)
+[![Salesforce DX PR (Scratch Org)](<https://github.com/lucam75/SharedBills/workflows/Salesforce%20DX%20PR%20(scratch%20org)/badge.svg?branch=develop>)](https://github.com/lucam75/SharedBills/actions?query=workflow%3A%22Salesforce+DX+%28scratch+org%29%22) [![codecov](https://codecov.io/gh/lucam75/SharedBills/branch/master/graph/badge.svg)](https://codecov.io/gh/lucam75/SharedBills)
 
 Shared bills is a personal project to keep track of my individual and shared expenses, borns from the necessity to keep track of shared expenses easily without unnecessary or complicated stuff. With a mobile-first approach, SB takes advantage of the LWC framework to allow complex data entry in a natural way.
 
