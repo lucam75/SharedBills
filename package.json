@@ -16,7 +16,7 @@
 		"postinstall": "node bin/check-version.js"
 	},
 	"author": "Luis Campos",
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/lucam75/SharedBills"
