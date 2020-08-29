@@ -233,7 +233,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 
 	get contactsOptions() {
 		let contactsOptions = [];
-		if (this.contacts.data !== undefined) {
+		if (this.contacts !== undefined && this.contacts.data !== undefined) {
 			this.contacts.data.forEach((val) => {
 				contactsOptions.push({ label: val.Name, value: val.Id });
 			});
