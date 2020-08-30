@@ -64,7 +64,7 @@ public class UtilityTest {
 	}
 
 	public static Transaction__c createTransaction(Account acc, Contact billedTo, Contact paidBy, Date createdDate, Category__c cat, String description, Decimal amount) {
-		Transaction__c transactionToCreate = new Transaction__c(Account__c = acc.Id, Amount__c = amount, Billed_to__c = billedTo.Id, Category__c = cat.Id, Date__c = createdDate, Description__c = description, Paid_By__c = paidBy.Id);
+		Transaction__c transactionToCreate = new Transaction__c(Account__c = (acc != null ? acc.Id : null), Amount__c = amount, Billed_to__c = billedTo.Id, Category__c = cat.Id, Date__c = createdDate, Description__c = description, Paid_By__c = paidBy.Id);
 
 		insert transactionToCreate;
 

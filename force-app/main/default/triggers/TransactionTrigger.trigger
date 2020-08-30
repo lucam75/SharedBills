@@ -10,4 +10,5 @@
  **/
 trigger TransactionTrigger on Transaction__c(after insert, after delete, after update, after undelete) {
 	TransactionHelper.updateEvents();
+	TransactionHelper.postChatterDebts();
 }

@@ -11,20 +11,23 @@
  **/
 public with sharing class TransactionHelper {
 	public static void updateEvents() {
-		List<Event__c> eventsToUpdate;
-
-		if (Trigger.isDelete) {
-			eventsToUpdate = TransactionHelper.getEventsToUpdate(Trigger.old);
-		} else {
-			eventsToUpdate = TransactionHelper.getEventsToUpdate(Trigger.new);
-		}
+		List<Event__c> eventsToUpdate = TransactionHelper.getEventsToUpdate();
 
 		if (!eventsToUpdate.isEmpty() && Event__c.SObjectType.getDescribe().isUpdateable()) {
 			update eventsToUpdate;
 		}
 	}
 
-	private static List<Event__c> getEventsToUpdate(List<Transaction__c> transactions) {
+	public static void postChatterDebts() {
+		if (Trigger.isAfter && Trigger.isInsert) {
+			for (Transaction__c trx : [SELECT Id, Billed_to__r.User__r.Id, Paid_By__r.User__r.Id, Paid_By__r.Name, Amount__c, Description__c FROM Transaction__c WHERE It_is_debt__c = TRUE AND Id IN :Trigger.newMap.keySet() WITH SECURITY_ENFORCED]) {
+				TransactionHelper.getFeedItemDebts(trx);
+			}
+		}
+	}
+
+	private static List<Event__c> getEventsToUpdate() {
+		List<Transaction__c> transactions = Trigger.isDelete ? Trigger.old : Trigger.new;
 		List<Event__c> eventsToUpdate = new List<Event__c>();
 
 		if (transactions != null && transactions.size() > 0) {
@@ -42,5 +45,28 @@ public with sharing class TransactionHelper {
 		}
 
 		return eventsToUpdate;
+	}
+
+	private static void getFeedItemDebts(Transaction__c trx) {
+		if (trx.Billed_to__r != null && trx.Billed_to__r.User__r != null && trx.Paid_By__r != null && trx.Paid_By__r.User__r != null) {
+			ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
+			ConnectApi.MentionSegmentInput mentionSegmentInput = new ConnectApi.MentionSegmentInput();
+			ConnectApi.MessageBodyInput messageBodyInput = new ConnectApi.MessageBodyInput();
+			ConnectApi.TextSegmentInput textSegmentInput = new ConnectApi.TextSegmentInput();
+
+			messageBodyInput.messageSegments = new List<ConnectApi.MessageSegmentInput>();
+
+			mentionSegmentInput.id = trx.Billed_to__r.User__r.Id;
+			messageBodyInput.messageSegments.add(mentionSegmentInput);
+
+			textSegmentInput.text = ', ' + trx.Paid_By__r.Name + ' just created this transaction billed to you for ' + trx.Amount__c + ' corresponding to ' + trx.Description__c;
+			messageBodyInput.messageSegments.add(textSegmentInput);
+
+			feedItemInput.body = messageBodyInput;
+			feedItemInput.feedElementType = ConnectApi.FeedElementType.FeedItem;
+			feedItemInput.subjectId = trx.Id;
+
+			ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput);
+		}
 	}
 }
