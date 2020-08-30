@@ -47,10 +47,14 @@
 			debtor = minDebt.Paidby;
 			debtCollector = maxDebt.Paidby;
 			debt = maxDebt.expr0 - minDebt.expr0;
-		} else {
+		} else if (bills.length == 0 && bills[0] != undefined) {
 			debtor = bills[0].BilledTo;
 			debtCollector = bills[0].Paidby;
 			debt = bills[0].expr0;
+		} else {
+			debtor = undefined;
+			debtCollector = undefined;
+			debt = 0;
 		}
 	}
 
@@ -76,11 +80,13 @@
 	<h1>Status for month: {selectedYearMonth}</h1>
 	<input type="month" id="month" name="month" bind:value={selectedYearMonth} on:change={askForData} />
 
-	{#if debtor !== undefined && debtCollector !== undefined}
 	<div class="debt-summary">
-		<strong>{debtor}</strong> le debe a <strong>{debtCollector}</strong> la cantidad de <span class="money">{formatMoney(debt, 2, ",", ".")}</span>
+		{#if debtor !== undefined && debtCollector !== undefined}
+			<strong>{debtor}</strong> le debe a <strong>{debtCollector}</strong> la cantidad de <span class="money">{formatMoney(debt, 2, ",", ".")}</span>
+		{:else}
+			<span>No data for selected month.</span>
+		{/if}
 	</div>
-	{/if}
 
 	{#if bills.length > 0}
 	<div class="debt-container">

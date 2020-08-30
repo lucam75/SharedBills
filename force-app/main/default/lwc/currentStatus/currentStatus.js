@@ -3,8 +3,8 @@ import { loadScript, loadStyle } from "lightning/platformResourceLoader";
 import getBills from "@salesforce/apex/CurrentStatusUtils.getBills";
 // import updateContactToPizza from '@salesforce/apex/SvelteController.updateContactToPizza';
 
-// import Svelte static resource
-import svelteApp from "@salesforce/resourceUrl/Svelte";
+// import CurrentStatusSvelte static resource
+import currentStatusSvelte from "@salesforce/resourceUrl/CurrentStatusSvelte";
 
 export default class CurrentStatus extends LightningElement {
 	hasInitialRender = false;
@@ -15,7 +15,7 @@ export default class CurrentStatus extends LightningElement {
 		}
 		this.hasInitialRender = true;
 
-		Promise.all([loadScript(this, svelteApp + "/bundle.js"), loadStyle(this, svelteApp + "/bundle.css")])
+		Promise.all([loadScript(this, currentStatusSvelte + "/bundle.js"), loadStyle(this, currentStatusSvelte + "/bundle.css")])
 			.then(() => {
 				// eslint-disable-next-line no-undef
 				mount(this.template.querySelector('div[data-id="app"]'), {
