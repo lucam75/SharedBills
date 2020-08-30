@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Total_spent__c</fullName>
+    <description>Summarize of the expenses related to the event.</description>
     <externalId>false</externalId>
+    <inlineHelpText>Summarize of the expenses related to the event.</inlineHelpText>
     <label>Total spent</label>
     <precision>18</precision>
     <required>false</required>

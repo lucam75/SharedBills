@@ -28,7 +28,7 @@ global with sharing class BillStatusSchedulable implements Schedulable {
 	public final static String END_MONTH_EMAIL_DEVELOPER_NAME = 'End_Month_Status';
 
 	public BillStatusSchedulable() {
-		List<EmailTemplate> emailTemplates = [SELECT Id, Name, Body, HtmlValue, Subject FROM EmailTemplate WHERE developername = :END_MONTH_EMAIL_DEVELOPER_NAME LIMIT 1];
+		List<EmailTemplate> emailTemplates = [SELECT Id, Name, Body, HtmlValue, Subject FROM EmailTemplate WHERE developername = :END_MONTH_EMAIL_DEVELOPER_NAME WITH SECURITY_ENFORCED LIMIT 1];
 		if (!emailTemplates.isEmpty()) {
 			endMonthEmailTemplate = emailTemplates.get(0);
 		}

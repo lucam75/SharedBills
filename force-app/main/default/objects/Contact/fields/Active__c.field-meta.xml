@@ -2,7 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Active__c</fullName>
     <defaultValue>false</defaultValue>
+    <description>Allow use this contact for Shared bills</description>
     <externalId>false</externalId>
+    <inlineHelpText>Allow use this contact for Shared bills</inlineHelpText>
     <label>Active</label>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Checkbox</type>

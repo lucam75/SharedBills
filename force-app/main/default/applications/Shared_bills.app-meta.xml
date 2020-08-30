@@ -66,7 +66,7 @@
         <headerColor>#0ABBD7</headerColor>
         <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
     </brand>
-    <description>To keep track of both private and shared bills.</description>
+    <description>To keep track of both personal and shared bills.</description>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
