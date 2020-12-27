@@ -89,7 +89,6 @@ public class TransactionTriggerTest {
 		update con2;
 
 		Category__c category = UtilityTest.createCategory('Cat 1');
-		insert category;
 
 		Test.startTest();
 		Transaction__c trx = UtilityTest.createTransaction(null, con1, con2, System.today(), category, 'TEST', 200.00);
