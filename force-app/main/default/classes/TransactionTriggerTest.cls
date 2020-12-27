@@ -4,7 +4,7 @@
  * @Author             : Luis Campos (LC)
  * @Group              :
  * @Last Modified By   : Luis Campos (LC)
- * @Last Modified On   : 1/8/2020, 1:11:37 PM
+ * @Last Modified On   : 12-27-2020
  * @Modification Log   :
  * Ver       Date            Author      		    Modification
  * 1.0    1/8/2020   Luis Campos (LC)     Initial Version
@@ -87,7 +87,9 @@ public class TransactionTriggerTest {
 		update con1;
 		con2.User__c = u2.Id;
 		update con2;
-		Category__c category = [SELECT id FROM Category__c LIMIT 1];
+
+		Category__c category = UtilityTest.createCategory('Cat 1');
+		insert category;
 
 		Test.startTest();
 		Transaction__c trx = UtilityTest.createTransaction(null, con1, con2, System.today(), category, 'TEST', 200.00);
