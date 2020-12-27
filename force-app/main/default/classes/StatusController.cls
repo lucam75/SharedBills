@@ -32,25 +32,20 @@ public with sharing class StatusController {
 		this.emailDiana = '';
 		this.emailLuis = '';
 
-		if (Schema.sObjectType.Transaction__c.isQueryable()) {
-			String query = 'SELECT SUM(Amount__c), Paid_By__r.Name Paidby, Paid_By__r.Email PaidByEmail, Billed_to__r.Name BilledTo FROM Transaction__c WHERE Date__c = LAST_MONTH and It_is_debt__c = true GROUP BY Billed_to__r.Name, Paid_By__r.Name, Paid_By__r.Email';
-			for (AggregateResult ar : Database.query(query)) {
-				if (ar != null) {
-					if (ar.get('Paidby') == 'Diana Gonzalez') {
-						this.deudaLuis = (Decimal) ar.get('expr0');
-						this.emailDiana = (string) ar.get('PaidByEmail');
-					} else if (ar.get('Paidby') == 'Luis Campos') {
-						this.deudaDiana = (Decimal) ar.get('expr0');
-						this.emailLuis = (string) ar.get('PaidByEmail');
-					}
+		for (AggregateResult ar : [SELECT SUM(Amount__c), Paid_By__r.Name Paidby, Paid_By__r.Email PaidByEmail, Billed_to__r.Name BilledTo FROM Transaction__c WHERE Date__c = LAST_MONTH AND It_is_debt__c = TRUE WITH SECURITY_ENFORCED GROUP BY Billed_to__r.Name, Paid_By__r.Name, Paid_By__r.Email]) {
+			if (ar != null) {
+				if (ar.get('Paidby') == 'Diana Gonzalez') {
+					this.deudaLuis = (Decimal) ar.get('expr0');
+					this.emailDiana = (string) ar.get('PaidByEmail');
+				} else if (ar.get('Paidby') == 'Luis Campos') {
+					this.deudaDiana = (Decimal) ar.get('expr0');
+					this.emailLuis = (string) ar.get('PaidByEmail');
 				}
 			}
-
-			setDeptor();
-			setLabels();
-		} else {
-			throw new SharedBillsException('You don\'t have permission to read the Transaction Object.');
 		}
+
+		setDeptor();
+		setLabels();
 	}
 
 	private Void setDeptor() {
