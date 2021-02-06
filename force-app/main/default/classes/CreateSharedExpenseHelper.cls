@@ -4,7 +4,7 @@
  * @Author             : Luis Campos (lucam75@gmail.com)
  * @Group              :
  * @Last Modified By   : Luis Campos (LC)
- * @Last Modified On   : 3/23/2020, 12:47:15 PM
+ * @Last Modified On   : 02-06-2021
  * @Modification Log   :
  * Ver       Date            Author      		    Modification
  * 1.0    11/10/2019   Luis Campos (lucam75@gmail.com)     Initial Version
@@ -18,15 +18,14 @@ public with sharing class CreateSharedExpenseHelper {
 	@AuraEnabled(Cacheable=true)
 	public static Contact getLoggedContact() {
 		Contact con = null;
-		if (Schema.sObjectType.Contact.fields.Email.isAccessible()) {
-			List<Contact> contacts = [SELECT Id FROM Contact WHERE Email = :UserInfo.getUserEmail() WITH SECURITY_ENFORCED];
+		if (Schema.sObjectType.Contact.fields.User__c.isAccessible()) {
+			List<Contact> contacts = [SELECT Id FROM Contact WHERE User__c = :UserInfo.getUserId() WITH SECURITY_ENFORCED];
 			con = (!contacts.isEmpty()) ? contacts.get(0) : null;
 		}
-
 		return con;
 	}
 
-	@AuraEnabled(Cacheable=true)
+	@AuraEnabled(Cacheable=false)
 	public static List<LookupSearchResult> search(String searchTerm, String lookupType) {
 		List<LookupSearchResult> results = new List<LookupSearchResult>();
 		if (searchTerm != null && searchTerm != '') {
