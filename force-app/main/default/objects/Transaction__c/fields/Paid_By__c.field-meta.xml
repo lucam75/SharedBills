@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Paid_By__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
     <description>To specify who paid the transaction.</description>
     <externalId>false</externalId>
     <inlineHelpText>To specify who paid the transaction.</inlineHelpText>
@@ -8,11 +9,9 @@
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Transactions</relationshipLabel>
     <relationshipName>Paid_by</relationshipName>
-    <relationshipOrder>0</relationshipOrder>
-    <reparentableMasterDetail>true</reparentableMasterDetail>
+    <required>false</required>
     <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>MasterDetail</type>
-    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    <type>Lookup</type>
 </CustomField>
