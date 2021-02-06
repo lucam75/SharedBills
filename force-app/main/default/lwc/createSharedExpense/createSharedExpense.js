@@ -5,7 +5,6 @@ import { createRecord } from "lightning/uiRecordApi";
 import getAllContacts from "@salesforce/apex/CreateSharedExpenseHelper.getAllContacts";
 import getLoggedContact from "@salesforce/apex/CreateSharedExpenseHelper.getLoggedContact";
 import apexSearch from "@salesforce/apex/CreateSharedExpenseHelper.search";
-import { predefinedValues } from "c/utils";
 
 import TRANSACTION_OBJECT from "@salesforce/schema/Transaction__c";
 import AMOUNT_FIELD from "@salesforce/schema/Transaction__c.Amount__c";
@@ -51,30 +50,6 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 			});
 
 		this.initializeDefaultValues();
-	}
-
-	handleLoadPredefined(e) {
-		console.log(predefinedValues);
-		let predefined = e.target.value;
-		if (Object.prototype.hasOwnProperty.call(predefinedValues, predefined)) {
-			let config = predefinedValues[predefined];
-
-			console.log("Values loaded ", config);
-			this.amount = config.amount;
-			this.category = config.category;
-			this.account = config.account;
-			this.event = config.event;
-			this.description = config.description;
-			this.paidBy = config.paidBy;
-			this.billedToSelected = config.billedTo;
-
-			this.updateBilledToSelectedList();
-			this.template.querySelector(".category_lookup").selection = this.category;
-			this.template.querySelector(".account_lookup").selection = this.account;
-			this.template.querySelector(".event_lookup").selection = this.event;
-		} else {
-			this.notifyUser("No configuration for " + predefined, "No default values were loaded.", "warning");
-		}
 	}
 
 	// Handle field updates
