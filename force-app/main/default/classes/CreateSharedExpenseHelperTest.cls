@@ -34,7 +34,7 @@ public class CreateSharedExpenseHelperTest {
 	@IsTest
 	static void getLoggedContactTest() {
 		User u = UtilityTest.createUser('LCF', 'LCL', 'System Administrator');
-		Contact con = UtilityTest.createContact('LCF', 'LCL');
+		Contact con = UtilityTest.createContact('LCF', 'LCL', u.Id);
 
 		Contact loggedContact;
 
