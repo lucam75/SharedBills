@@ -10,7 +10,7 @@ public class UtilityTest {
 	public static List<Contact> createContacts(Integer numberOfContacts) {
 		List<Contact> contactsToInsert = new List<Contact>();
 		for (Integer i = 0; i < numberOfContacts; i++) {
-			contactsToInsert.add(createContact('Test' + i, 'LN' + i, false));
+			contactsToInsert.add(createContact('Test' + i, 'LN' + i, null, false));
 		}
 
 		insert contactsToInsert;
@@ -19,12 +19,16 @@ public class UtilityTest {
 	}
 
 	public static Contact createContact(String firstName, String lastName) {
-		return createContact(firstName, lastName, true);
+		return createContact(firstName, lastName, null, true);
 	}
 
-	public static Contact createContact(String firstName, String lastName, Boolean mustInsert) {
+	public static Contact createContact(String firstName, String lastName, String userId) {
+		return createContact(firstName, lastName, userId, true);
+	}
+
+	public static Contact createContact(String firstName, String lastName, Id userId, Boolean mustInsert) {
 		//insert a contact
-		Contact contact = new Contact(FirstName = firstName, LastName = lastName, Email = firstName + lastName + '@test.com', Birthdate = Date.today().addMonths(-20 * 12), MailingState = 'CA', OtherPostalCode = '50010');
+		Contact contact = new Contact(FirstName = firstName, LastName = lastName, Email = firstName + lastName + '@test.com', Birthdate = Date.today().addMonths(-20 * 12), MailingState = 'CA', OtherPostalCode = '50010', User__c = userId);
 
 		if (mustInsert) {
 			insert contact;
