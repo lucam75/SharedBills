@@ -29,11 +29,11 @@ export default class ExtendedSharedBill extends LightningElement {
 		this.template.querySelector('[data-id="currentItemAmount"]').focus();
 	}
 
-	handleDone(e) {
+	handleDone() {
 		this.dispatchEvent(new CustomEvent("extendedsbdone", { detail: this.itemsList }));
 	}
 
-	handleBack(e) {
+	handleBack() {
 		this.dispatchEvent(new CustomEvent("extendedsbback", {}));
 	}
 

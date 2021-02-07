@@ -145,11 +145,11 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		this.manualMode = event.target.checked;
 	}
 
-	handleShowExtendedForm(event) {
+	handleShowExtendedForm() {
 		this.useExtendedForm = true;
 	}
 
-	handleExtendedSBBack(event) {
+	handleExtendedSBBack() {
 		this.useExtendedForm = false;
 	}
 
