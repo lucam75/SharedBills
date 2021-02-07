@@ -14,6 +14,24 @@
 	</div>-->
 	<div class="slds-grid slds-grid_vertical">
 		<div class="slds-col">
+			<lightning-card title="Add expense" icon-name="utility:moneybag" variant="narrow">
+				<div class="slds-card__body_inner">
+					<lightning-input data-id="currentItemAmount" label="Item amount" placeholder="current item amount" formatter="currency" type="number" variant="standard" onchange={setCurrentItemAmount} value={currentItem.amount}></lightning-input>
+				</div>
+				<lightning-button-group class="slds-button-group-row slds-m-around_medium">
+					<template for:each={contacts} for:item="contact">
+						<div key={contact.value} class="slds-button-group-item">
+							<lightning-button class="slds-theme_brand" icon-position="left" variant="brand" type="button" label={contact.label} onclick={addItem} value={contact.value}></lightning-button>
+						</div>
+					</template>
+
+					<div class="slds-button-group-item">
+						<lightning-button class="slds-theme_brand" icon-position="left" variant="brand" type="button" label="Shared" onclick={addItem} value="Shared"></lightning-button>
+					</div>
+				</lightning-button-group>
+			</lightning-card>
+		</div>
+		<div class="slds-col">
 			<div class="slds-float--right">
 				<lightning-button-group class="slds-button-group-row slds-m-around_medium">
 					<div class="slds-button-group-item">
@@ -25,30 +43,9 @@
 				</lightning-button-group>
 			</div>
 		</div>
-		<div class="slds-col">
-			<lightning-card title="Add expense" icon-name="utility:moneybag" variant="narrow">
-				<lightning-button-group class="slds-button-group-row slds-m-around_medium">
-					<template for:each={contacts} for:item="contact">
-						<div key={contact.value} class="slds-button-group-item">
-							<lightning-button class="slds-theme_neutral" icon-position="left" variant="neutral" type="button" label={contact.label} onclick={addItem} value={contact.value}></lightning-button>
-						</div>
-					</template>
-
-					<div class="slds-button-group-item">
-						<lightning-button class="slds-theme_brand" icon-position="left" variant="neutral" type="button" label="Shared" onclick={addItem} value="Shared"></lightning-button>
-					</div>
-				</lightning-button-group>
-				<div class="slds-card__body_inner">
-					<lightning-input data-id="currentItemAmount" label="Item amount" placeholder="current item amount" formatter="currency" type="number" variant="standard" onchange={setCurrentItemAmount} value={currentItem.amount}></lightning-input>
-				</div>
-			</lightning-card>
-		</div>
-		<div class="slds-col">
-			is updated yes
+		<div class="slds-col div-table">
 			<template if:true={areAddedItems}>
-				<div style="height: 300px;">
-					<lightning-datatable key-field="key" data={itemsList} onsave={handleSave} onrowaction={handleDelete} column-widths-mode="auto" hide-checkbox-column columns={columns}> </lightning-datatable>
-				</div>
+				<lightning-datatable class="items-added-table" key-field="key" data={itemsList} onsave={handleSave} onrowaction={handleDelete} column-widths-mode="auto" hide-checkbox-column columns={columns}></lightning-datatable>
 			</template>
 		</div>
 	</div>

@@ -154,9 +154,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	}
 
 	handleExtendedSBDone(event) {
-		console.log("handleExtendedSBDone ");
 		this.useExtendedForm = false;
-		console.log(event.detail);
 
 		let sharedDebt = event.detail.reduce(function (accumulator, currentValue) {
 			return currentValue.billedTo === "Shared" ? accumulator + currentValue.amount : accumulator;
@@ -170,11 +168,9 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		// Set the billed to contacts, based on the existent in the array
 		let contacts = this.getContactOptions();
 		contacts.forEach((contact) => {
-			console.log("contact.value ", contact.value);
 			let billedAmount = event.detail.reduce(function (accumulator, currentValue) {
 				return currentValue.billedTo === contact.value ? accumulator + currentValue.amount : accumulator;
 			}, 0);
-			console.log("billedAmount ", billedAmount);
 			if (billedAmount > 0) {
 				this.billedToSelectedList.push({
 					key: contact.value,
@@ -185,10 +181,18 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 					}
 				});
 				this.billedToSelected.push(contact.value);
+			} else if (sharedDebt > 0) {
+				this.billedToSelectedList.push({
+					key: contact.value,
+					value: {
+						label: this.getContactLabel(contact.value),
+						contactId: contact.value,
+						amount: sharedDebt / contacts.length
+					}
+				});
+				this.billedToSelected.push(contact.value);
 			}
 		});
-		console.log("this.billedToSelected ", this.billedToSelected.length);
-		console.log("this.billedToSelectedList ", this.billedToSelectedList.length);
 	}
 
 	// Navigation events
@@ -209,7 +213,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 
 		this.amount = null;
 		this.currentStep = 1;
-		this.billedToSelected = [""];
+		this.billedToSelected = [];
 		this.category = undefined;
 		this.account = undefined;
 		this.event = undefined;

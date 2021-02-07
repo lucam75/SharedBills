@@ -1,9 +1,9 @@
 import { LightningElement, track, api } from "lwc";
 
 const columns = [
-	{ label: "Billed to", fieldName: "contactName", editable: false },
-	{ label: "Amount", fieldName: "amount", type: "currency", editable: true },
-	{ type: "button-icon", typeAttributes: { iconName: "utility:delete", name: "delete", iconClass: "slds-icon-text-error" }, fixedWidth: 50 }
+	{ label: "Billed to", fieldName: "contactName", editable: false, cellAttributes: { class: "slds-p-around_none" } },
+	{ label: "Amount", fieldName: "amount", type: "currency", editable: true, cellAttributes: { class: "slds-p-around_none" } },
+	{ type: "button-icon", typeAttributes: { iconName: "utility:delete", name: "delete", iconClass: "slds-icon-text-error" }, fixedWidth: 30 }
 ];
 
 export default class ExtendedSharedBill extends LightningElement {
@@ -19,13 +19,10 @@ export default class ExtendedSharedBill extends LightningElement {
 	}
 
 	addItem(e) {
-		console.log("e.target.value ", e.target.value);
 		if (e.target.value !== undefined && e.target.value !== "" && !isNaN(this.currentItem.amount)) {
 			this.currentItem.billedTo = e.target.value;
 			this.itemsList = [...this.itemsList, { key: this.key++, contactName: this.getContactLabel(this.currentItem.billedTo), billedTo: this.currentItem.billedTo, amount: parseFloat(this.currentItem.amount) }];
 			this.currentItem = {};
-
-			console.log("this.itemsList ", JSON.parse(JSON.stringify(this.itemsList)));
 		} else {
 			console.log("No added to list ");
 		}
@@ -41,13 +38,15 @@ export default class ExtendedSharedBill extends LightningElement {
 	}
 
 	handleSave(e) {
+		let tempList = this.itemsList;
 		e.detail.draftValues.slice().forEach((valueChanged) => {
 			valueChanged.key = valueChanged.key === "row-0" ? 0 : valueChanged.key; // IDK why return row-0 for the first row
-			let index = this.itemsList.findIndex((item) => item.key === parseInt(valueChanged.key, 10));
+			let index = tempList.findIndex((item) => item.key === parseInt(valueChanged.key, 10));
 			if (index !== -1) {
-				this.itemsList[index].amount = parseFloat(valueChanged.amount);
+				tempList[index].amount = parseFloat(valueChanged.amount);
 			}
 		});
+		this.itemsList = [...tempList];
 	}
 
 	handleDelete(event) {
@@ -57,8 +56,6 @@ export default class ExtendedSharedBill extends LightningElement {
 			tempList.splice(index, 1);
 			this.itemsList = [...tempList];
 		}
-
-		console.log("this.itemsList ", JSON.parse(JSON.stringify(this.itemsList)));
 	}
 
 	getContactLabel(contactId) {
