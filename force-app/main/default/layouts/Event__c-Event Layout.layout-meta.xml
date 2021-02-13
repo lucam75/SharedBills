@@ -15,10 +15,6 @@
                 <behavior>Readonly</behavior>
                 <field>Total_spent__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CurrencyIsoCode</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

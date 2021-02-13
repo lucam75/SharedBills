@@ -3,7 +3,7 @@ echo 'Scratch org alias?'
 read orgAlias
 
 echo 'Creating Scratch Org'
-sfdx force:org:create  -f ../../config/project-scratch-def.json -a $orgAlias -u CuentasDevHub -d 30
+sfdx force:org:create  -f config/project-scratch-def.json -a $orgAlias -u CuentasDevHub -d 30
 
 echo "Pushing code to scratch org ..."
 sfdx force:source:push -u $orgAlias

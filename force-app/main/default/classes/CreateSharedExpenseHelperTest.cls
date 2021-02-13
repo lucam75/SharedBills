@@ -33,15 +33,12 @@ public class CreateSharedExpenseHelperTest {
 
 	@IsTest
 	static void getLoggedContactTest() {
-		User u = UtilityTest.createUser('LCF', 'LCL', 'System Administrator');
-		Contact con = UtilityTest.createContact('LCF', 'LCL', u.Id);
+		Contact con = UtilityTest.createContact('LCF', 'LCL', UserInfo.getUserId());
 
 		Contact loggedContact;
 
 		Test.startTest();
-		System.runAs(u) {
-			loggedContact = CreateSharedExpenseHelper.getLoggedContact();
-		}
+		loggedContact = CreateSharedExpenseHelper.getLoggedContact();
 		Test.stopTest();
 
 		System.assertEquals(loggedContact.Id, con.Id, 'The logged contact is not properly obtained.');
