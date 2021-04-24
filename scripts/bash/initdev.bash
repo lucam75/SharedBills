@@ -12,7 +12,7 @@ echo "Adding permission set ..."
 sfdx force:user:permset:assign -n Shared_Bills_User -u $orgAlias
 
 echo "Creating data ..."
-sfdx force:data:tree:import -u $orgAlias -p ../../data/Sample-plan.json
+sfdx force:data:tree:import -u $orgAlias -p data/Sample-plan.json
 
 echo "Opening Scratch Org"
 sfdx force:org:open -u $orgAlias
