@@ -32,6 +32,7 @@ public class BillStatusSchedulableTest {
 	@IsTest
 	static void withoutEmailTemplate() {
 		BillStatusSchedulable schedule = new BillStatusSchedulable();
+		schedule.endMonthEmailTemplate = null;
 
 		Test.StartTest();
 		schedule.execute(null);

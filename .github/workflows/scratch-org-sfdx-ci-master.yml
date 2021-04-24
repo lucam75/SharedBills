@@ -51,6 +51,9 @@ jobs:
                   mkdir sfdx-cli
                   tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
                   ./sfdx-cli/install
+            # Install plugin to avoid Perm Set. Assignment error
+            - name: Install Salesforce CLI user plugin
+              run: "sfdx plugins:install user"
             # Checkout the code in the pull request
             - name: "Checkout source code"
               uses: actions/checkout@v2
@@ -62,7 +65,7 @@ jobs:
 
             # Authenticate dev hub
             - name: "Authenticate Dev Hub"
-              run: "sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d"
+              run: "sfdx auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d"
 
             # Create scratch org
             - name: "Create scratch org"

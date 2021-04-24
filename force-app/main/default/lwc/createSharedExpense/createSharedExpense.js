@@ -5,7 +5,6 @@ import { createRecord } from "lightning/uiRecordApi";
 import getAllContacts from "@salesforce/apex/CreateSharedExpenseHelper.getAllContacts";
 import getLoggedContact from "@salesforce/apex/CreateSharedExpenseHelper.getLoggedContact";
 import apexSearch from "@salesforce/apex/CreateSharedExpenseHelper.search";
-import { predefinedValues } from "c/utils";
 
 import TRANSACTION_OBJECT from "@salesforce/schema/Transaction__c";
 import AMOUNT_FIELD from "@salesforce/schema/Transaction__c.Amount__c";
@@ -20,11 +19,12 @@ import ACCOUNT_FIELD from "@salesforce/schema/Transaction__c.Account__c";
 export default class CreateSharedExpense extends NavigationMixin(LightningElement) {
 	@track billedToSelectedList = [];
 	@track errors = [];
+	@track useExtendedForm = false;
 
 	// Field map properties
 	amount;
 	paidBy;
-	billedToSelected;
+	@track billedToSelected;
 	category;
 	date;
 	account;
@@ -51,30 +51,6 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 			});
 
 		this.initializeDefaultValues();
-	}
-
-	handleLoadPredefined(e) {
-		console.log(predefinedValues);
-		let predefined = e.target.value;
-		if (Object.prototype.hasOwnProperty.call(predefinedValues, predefined)) {
-			let config = predefinedValues[predefined];
-
-			console.log("Values loaded ", config);
-			this.amount = config.amount;
-			this.category = config.category;
-			this.account = config.account;
-			this.event = config.event;
-			this.description = config.description;
-			this.paidBy = config.paidBy;
-			this.billedToSelected = config.billedTo;
-
-			this.updateBilledToSelectedList();
-			this.template.querySelector(".category_lookup").selection = this.category;
-			this.template.querySelector(".account_lookup").selection = this.account;
-			this.template.querySelector(".event_lookup").selection = this.event;
-		} else {
-			this.notifyUser("No configuration for " + predefined, "No default values were loaded.", "warning");
-		}
 	}
 
 	// Handle field updates
@@ -169,6 +145,56 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		this.manualMode = event.target.checked;
 	}
 
+	handleShowExtendedForm() {
+		this.useExtendedForm = true;
+	}
+
+	handleExtendedSBBack() {
+		this.useExtendedForm = false;
+	}
+
+	handleExtendedSBDone(event) {
+		this.useExtendedForm = false;
+
+		let sharedDebt = event.detail.reduce(function (accumulator, currentValue) {
+			return currentValue.billedTo === "Shared" ? accumulator + currentValue.amount : accumulator;
+		}, 0);
+
+		// Set amount as the sum of the entered values
+		this.amount = event.detail.reduce(function (accumulator, currentValue) {
+			return accumulator + currentValue.amount;
+		}, 0);
+
+		// Set the billed to contacts, based on the existent in the array
+		let contacts = this.getContactOptions();
+		contacts.forEach((contact) => {
+			let billedAmount = event.detail.reduce(function (accumulator, currentValue) {
+				return currentValue.billedTo === contact.value ? accumulator + currentValue.amount : accumulator;
+			}, 0);
+			if (billedAmount > 0) {
+				this.billedToSelectedList.push({
+					key: contact.value,
+					value: {
+						label: this.getContactLabel(contact.value),
+						contactId: contact.value,
+						amount: billedAmount + sharedDebt / contacts.length
+					}
+				});
+				this.billedToSelected.push(contact.value);
+			} else if (sharedDebt > 0) {
+				this.billedToSelectedList.push({
+					key: contact.value,
+					value: {
+						label: this.getContactLabel(contact.value),
+						contactId: contact.value,
+						amount: sharedDebt / contacts.length
+					}
+				});
+				this.billedToSelected.push(contact.value);
+			}
+		});
+	}
+
 	// Navigation events
 	nextStep() {
 		this.currentStep++;
@@ -187,7 +213,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 
 		this.amount = null;
 		this.currentStep = 1;
-		this.billedToSelected = [""];
+		this.billedToSelected = [];
 		this.category = undefined;
 		this.account = undefined;
 		this.event = undefined;
@@ -201,6 +227,7 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 		this.showSliders = true;
 		this.manualMode = false;
 		this.showSpinner = false;
+		this.useExtendedForm = false;
 
 		let lookups = this.template.querySelectorAll("c-lookup");
 		lookups.forEach((lookup) => {
@@ -216,15 +243,15 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	}
 
 	get step1Class() {
-		return this.currentStep === 1 ? "show" : "hidden";
+		return this.currentStep === 1 && !this.useExtendedForm ? "show" : "hidden";
 	}
 
 	get step2Class() {
-		return this.currentStep === 2 ? "show" : "hidden";
+		return this.currentStep === 2 && !this.useExtendedForm ? "show" : "hidden";
 	}
 
 	get step3Class() {
-		return this.currentStep === 3 ? "show" : "hidden";
+		return this.currentStep === 3 && !this.useExtendedForm ? "show" : "hidden";
 	}
 
 	get dividedAmount() {
@@ -232,6 +259,10 @@ export default class CreateSharedExpense extends NavigationMixin(LightningElemen
 	}
 
 	get contactsOptions() {
+		return this.getContactOptions();
+	}
+
+	getContactOptions() {
 		let contactsOptions = [];
 		if (this.contacts !== undefined && this.contacts.data !== undefined) {
 			this.contacts.data.forEach((val) => {

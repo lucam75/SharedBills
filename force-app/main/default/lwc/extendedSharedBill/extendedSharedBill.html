@@ -1,0 +1,52 @@
+<template>
+	<!--<div>
+		<ui-chart>
+			<div class="chart">
+				<div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+					<div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+						<div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+					</div>
+					<div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+						<div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+					</div>
+				</div><canvas style="display: block; height: 483px; width: 966px;" class="chartjs-render-monitor" width="1207" height="603"></canvas></div>
+		</ui-chart>
+	</div>-->
+	<div class="slds-grid slds-grid_vertical">
+		<div class="slds-col">
+			<lightning-card title="Add expense" icon-name="utility:moneybag" variant="narrow">
+				<div class="slds-card__body_inner">
+					<lightning-input data-id="currentItemAmount" label="Item amount" placeholder="current item amount" formatter="currency" type="number" variant="standard" onchange={setCurrentItemAmount} value={currentItem.amount}></lightning-input>
+				</div>
+				<lightning-button-group class="slds-button-group-row slds-m-around_medium">
+					<template for:each={contacts} for:item="contact">
+						<div key={contact.value} class="slds-button-group-item">
+							<lightning-button class="slds-theme_brand" icon-position="left" variant="brand" type="button" label={contact.label} onclick={addItem} value={contact.value}></lightning-button>
+						</div>
+					</template>
+
+					<div class="slds-button-group-item">
+						<lightning-button class="slds-theme_brand" icon-position="left" variant="brand" type="button" label="Shared" onclick={addItem} value="Shared"></lightning-button>
+					</div>
+				</lightning-button-group>
+			</lightning-card>
+		</div>
+		<div class="slds-col">
+			<div class="slds-float--right">
+				<lightning-button-group class="slds-button-group-row slds-m-around_medium">
+					<div class="slds-button-group-item">
+						<lightning-button class="slds-theme_destructive" icon-position="left" variant="destructive" type="button" label="Back" onclick={handleBack}></lightning-button>
+					</div>
+					<div class="slds-button-group-item">
+						<lightning-button class="slds-theme_success" icon-position="left" variant="success" type="button" label="Done" onclick={handleDone}></lightning-button>
+					</div>
+				</lightning-button-group>
+			</div>
+		</div>
+		<div class="slds-col div-table">
+			<template if:true={areAddedItems}>
+				<lightning-datatable class="items-added-table" key-field="key" data={itemsList} onsave={handleSave} onrowaction={handleDelete} column-widths-mode="auto" hide-checkbox-column columns={columns}></lightning-datatable>
+			</template>
+		</div>
+	</div>
+</template>

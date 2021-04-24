@@ -3,8 +3,8 @@
  * @Description        :
  * @Author             : Luis Campos (LC)
  * @Group              :
- * @Last Modified By   : Luis Campos (lucam75@gmail.com)
- * @Last Modified On   : 11/1/2019, 5:23:00 PM
+ * @Last Modified By   : Luis Campos (LC)
+ * @Last Modified On   : 02-06-2021
  * @Modification Log   :
  * Ver       Date          Author			Modification
  * 1.0    10/28/2019   Luis Campos (LC)     Initial Version
@@ -90,6 +90,13 @@ public with sharing class StatusController {
 	}
 
 	public List<String> getContactsEmail() {
-		return new List<String>{ this.emailLuis, this.emailDiana };
+		List<String> contactEmails = new List<String>();
+		if (String.isNotBlank(this.emailLuis)) {
+			contactEmails.add(this.emailLuis);
+		}
+		if (String.isNotBlank(this.emailDiana)) {
+			contactEmails.add(this.emailDiana);
+		}
+		return contactEmails;
 	}
 }

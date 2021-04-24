@@ -4,7 +4,7 @@
   @Author             : Luis Campos (lucam75@gmail.com)
   @Group              : 
   @Last Modified By   : Luis Campos (LC)
-  @Last Modified On   : 08-29-2020
+  @Last Modified On   : 03-06-2021
   @Modification Log   : 
   Ver       Date            Author      		    Modification
   1.0    10/19/2019   Luis Campos (lucam75@gmail.com)     Initial Version
@@ -16,20 +16,21 @@
 		</template>
 		<lightning-record-edit-form object-api-name="Transaction__c" onsuccess={handleSuccess} onsubmit={handleSubmit} class="shared-expense-form">
 			<lightning-messages></lightning-messages>
-			<div class={step1Class}>
-				<div class="predefined-buttons">
-					<lightning-button label="Arriendo" value="arriendo" class="slds-var-m-top_medium" onclick={handleLoadPredefined}></lightning-button>
-				</div>
+			<div data-id="step1Div" class={step1Class}>
 				<h3 class="title">Main Information</h3>
-				<lightning-input-field field-name="Amount__c" value={amount} onchange={handleAmountChange}></lightning-input-field>
+				<div>
+					<lightning-input-field field-name="Amount__c" value={amount} onchange={handleAmountChange}></lightning-input-field>
+					<lightning-button class="dark-button" icon-position="left" variant="brand" type="button" label="Extended Shared Bill" icon-name="standard:constant" onclick={handleShowExtendedForm}></lightning-button>
+				</div>
+
 				<lightning-radio-group name="Paid_By__c" label="Paid By" options={contactsOptions} value={paidBy} type="radio" required class="horizontal-radio" onchange={handlePaidBySelected}> </lightning-radio-group>
 				<lightning-checkbox-group name="Billed to" variant="label-stacked" required label="Billed To" options={contactsOptions} value={billedToSelected} onchange={handleBilledSelectedChange}> </lightning-checkbox-group>
 				<div class="navigation-buttons">
-					<lightning-button type="" label="Next" class="slds-var-m-top_medium" onclick={nextStep}></lightning-button>
+					<lightning-button data-id="next" label="Next" class="slds-var-m-top_medium" onclick={nextStep}></lightning-button>
 				</div>
 			</div>
 
-			<div class={step2Class}>
+			<div data-id="step2Div" class={step2Class}>
 				<h3 class="title">Additional Details</h3>
 				<c-lookup class="category_lookup" id="category_lookup" errors={errors} onsearch={handleLookupSearch} onselectionchange={handleLookupSelectionChange} label="Category" placeholder="Search Category" custom-key="category_lookup" onclickpreview={handleLookupSearch} required></c-lookup>
 
@@ -52,7 +53,7 @@
 				</div>
 			</div>
 
-			<div class={step3Class}>
+			<div data-id="step3Div" class={step3Class}>
 				<lightning-input type="checkbox" label="Manual Mode" value={manualMode} onchange={handleManualModeChange}> </lightning-input>
 				<h3 class="title">Individual amounts</h3>
 
@@ -79,4 +80,7 @@
 			</div>
 		</lightning-record-edit-form>
 	</div>
+	<template if:true={useExtendedForm}>
+		<c-extended-shared-bill contacts={contactsOptions} onextendedsbback={handleExtendedSBBack} onextendedsbdone={handleExtendedSBDone}></c-extended-shared-bill>
+	</template>
 </template>

@@ -2,10 +2,17 @@
 	"packageDirectories": [
 		{
 			"path": "force-app",
-			"default": true
+			"default": true,
+			"package": "Shared Bills",
+			"versionName": "ver 0.1",
+			"versionNumber": "0.1.0.NEXT"
 		}
 	],
 	"namespace": "",
 	"sfdcLoginUrl": "https://login.salesforce.com",
-	"sourceApiVersion": "49.0"
+	"sourceApiVersion": "51.0",
+	"packageAliases": {
+		"Shared Bills": "0Ho3j000000TN2SCAW",
+		"Shared Bills@0.1.0-1": "04t3j000001ALl6AAG"
+	}
 }
