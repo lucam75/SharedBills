@@ -39,6 +39,9 @@ jobs:
             - name: "Lint Lightning Web Components"
               run: npm run lint:lwc
 
+            - name: PMD - Salesforce APEX code analyzer action
+              uses: legetz/setup-pmd@v6.30
+
     scratch-org-test:
         runs-on: ubuntu-latest
         needs: formatting-and-linting
