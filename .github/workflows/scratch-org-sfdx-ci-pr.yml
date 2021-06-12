@@ -41,7 +41,7 @@ jobs:
 
             - name: PMD - Salesforce APEX code analyzer action
               uses: legetz/setup-pmd@v6.30
-              run: pmd -language apex -dir ./force-app/main/default/classes -rulesets ./pmd-ruleset.xml -f text
+            - run: pmd -language apex -dir ./force-app/main/default/classes -rulesets ./pmd-ruleset.xml -f text
 
     scratch-org-test:
         runs-on: ubuntu-latest
