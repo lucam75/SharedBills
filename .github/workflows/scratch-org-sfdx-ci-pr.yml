@@ -39,8 +39,7 @@ jobs:
             - name: "Lint Lightning Web Components"
               run: npm run lint:lwc
 
-    pmd-analyzer-check:
-    name: "PMD Static Code Analysis"
+    pmd-static-code-analysis:
     permissions:
         security-events: write
         actions: read
