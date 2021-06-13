@@ -43,7 +43,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: PMD Source Code Analyzer Action
-              uses: sfdx-actions/setup-pmd@v1
+            - uses: sfdx-actions/setup-pmd@v1
               run: pmd -d ./force-app/main/default/classes -R ./pmd-ruleset.xml -f text
 
     scratch-org-test:
