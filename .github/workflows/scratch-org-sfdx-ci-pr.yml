@@ -51,12 +51,19 @@ jobs:
             - name: Run PMD Source Code Analyzer Action
               run: |
                   ls -la; ls -la ../
-                  pmd -d force-app/main/default/classes -failOnViolation false -f sarif -R ./pmd-ruleset.xml > pmd-results.sarif
+                  pmd -d force-app/main/default/classes -failOnViolation false -f summaryhtml -R ./pmd-ruleset.xml > pmd-results.html
 
-            - name: Upload PMD report
-              uses: github/codeql-action/upload-sarif@v1
-              with:
-                  sarif_file: pmd-results.sarif
+              - name: 'Upload Artifact'
+                uses: actions/upload-artifact@v2
+                with:
+                  name: pmd-results
+                  path: pmd-results.html
+                  retention-days: 5
+                  
+            # - name: Upload PMD report
+            #   uses: github/codeql-action/upload-sarif@v1
+            #   with:
+            #       sarif_file: pmd-results.sarif
     # scratch-org-test:
     #     runs-on: ubuntu-latest
     #     needs: formatting-and-linting
