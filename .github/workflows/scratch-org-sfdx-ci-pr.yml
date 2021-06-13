@@ -41,33 +41,10 @@ jobs:
 
     pmd-static-code-analysis:
         runs-on: ubuntu-latest
-        permissions:
-            security-events: write
-            actions: read
-            contents: read
         steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v2
-              with:
-                  # Incremental diffs require fetch depth to be at 0 to grab the target branch
-                  fetch-depth: "0"
-            - name: Run PMD Analyser
-              id: pmd-analysis
-              uses: synergy-au/pmd-analyser-action@v2
-              with:
-                  pmd-version: "6.35.0"
-                  file-path: "./force-app/main/default/classes"
-                  rules-path: "./pmd-ruleset.xml"
-            - name: Upload results to GitHub
-              uses: github/codeql-action/upload-sarif@v1
-              with:
-                  sarif_file: pmd-output.sarif
-            - name: No PMD Errors?
-              run: |
-                  if ${{ steps.pmd-analysis.outputs.error-found }}
-                  then
-                    exit 3
-                  fi
+            - name: PMD Source Code Analyzer Action
+              uses: sfdx-actions/setup-pmd@v1
+              run: pmd -d ./force-app/main/default/classes -R ./pmd-ruleset.xml -f text
 
     scratch-org-test:
         runs-on: ubuntu-latest
