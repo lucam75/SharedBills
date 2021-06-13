@@ -46,15 +46,16 @@ jobs:
               uses: actions/checkout@v2
 
             - name: "Set PMD environment"
-              uses: Moose0621/setup-pmd@v2
+              uses: lucam75/setup-pmd
 
             - name: "Run PMD Source Code Analyzer Action"
               run: |
                   ls -la; ls -la ../
-                  pmd -d force-app/main/default/classes -failOnViolation false -f summaryhtml -R ./pmd-ruleset.xml > pmd-results.html
+                  pmd -d force-app/main/default/classes -failOnViolation true -f summaryhtml -R ./pmd-ruleset.xml > pmd-results-${{github.event.number}}.html
 
             - name: "Upload Artifact"
               uses: actions/upload-artifact@v2
+              if: failure()
               with:
                   name: pmd-results
                   path: pmd-results.html
