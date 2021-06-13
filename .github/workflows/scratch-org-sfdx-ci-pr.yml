@@ -42,24 +42,23 @@ jobs:
     pmd-static-code-analysis:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout source code
+            - name: "Checkout source code"
               uses: actions/checkout@v2
 
-            - name: Set PMD environment
+            - name: "Set PMD environment"
               uses: Moose0621/setup-pmd@v2
 
-            - name: Run PMD Source Code Analyzer Action
+            - name: "Run PMD Source Code Analyzer Action"
               run: |
                   ls -la; ls -la ../
                   pmd -d force-app/main/default/classes -failOnViolation false -f summaryhtml -R ./pmd-ruleset.xml > pmd-results.html
 
-              - name: 'Upload Artifact'
-                uses: actions/upload-artifact@v2
-                with:
+            - name: "Upload Artifact"
+              uses: actions/upload-artifact@v2
+              with:
                   name: pmd-results
                   path: pmd-results.html
                   retention-days: 5
-                  
             # - name: Upload PMD report
             #   uses: github/codeql-action/upload-sarif@v1
             #   with:
