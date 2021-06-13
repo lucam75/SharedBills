@@ -51,14 +51,14 @@ jobs:
             - name: "Run PMD Source Code Analyzer Action"
               run: |
                   ls -la; ls -la ../
-                  pmd -d force-app/main/default/classes -failOnViolation true -f summaryhtml -R ./pmd-ruleset.xml > pmd-results-${{github.event.number}}.html
+                  pmd -d force-app/main/default/classes -failOnViolation true -f summaryhtml -R ./pmd-ruleset.xml -cache ./pmd-cache > pmd-results-${{github.event.number}}.html
 
             - name: "Upload Artifact"
               uses: actions/upload-artifact@v2
               if: failure()
               with:
                   name: pmd-results
-                  path: pmd-results.html
+                  path: pmd-results-${{github.event.number}}.html
                   retention-days: 5
             # - name: Upload PMD report
             #   uses: github/codeql-action/upload-sarif@v1
