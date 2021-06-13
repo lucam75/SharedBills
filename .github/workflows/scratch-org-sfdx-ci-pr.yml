@@ -56,9 +56,8 @@ jobs:
               uses: synergy-au/pmd-analyser-action@v2
               with:
                   pmd-version: "6.35.0"
-                  file-path: "./force-app/main/default/classes"
-                  rules-path: "./pmd-ruleset.xml"
-                  note-rules: "ApexDoc"
+                  file-path: "../../force-app/main/default/classes"
+                  rules-path: "../../pmd-ruleset.xml"
             - name: Upload results to GitHub
               uses: github/codeql-action/upload-sarif@v1
               with:
