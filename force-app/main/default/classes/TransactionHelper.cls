@@ -4,7 +4,7 @@
  * @Author             : Luis Campos (lucam75@gmail.com)
  * @Group              :
  * @Last Modified By   : Luis Campos (LC)
- * @Last Modified On   : 12-27-2020
+ * @Last Modified On   : 06-13-2021
  * @Modification Log   :
  * Ver       Date            Author      		    Modification
  * 1.0    1/8/2020   Luis Campos (lucam75@gmail.com)     Initial Version
@@ -66,7 +66,7 @@ public with sharing class TransactionHelper {
 			feedItemInput.feedElementType = ConnectApi.FeedElementType.FeedItem;
 			feedItemInput.subjectId = trx.Id;
 
-			ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput);
+			ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput);
 		}
 	}
 }

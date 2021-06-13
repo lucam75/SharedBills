@@ -7,8 +7,8 @@ public with sharing class StatusControllerTest {
 		Account acc = UtilityTest.createAccount();
 		Category__c cat = UtilityTest.createCategory('Test');
 
-		Transaction__c transaction1 = UtilityTest.createTransaction(acc, contact1, contact2, System.today().addDays(-30), cat, 'Test description', 20.0);
-		Transaction__c transaction2 = UtilityTest.createTransaction(acc, contact2, contact1, System.today().addDays(-30), cat, 'Test description', 35.0);
+		UtilityTest.createTransaction(acc, contact1, contact2, System.today().addDays(-30), cat, 'Test description', 20.0);
+		UtilityTest.createTransaction(acc, contact2, contact1, System.today().addDays(-30), cat, 'Test description', 35.0);
 
 		Test.startTest();
 		StatusController status = new StatusController();
@@ -26,8 +26,8 @@ public with sharing class StatusControllerTest {
 		Account acc = UtilityTest.createAccount();
 		Category__c cat = UtilityTest.createCategory('Test');
 
-		Transaction__c transaction1 = UtilityTest.createTransaction(acc, contact2, contact1, System.today().addDays(-30), cat, 'Test description', 20.0);
-		Transaction__c transaction2 = UtilityTest.createTransaction(acc, contact1, contact2, System.today().addDays(-30), cat, 'Test description', 35.0);
+		UtilityTest.createTransaction(acc, contact2, contact1, System.today().addDays(-30), cat, 'Test description', 20.0);
+		UtilityTest.createTransaction(acc, contact1, contact2, System.today().addDays(-30), cat, 'Test description', 35.0);
 
 		Test.startTest();
 		StatusController status = new StatusController();
@@ -45,8 +45,8 @@ public with sharing class StatusControllerTest {
 		Account acc = UtilityTest.createAccount();
 		Category__c cat = UtilityTest.createCategory('Test');
 
-		Transaction__c transaction1 = UtilityTest.createTransaction(acc, contact2, contact1, System.today().addDays(-30), cat, 'Test description', 20.0);
-		Transaction__c transaction2 = UtilityTest.createTransaction(acc, contact1, contact2, System.today().addDays(-30), cat, 'Test description', 35.0);
+		UtilityTest.createTransaction(acc, contact2, contact1, System.today().addDays(-30), cat, 'Test description', 20.0);
+		UtilityTest.createTransaction(acc, contact1, contact2, System.today().addDays(-30), cat, 'Test description', 35.0);
 
 		Test.startTest();
 		StatusController status = new StatusController();

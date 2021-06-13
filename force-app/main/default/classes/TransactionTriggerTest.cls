@@ -4,11 +4,12 @@
  * @Author             : Luis Campos (LC)
  * @Group              :
  * @Last Modified By   : Luis Campos (LC)
- * @Last Modified On   : 12-27-2020
+ * @Last Modified On   : 06-13-2021
  * @Modification Log   :
  * Ver       Date            Author      		    Modification
  * 1.0    1/8/2020   Luis Campos (LC)     Initial Version
  **/
+@SuppressWarnings('PMD.ApexUnitTestShouldNotUseSeeAllDataTrue')
 @IsTest(SeeAllData=true)
 // SeeAllData required because ConnectApi.ChatterFeeds.postFeedElement is used to create Chatter post in Transaction__c trigger.
 public class TransactionTriggerTest {
@@ -71,7 +72,6 @@ public class TransactionTriggerTest {
 		update transactionsToUpdate;
 
 		Event__c eventU = [SELECT Id, Total_spent__c FROM Event__c WHERE Name = 'Event Test 0' LIMIT 1];
-		System.debug('LCDebug: eventU ' + eventU);
 		System.assertEquals(25 * 2.00, eventU.Total_spent__c, 'The Total spent for this event must be ' + 25 * 2.00);
 
 		Test.stopTest();
