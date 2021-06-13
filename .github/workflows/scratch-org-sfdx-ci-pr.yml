@@ -42,9 +42,15 @@ jobs:
     pmd-static-code-analysis:
         runs-on: ubuntu-latest
         steps:
-            - name: PMD Source Code Analyzer Action
+            - name: Checkout
+              uses: actions/checkout@v2
+
             - uses: sfdx-actions/setup-pmd@v1
-              run: pmd -d ./force-app/main/default/classes -R ./pmd-ruleset.xml -f text
+
+            - name: PMD Source Code Analyzer Action
+              run: |
+                  ls -la; ls -la ../
+                  pmd -d force-app/main/default/classes -failOnViolation true -f sarif -R ./pmd-ruleset.xml > pmd-results.sarif
 
     scratch-org-test:
         runs-on: ubuntu-latest
