@@ -45,7 +45,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - uses: sfdx-actions/setup-pmd@v1
+            - uses: Moose0621/setup-pmd@v2
 
             - name: PMD Source Code Analyzer Action
               run: |
