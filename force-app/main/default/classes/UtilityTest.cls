@@ -26,6 +26,7 @@ public class UtilityTest {
 		return createContact(firstName, lastName, userId, true);
 	}
 
+	@SuppressWarnings('PMD.ExcessiveParameterList')
 	public static Contact createContact(String firstName, String lastName, Id userId, Boolean mustInsert) {
 		//insert a contact
 		Contact contact = new Contact(FirstName = firstName, LastName = lastName, Email = firstName + lastName + '@test.com', Birthdate = Date.today().addMonths(-20 * 12), MailingState = 'CA', OtherPostalCode = '50010', User__c = userId);
@@ -67,6 +68,7 @@ public class UtilityTest {
 		return cat;
 	}
 
+	@SuppressWarnings('PMD.ExcessiveParameterList')
 	public static Transaction__c createTransaction(Account acc, Contact billedTo, Contact paidBy, Date createdDate, Category__c cat, String description, Decimal amount) {
 		Transaction__c transactionToCreate = new Transaction__c(Account__c = (acc != null ? acc.Id : null), Amount__c = amount, Billed_to__c = billedTo.Id, Category__c = cat.Id, Date__c = createdDate, Description__c = description, Paid_By__c = paidBy.Id);
 

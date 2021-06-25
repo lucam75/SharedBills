@@ -4,12 +4,17 @@
  * @Author             : Luis Campos (lucam75@gmail.com)
  * @Group              :
  * @Last Modified By   : Luis Campos (LC)
- * @Last Modified On   : 02-06-2021
+ * @Last Modified On   : 06-25-2021
  * @Modification Log   :
  * Ver       Date            Author      		    Modification
  * 1.0    11/10/2019   Luis Campos (lucam75@gmail.com)     Initial Version
  **/
 public with sharing class CreateSharedExpenseHelper {
+	private static Map<String, String> mapLookupTypeObjectName = new Map<String, String>{ 'category_lookup' => 'Category__c', 'account_lookup' => 'Account__c', 'event_lookup' => 'Event__c' };
+	private static Map<String, String> mapLookupTypeObjectIcon = new Map<String, String>{ 'category_lookup' => 'custom:custom46', 'account_lookup' => 'standard:account', 'event_lookup' => 'custom:custom20' };
+	private static Map<String, String> mapLookupTypeObjectLabel = new Map<String, String>{ 'category_lookup' => 'Category', 'account_lookup' => 'Account', 'event_lookup' => 'Event' };
+	private static Map<String, String> mapLookupTypeObjectRelationshipName = new Map<String, String>{ 'category_lookup' => 'Category__r', 'account_lookup' => 'Account__r', 'event_lookup' => 'Event__r' };
+
 	@AuraEnabled(Cacheable=true)
 	public static List<Contact> getAllContacts() {
 		return [SELECT Id, Name FROM Contact WHERE Active__c = TRUE WITH SECURITY_ENFORCED ORDER BY Name ASC LIMIT 100];
@@ -28,46 +33,69 @@ public with sharing class CreateSharedExpenseHelper {
 	@AuraEnabled(Cacheable=false)
 	public static List<LookupSearchResult> search(String searchTerm, String lookupType) {
 		List<LookupSearchResult> results = new List<LookupSearchResult>();
-		if (searchTerm != null && searchTerm != '') {
-			searchTerm = '%' + searchTerm + '%';
+		searchTerm = String.isNotBlank(searchTerm) ? '%' + String.escapeSingleQuotes(searchTerm) + '%' : null;
+
+		if (String.isBlank(searchTerm)) {
+			results = searchForLastUsed(searchTerm, String.escapeSingleQuotes(lookupType));
 		} else {
-			searchTerm = null;
+			results = searchForTerm(searchTerm, String.escapeSingleQuotes(lookupType));
 		}
 
-		if (lookupType == 'category_lookup') {
-			if (searchTerm == null) {
-				for (RecentlyViewed cat : [SELECT Id, Name FROM RecentlyViewed WHERE Type = 'Category__c' WITH SECURITY_ENFORCED ORDER BY LastViewedDate DESC LIMIT 5]) {
-					results.add(new LookupSearchResult(cat.Id, 'Category', 'custom:custom46', cat.Name, 'Category • ' + cat.Name, null));
-				}
-			} else {
-				for (Category__c cat : [SELECT Id, Name FROM Category__c WHERE Name LIKE :searchTerm WITH SECURITY_ENFORCED ORDER BY Name ASC]) {
-					results.add(new LookupSearchResult(cat.Id, 'Category', 'custom:custom46', cat.Name, 'Category • ' + cat.Name, null));
-				}
-			}
-		} else if (lookupType == 'account_lookup') {
-			if (searchTerm == null) {
-				Set<Id> recentAccountIds = new Set<Id>();
-				for (RecentlyViewed acc : [SELECT Id, Name FROM RecentlyViewed WHERE Type = 'Account' WITH SECURITY_ENFORCED ORDER BY LastViewedDate DESC LIMIT 5]) {
-					recentAccountIds.add(acc.Id);
-				}
-				for (Account acc : [SELECT Id, Name, Icon__c, IconUrl__c FROM Account WHERE Id IN :recentAccountIds WITH SECURITY_ENFORCED ORDER BY Name ASC]) {
-					results.add(new LookupSearchResult(acc.Id, 'Company', 'standard:account', acc.Name, 'Company • ' + acc.Name, acc.IconUrl__c));
-				}
-			} else {
-				for (Account acc : [SELECT Id, Name, Icon__c, IconUrl__c FROM Account WHERE Name LIKE :searchTerm WITH SECURITY_ENFORCED ORDER BY Name ASC]) {
-					results.add(new LookupSearchResult(acc.Id, 'Company', 'standard:account', acc.Name, 'Company • ' + acc.Name, acc.IconUrl__c));
-				}
-			}
-		} else if (lookupType == 'event_lookup') {
-			if (searchTerm == null) {
-				for (RecentlyViewed evt : [SELECT Id, Name FROM RecentlyViewed WHERE Type = 'Event__c' WITH SECURITY_ENFORCED ORDER BY LastViewedDate DESC LIMIT 5]) {
-					results.add(new LookupSearchResult(evt.Id, 'Event', 'custom:custom20', evt.Name, 'Event • ' + evt.Name, null));
-				}
-			} else {
-				for (Event__c evt : [SELECT Id, Name FROM Event__c WHERE Name LIKE :searchTerm WITH SECURITY_ENFORCED ORDER BY Name ASC]) {
-					results.add(new LookupSearchResult(evt.Id, 'Event', 'custom:custom20', evt.Name, 'Event • ' + evt.Name, null));
-				}
-			}
+		return results;
+	}
+
+	private static List<LookupSearchResult> searchForLastUsed(String searchTerm, String lookupType) {
+		List<LookupSearchResult> results = new List<LookupSearchResult>();
+		List<String> fieldstoQuery = new List<String>();
+		String idFieldName = String.escapeSingleQuotes(mapLookupTypeObjectName.get(lookupType));
+
+		fieldstoQuery.add(idFieldName);
+		fieldstoQuery.add(String.escapeSingleQuotes(mapLookupTypeObjectRelationshipName.get(lookupType) + '.Name'));
+
+		if (idFieldName == 'Account__c') {
+			fieldstoQuery.add(String.escapeSingleQuotes('Account__r.IconUrl__c'));
+		}
+
+		String fieldsToSelectString = String.escapeSingleQuotes(String.join(fieldsToQuery, ', '));
+
+		for (AggregateResult aggResult : Database.query('SELECT ' + fieldsToSelectString + ' FROM Transaction__c WHERE CreatedById = \'' + UserInfo.getUserId() + '\' GROUP BY ' + fieldsToSelectString + ' HAVING ' + idFieldName + ' != null ORDER BY MIN(CreatedDate) DESC')) {
+			LookupSearchResult lsr = new LookupSearchResult();
+			lsr.setId((Id) aggResult.get(mapLookupTypeObjectName.get(lookupType)));
+			lsr.setIcon(mapLookupTypeObjectIcon.get(lookupType));
+			lsr.setTitle(String.valueOf(aggResult.get('Name')));
+			lsr.setSubtitle(mapLookupTypeObjectLabel.get(lookupType) + ' • ' + aggResult.get('Name'));
+			lsr.setImageUrl(mapLookupTypeObjectName.get(lookupType) == 'Account__c' ? (String) aggResult.get('IconUrl__c') : '');
+			results.add(lsr);
+		}
+
+		return results;
+	}
+
+	private static List<LookupSearchResult> searchForTerm(String searchTerm, String lookupType) {
+		List<LookupSearchResult> results = new List<LookupSearchResult>();
+		List<String> fieldstoQuery = new List<String>();
+		String fromObject = mapLookupTypeObjectName.get(lookupType);
+
+		if (fromObject == 'Account__c') {
+			fromObject = 'Account';
+		}
+		fieldstoQuery.add('Id');
+		fieldstoQuery.add('Name');
+
+		if (Utils.hasFieldInObject('IconUrl__c', fromObject)) {
+			fieldstoQuery.add('IconUrl__c');
+		}
+
+		String fieldsToSelectString = String.escapeSingleQuotes(String.join(fieldsToQuery, ', '));
+
+		for (sObject record : Database.query('SELECT ' + fieldsToSelectString + ' FROM ' + fromObject + ' WHERE Name LIKE :searchTerm WITH SECURITY_ENFORCED ORDER BY Name ASC')) {
+			LookupSearchResult lsr = new LookupSearchResult();
+			lsr.setId((Id) record.get('Id'));
+			lsr.setIcon(mapLookupTypeObjectIcon.get(lookupType));
+			lsr.setTitle(String.valueOf(record.get('Name')));
+			lsr.setSubtitle(mapLookupTypeObjectLabel.get(lookupType) + ' • ' + record.get('Name'));
+			lsr.setImageUrl(mapLookupTypeObjectName.get(lookupType) == 'Account__c' ? (String) record.get('IconUrl__c') : '');
+			results.add(lsr);
 		}
 
 		return results;
@@ -79,29 +107,42 @@ public with sharing class CreateSharedExpenseHelper {
 	 */
 	public class LookupSearchResult {
 		private Id id;
-		private String sObjectType;
 		private String icon;
 		private String title;
 		private String subtitle;
 		private String imageUrl;
 
-		public LookupSearchResult(Id id, String sObjectType, String icon, String title, String subtitle, String imageUrl) {
+		public LookupSearchResult() {
+			id = null;
+			icon = '';
+			title = '';
+			subtitle = '';
+			imageUrl = '';
+		}
+
+		private void setId(Id id) {
 			this.id = id;
-			this.sObjectType = sObjectType;
+		}
+
+		private void setIcon(String icon) {
 			this.icon = icon;
+		}
+
+		private void setTitle(String title) {
 			this.title = title;
+		}
+
+		private void setSubtitle(String subtitle) {
 			this.subtitle = subtitle;
+		}
+
+		private void setImageUrl(String imageUrl) {
 			this.imageUrl = imageUrl;
 		}
 
 		@AuraEnabled
 		public Id getId() {
 			return id;
-		}
-
-		@AuraEnabled
-		public String getSObjectType() {
-			return sObjectType;
 		}
 
 		@AuraEnabled
