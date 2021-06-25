@@ -149,6 +149,27 @@ public class CreateSharedExpenseHelperTest {
 		System.assertEquals('custom:custom20', results.get(0).getIcon(), 'Must return the correct field value.');
 		System.assertEquals(travel1.Name, results.get(0).getTitle(), 'Must return the correct field value.');
 		System.assertEquals('Event • ' + travel1.Name, results.get(0).getSubtitle(), 'Must return the correct field value.');
-		System.assertEquals(null, results.get(0).getImageUrl(), 'Must return the correct field value.');
+		System.assertEquals('', results.get(0).getImageUrl(), 'Must return the correct field value.');
+	}
+
+	@IsTest
+	static void searchForLastUsedAccountsInTrx() {
+		UtilityTest.createAccount('Sport Brand1');
+		UtilityTest.createAccount('Sport Brand2');
+
+		Contact contact1 = UtilityTest.createContact('Luis', 'Campos');
+		Contact contact2 = UtilityTest.createContact('Diana', 'Gonzalez');
+		Account acc = UtilityTest.createAccount('Internet');
+		Category__c cat = UtilityTest.createCategory('Test');
+		UtilityTest.createTransaction(acc, contact1, contact2, Date.valueOf('2020-08-01'), cat, 'Test description', 20.0);
+
+		List<CreateSharedExpenseHelper.LookupSearchResult> results;
+
+		Test.startTest();
+		results = CreateSharedExpenseHelper.search(null, 'account_lookup');
+		Test.stopTest();
+
+		System.assertEquals(true, results.size() == 1, 'Must return just 1 account');
+		System.assertEquals(acc.Id, results.get(0).getId(), 'The account returned is not the expected.');
 	}
 }
