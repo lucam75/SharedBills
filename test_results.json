@@ -1,0 +1,1198 @@
+[
+	{
+		"Children": null,
+		"ClassName": "BillStatusSchedulableTest",
+		"Method": "getMonthTextTest",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 137,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 2,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 1,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:56.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "BillStatusSchedulableTest",
+		"Method": "withEmailTemplate",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 1817,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 1,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 119,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 2,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:56.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "BillStatusSchedulableTest",
+		"Method": "withoutEmailTemplate",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 83,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 1,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 17,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 2,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:58.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "CreateSharedExpenseHelperTest",
+		"Method": "getAllContactsActive",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 290,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 42,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 5,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:52.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "CreateSharedExpenseHelperTest",
+		"Method": "getAllContactsNoActive",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 95,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 18,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 0,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:53.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "CreateSharedExpenseHelperTest",
+		"Method": "getLoggedContactTest",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 114,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 11,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 1,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:53.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "CreateSharedExpenseHelperTest",
+		"Method": "lookupMethodsTest",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 165,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 3,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 1,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:53.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "CreateSharedExpenseHelperTest",
+		"Method": "searchForAccount",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 235,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 34,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 2,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:53.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "CreateSharedExpenseHelperTest",
+		"Method": "searchForAccountWithoutSearchTerm",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 172,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 31,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 0,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:54.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "CreateSharedExpenseHelperTest",
+		"Method": "searchForCategory",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 104,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 8,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 2,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:54.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "CreateSharedExpenseHelperTest",
+		"Method": "searchForCategoryWithoutSearchTerm",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 67,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 8,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 0,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:54.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "CreateSharedExpenseHelperTest",
+		"Method": "searchForEvent",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 165,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 8,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 2,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:54.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "CreateSharedExpenseHelperTest",
+		"Method": "searchForEventWithoutSearchTerm",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 75,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 8,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 0,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:54.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "CreateSharedExpenseHelperTest",
+		"Method": "searchForLastUsedAccountsInTrx",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 539,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 81,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 1,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:55.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "CurrentStatusUtilsTest",
+		"Method": "getBillsTest",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 747,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 153,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 4,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:52.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "PostInstallTest",
+		"Method": "scheduleJobCreationNoNeeded",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 243,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 58,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 1,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:59.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "PostInstallTest",
+		"Method": "scheduleJobCreationSuccess",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 91,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 2,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 1,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 8,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 1,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:59.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "StatusControllerTest",
+		"Method": "dianaDebtScenario",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 445,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 95,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 2,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:57.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "StatusControllerTest",
+		"Method": "getContactsEmailCorrectly",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 363,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 75,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 2,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:58.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "StatusControllerTest",
+		"Method": "luisDebtScenario",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 354,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 1,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 72,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 2,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:58.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "TransactionTriggerTest",
+		"Method": "postToChatterWhenDebt",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 2783,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 2,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 2,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 169,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 1,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 2,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:52.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "TransactionTriggerTest",
+		"Method": "testEventAmountCalculation",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 547,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 3,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 0,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 58,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 3,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 0,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:55.000+0000"
+	},
+	{
+		"Children": null,
+		"ClassName": "TransactionTriggerTest",
+		"Method": "testEventAmountCalculation2",
+		"Message": null,
+		"Outcome": "Pass",
+		"StackTrace": null,
+		"Stats": {
+			"duration": 1105,
+			"TESTING_LIMITS: Number of SOQL queries": {
+				"used": 7,
+				"allowed": 100
+			},
+			"TESTING_LIMITS: Number of Email Invocations": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of future calls": {
+				"used": 0,
+				"allowed": 50
+			},
+			"TESTING_LIMITS: Number of DML rows": {
+				"used": 52,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Maximum CPU time": {
+				"used": 66,
+				"allowed": 10000
+			},
+			"TESTING_LIMITS: Number of query rows": {
+				"used": 55,
+				"allowed": 50000
+			},
+			"TESTING_LIMITS: Number of DML statements": {
+				"used": 4,
+				"allowed": 150
+			},
+			"TESTING_LIMITS: Number of Mobile Apex push calls": {
+				"used": 0,
+				"allowed": 10
+			},
+			"TESTING_LIMITS: Number of SOSL queries": {
+				"used": 0,
+				"allowed": 20
+			},
+			"TESTING_LIMITS: Number of callouts": {
+				"used": 0,
+				"allowed": 100
+			}
+		},
+		"TestTimestamp": "2021-08-01T21:51:56.000+0000"
+	}
+]
