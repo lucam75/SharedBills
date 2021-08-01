@@ -1,0 +1,16 @@
+- object: Contact
+  fields:
+      FirstName:
+          fake: first_name
+      LastName:
+          fake: last_name
+      Salutation:
+          random_choice:
+              Mr.: 30%
+              Ms.: 30%
+              Dr.: 20%
+              Prof.: 20%
+      Active__c:
+          random_choice:
+              - true
+              - false

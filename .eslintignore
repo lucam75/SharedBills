@@ -11,3 +11,4 @@
 **/aura/**/*.svg
 **/aura/**/*.xml
 .sfdx
+*.yml

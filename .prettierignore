@@ -11,3 +11,4 @@ shared-bills-svelte-cmp
 README.md
 tests/
 node_modules/*
+.yml

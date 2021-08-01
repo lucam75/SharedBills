@@ -1,0 +1,37 @@
+- plugin: snowfakery.standard_plugins.Salesforce
+- plugin: snowfakery.standard_plugins.Salesforce.SalesforceQuery
+
+# randomized values
+- object: Transaction__c
+  fields:
+      Amount__c:
+          random_number:
+              min: 1
+              max: 100000
+      Date__c:
+          date_between:
+              start_date: -1y
+              end_date: today
+      Description__c:
+          fake.text:
+              max_nb_chars: 40
+      Account__c:
+          SalesforceQuery.random_record:
+              from: Account
+              fields: Id
+      Billed_to__c:
+          SalesforceQuery.random_record:
+              from: Contact
+              fields: Id
+      Category__c:
+          SalesforceQuery.random_record:
+              from: Category__c
+              fields: Id
+      Event__c:
+          SalesforceQuery.random_record:
+              from: Event__c
+              fields: Id
+      Paid_By__c:
+          SalesforceQuery.random_record:
+              from: Contact
+              fields: Id

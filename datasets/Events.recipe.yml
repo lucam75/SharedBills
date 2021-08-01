@@ -1,0 +1,3 @@
+- object: Event__c
+  fields:
+      Name: ${{"%s %s" % ('Event', id)}}

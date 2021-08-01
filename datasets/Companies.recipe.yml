@@ -1,0 +1,6 @@
+- object: Account
+  fields:
+      Name:
+          fake: company
+      Description:
+          fake: catch_phrase

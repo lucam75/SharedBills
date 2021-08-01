@@ -1,0 +1,102 @@
+minimum_cumulusci_version: "3.38.0"
+project:
+    name: Shared Bills
+    package:
+        name: Shared Bills
+        api_version: "51.0"
+    git:
+        default_branch: "develop"
+    test:
+        name_match: "%Test%"
+    source_format: sfdx
+
+tasks:
+    robot:
+        options:
+            suites: robot/SharedBills/tests
+            options:
+                outputdir: robot/SharedBills/results
+
+    robot_testdoc:
+        options:
+            path: robot/SharedBills/tests
+            output: robot/SharedBills/doc/SharedBills_tests.html
+
+    run_tests:
+        options:
+            required_org_code_coverage_percent: 75
+
+    generate_categories:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: datasets/Categories.recipe.yml
+            num_records: 20
+            num_records_tablename: Category__c
+            batch_size: 200000
+            bulk_mode: parallel
+
+    generate_accounts:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: datasets/Companies.recipe.yml
+            num_records: 20
+            num_records_tablename: Account
+            batch_size: 200000
+            bulk_mode: parallel
+
+    generate_contacts:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: datasets/Contacts.recipe.yml
+            num_records: 20
+            num_records_tablename: Contact
+            batch_size: 200000
+            bulk_mode: parallel
+
+    generate_events:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: datasets/Events.recipe.yml
+            num_records: 20
+            num_records_tablename: Event__c
+            batch_size: 200000
+            bulk_mode: parallel
+
+    generate_transactions:
+        class_path: cumulusci.tasks.bulkdata.generate_and_load_data_from_yaml.GenerateAndLoadDataFromYaml
+        options:
+            generator_yaml: datasets/Transactions.recipe.yml
+            num_records: 20
+            num_records_tablename: Transaction__c
+            batch_size: 200000
+            bulk_mode: parallel
+
+flows:
+    generate_data:
+        description: Creates random data for all the objects.
+        steps:
+            1:
+                task: generate_categories
+            2:
+                task: generate_accounts
+            3:
+                task: generate_contacts
+            4:
+                task: generate_events
+            5:
+                task: generate_transactions
+
+    start_dev:
+        description: Sets an org with all the necessary to start the development
+        steps:
+            1:
+                task: dx_push
+            2:
+                task: assign_permission_sets
+                options:
+                    api_names: Shared_Bills_User
+            3:
+                task: load_dataset
+                options:
+                    mapping: datasets/mapping.yml
+                    sql_path: datasets/data.sql

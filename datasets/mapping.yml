@@ -1,0 +1,48 @@
+#cci task run extract_dataset -o mapping datasets/mapping.yml -o sql_path datasets/data.sql
+Insert Account:
+    sf_object: Account
+    fields:
+        - IconUrl__c
+        - Name
+    lookups:
+        ParentId:
+            table: Account
+            after: Insert Account
+Insert Category__c:
+    sf_object: Category__c
+    fields:
+        - Name
+Insert Event__c:
+    sf_object: Event__c
+    fields:
+        - Name
+        - Total_spent__c
+Insert Contact:
+    sf_object: Contact
+    fields:
+        - Active__c
+        - FirstName
+        - LastName
+    lookups:
+        AccountId:
+            table: Account
+        ReportsToId:
+            table: Contact
+            after: Insert Contact
+Insert Transaction__c:
+    sf_object: Transaction__c
+    fields:
+        - Amount__c
+        - Date__c
+        - Description__c
+    lookups:
+        Account__c:
+            table: Account
+        Billed_to__c:
+            table: Contact
+        Category__c:
+            table: Category__c
+        Event__c:
+            table: Event__c
+        Paid_By__c:
+            table: Contact

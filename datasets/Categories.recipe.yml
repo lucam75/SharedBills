@@ -1,0 +1,3 @@
+- object: Category__c
+  fields:
+      Name: ${{"%s %s" % ('Category', id)}}
