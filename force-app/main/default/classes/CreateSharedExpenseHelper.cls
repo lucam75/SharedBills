@@ -4,7 +4,7 @@
  * @Author             : Luis Campos (lucam75@gmail.com)
  * @Group              :
  * @Last Modified By   : Luis Campos (LC)
- * @Last Modified On   : 06-25-2021
+ * @Last Modified On   : 08-01-2021
  * @Modification Log   :
  * Ver       Date            Author      		    Modification
  * 1.0    11/10/2019   Luis Campos (lucam75@gmail.com)     Initial Version
@@ -17,14 +17,14 @@ public with sharing class CreateSharedExpenseHelper {
 
 	@AuraEnabled(Cacheable=true)
 	public static List<Contact> getAllContacts() {
-		return [SELECT Id, Name FROM Contact WHERE Active__c = TRUE WITH SECURITY_ENFORCED ORDER BY Name ASC LIMIT 100];
+		return [SELECT Id, Name FROM Contact WHERE Active__c = TRUE ORDER BY Name ASC LIMIT 100];
 	}
 
 	@AuraEnabled(Cacheable=true)
 	public static Contact getLoggedContact() {
 		Contact con = null;
 		if (Schema.sObjectType.Contact.fields.User__c.isAccessible()) {
-			List<Contact> contacts = [SELECT Id FROM Contact WHERE User__c = :UserInfo.getUserId() WITH SECURITY_ENFORCED];
+			List<Contact> contacts = [SELECT Id FROM Contact WHERE User__c = :UserInfo.getUserId()];
 			con = (!contacts.isEmpty()) ? contacts.get(0) : null;
 		}
 		return con;
@@ -88,7 +88,7 @@ public with sharing class CreateSharedExpenseHelper {
 
 		String fieldsToSelectString = String.escapeSingleQuotes(String.join(fieldsToQuery, ', '));
 
-		for (sObject record : Database.query('SELECT ' + fieldsToSelectString + ' FROM ' + fromObject + ' WHERE Name LIKE :searchTerm WITH SECURITY_ENFORCED ORDER BY Name ASC')) {
+		for (sObject record : Database.query('SELECT ' + fieldsToSelectString + ' FROM ' + fromObject + ' WHERE Name LIKE :searchTerm ORDER BY Name ASC')) {
 			LookupSearchResult lsr = new LookupSearchResult();
 			lsr.setId((Id) record.get('Id'));
 			lsr.setIcon(mapLookupTypeObjectIcon.get(lookupType));

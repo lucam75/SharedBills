@@ -34,15 +34,19 @@ public class CreateSharedExpenseHelperTest {
 
 	@IsTest
 	static void getLoggedContactTest() {
-		Contact con = UtilityTest.createContact('LCF', 'LCL', UserInfo.getUserId());
+		User runningUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId() LIMIT 1];
+		PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Shared_Bills_User'];
+		insert new PermissionSetAssignment(AssigneeId = runningUser.Id, PermissionSetId = ps.Id);
+		System.runAs(runningUser) {
+			Contact con = UtilityTest.createContact('LCF', 'LCL', UserInfo.getUserId());
 
-		Contact loggedContact;
+			Contact loggedContact;
+			Test.startTest();
+			loggedContact = CreateSharedExpenseHelper.getLoggedContact();
+			Test.stopTest();
 
-		Test.startTest();
-		loggedContact = CreateSharedExpenseHelper.getLoggedContact();
-		Test.stopTest();
-
-		System.assertEquals(loggedContact.Id, con.Id, 'The logged contact is not properly obtained.');
+			System.assertEquals(loggedContact.Id, con.Id, 'The logged contact is not properly obtained.');
+		}
 	}
 
 	@IsTest

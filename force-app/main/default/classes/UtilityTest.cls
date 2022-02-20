@@ -78,7 +78,7 @@ public class UtilityTest {
 	}
 
 	public static Profile getProfile(String profileName) {
-		return [SELECT Id FROM Profile WHERE Name = :profileName];
+		return [SELECT Id FROM Profile LIMIT 1];
 	}
 
 	public static User createUser(String firstName, String lastName, String profileName) {

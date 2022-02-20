@@ -4,7 +4,7 @@
  * @Author             : Luis Campos (lucam75@gmail.com)
  * @Group              :
  * @Last Modified By   : Luis Campos (LC)
- * @Last Modified On   : 06-13-2021
+ * @Last Modified On   : 08-01-2021
  * @Modification Log   :
  * Ver       Date            Author      		    Modification
  * 1.0    1/8/2020   Luis Campos (lucam75@gmail.com)     Initial Version
@@ -20,7 +20,7 @@ public with sharing class TransactionHelper {
 
 	public static void postChatterDebts() {
 		if (Trigger.isAfter && Trigger.isInsert) {
-			for (Transaction__c trx : [SELECT Id, Billed_to__r.User__r.Id, Paid_By__r.User__r.Id, Paid_By__r.Name, Amount__c, Description__c FROM Transaction__c WHERE It_is_debt__c = TRUE AND Id IN :Trigger.newMap.keySet() WITH SECURITY_ENFORCED]) {
+			for (Transaction__c trx : [SELECT Id, Billed_to__r.User__r.Id, Paid_By__r.User__r.Id, Paid_By__r.Name, Amount__c, Description__c FROM Transaction__c WHERE It_is_debt__c = TRUE AND Id IN :Trigger.newMap.keySet()]) {
 				TransactionHelper.getFeedItemDebts(trx);
 			}
 		}
@@ -38,7 +38,7 @@ public with sharing class TransactionHelper {
 			}
 
 			if (!eventIds.isEmpty()) {
-				for (AggregateResult ar : [SELECT Event__c, SUM(Amount__c) FROM Transaction__c WHERE Event__c IN :eventIds AND Event__c != '' WITH SECURITY_ENFORCED GROUP BY Event__c]) {
+				for (AggregateResult ar : [SELECT Event__c, SUM(Amount__c) FROM Transaction__c WHERE Event__c IN :eventIds AND Event__c != '' GROUP BY Event__c]) {
 					eventsToUpdate.add(new Event__c(Id = (Id) ar.get('Event__c'), Total_spent__c = (Double) ar.get('expr0')));
 				}
 			}

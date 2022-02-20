@@ -4,7 +4,7 @@
  * @Author             : Luis Campos (LC)
  * @Group              :
  * @Last Modified By   : Luis Campos (LC)
- * @Last Modified On   : 06-13-2021
+ * @Last Modified On   : 08-01-2021
  * @Modification Log   :
  * Ver       Date           Author				Modification
  * 1.0    10/28/2019   	Luis Campos (LC)    	Initial Version
@@ -28,7 +28,7 @@ public with sharing class BillStatusSchedulable implements Schedulable {
 	public final static String END_MONTH_EMAIL_DEVELOPER_NAME = 'End_Month_Status';
 
 	public BillStatusSchedulable() {
-		List<EmailTemplate> emailTemplates = [SELECT Id, Name, Body, HtmlValue, Subject FROM EmailTemplate WHERE developername = :END_MONTH_EMAIL_DEVELOPER_NAME WITH SECURITY_ENFORCED LIMIT 1];
+		List<EmailTemplate> emailTemplates = [SELECT Id, Name, Body, HtmlValue, Subject FROM EmailTemplate WHERE developername = :END_MONTH_EMAIL_DEVELOPER_NAME LIMIT 1];
 		if (!emailTemplates.isEmpty()) {
 			endMonthEmailTemplate = emailTemplates.get(0);
 		}

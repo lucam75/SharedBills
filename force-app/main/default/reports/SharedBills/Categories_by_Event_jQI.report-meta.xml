@@ -38,28 +38,41 @@
             <operator>notEqual</operator>
             <value/>
         </criteriaItems>
+        <criteriaItems>
+            <column>Transaction__c$Event__c.Id</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>a011F00000EY7NK</value>
+        </criteriaItems>
     </filter>
     <format>Summary</format>
     <groupingsDown>
+        <aggregateType>Sum</aggregateType>
         <dateGranularity>Day</dateGranularity>
         <field>Transaction__c$Category__c</field>
-        <sortOrder>Asc</sortOrder>
+        <sortByName>Transaction__c$Amount__c</sortByName>
+        <sortOrder>Desc</sortOrder>
+        <sortType>Aggregate</sortType>
     </groupingsDown>
     <groupingsDown>
+        <aggregateType>Sum</aggregateType>
         <dateGranularity>Day</dateGranularity>
         <field>Transaction__c$Event__c</field>
-        <sortOrder>Asc</sortOrder>
+        <sortByName>Transaction__c$Amount__c</sortByName>
+        <sortOrder>Desc</sortOrder>
+        <sortType>Aggregate</sortType>
     </groupingsDown>
     <name>Categories by Event</name>
     <params>
         <name>co</name>
-        <value>1</value>
+        <value>0</value>
     </params>
     <reportType>Transactions__c</reportType>
     <scope>organization</scope>
     <showDetails>false</showDetails>
-    <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>true</showSubTotals>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
     <timeFrameFilter>
         <dateColumn>Transaction__c$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

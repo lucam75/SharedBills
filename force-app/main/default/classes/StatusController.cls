@@ -4,7 +4,7 @@
  * @Author             : Luis Campos (LC)
  * @Group              :
  * @Last Modified By   : Luis Campos (LC)
- * @Last Modified On   : 02-06-2021
+ * @Last Modified On   : 08-01-2021
  * @Modification Log   :
  * Ver       Date          Author			Modification
  * 1.0    10/28/2019   Luis Campos (LC)     Initial Version
@@ -32,7 +32,7 @@ public with sharing class StatusController {
 		this.emailDiana = '';
 		this.emailLuis = '';
 
-		for (AggregateResult ar : [SELECT SUM(Amount__c), Paid_By__r.Name Paidby, Paid_By__r.Email PaidByEmail, Billed_to__r.Name BilledTo FROM Transaction__c WHERE Date__c = LAST_MONTH AND It_is_debt__c = TRUE WITH SECURITY_ENFORCED GROUP BY Billed_to__r.Name, Paid_By__r.Name, Paid_By__r.Email]) {
+		for (AggregateResult ar : [SELECT SUM(Amount__c), Paid_By__r.Name Paidby, Paid_By__r.Email PaidByEmail, Billed_to__r.Name BilledTo FROM Transaction__c WHERE Date__c = LAST_MONTH AND It_is_debt__c = TRUE GROUP BY Billed_to__r.Name, Paid_By__r.Name, Paid_By__r.Email]) {
 			if (ar != null) {
 				if (ar.get('Paidby') == 'Diana Gonzalez') {
 					this.deudaLuis = (Decimal) ar.get('expr0');

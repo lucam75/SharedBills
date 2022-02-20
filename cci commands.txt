@@ -1,0 +1,3 @@
+cci task run load_dataset -o mapping datasets/mapping.yml -o sql_path datasets/data.sql
+cci task run extract_dataset -o mapping datasets/mapping.yml -o sql_path datasets/data.sql
+cci task run create_package_version --org dev --package_type Unlocked --version_name "Added category graph report in Event detail page" --skip_validation true
